@@ -1,0 +1,19 @@
+.login_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-group{
+    margin: 10%;
+}
+
+.buttons{
+    margin-left: 10%;
+}
+
+.login_form{
+    border: 2px solid black;
+    border-radius: 5%;
+}

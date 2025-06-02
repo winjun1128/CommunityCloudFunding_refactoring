@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { Row, Col } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import { useProducts } from '../data/ProductContext';
 
 import './Index.css';
@@ -12,16 +12,24 @@ import './List.css';
 import SellModal from './SellModal';
 import EditModal from './EditModal';
 // import TpsItem  from './TpsItem';
-import {Routes,Route} from 'react-router';
+import {Routes,Route, useNavigate} from 'react-router';
 // 추가했을때 전체 탭에서만 뜸
 function List() {
+    const navigate = useNavigate();
+    const [in_SearchKeyword,in_SetSearchKeyword] = useState('');
+
+    const location = useLocation();
+
+    const params = new URLSearchParams(location.search);
+    const keyword = params.get('keyword');
+
     const [showEditModal, setShowEditModal] = useState(false);
     const [updateIndex, setUpdateIndex] = useState(0);
-    const [ShowSellModal, setShowSellModal] = useState(false);
+    const [showSellModal, setShowSellModal] = useState(false);
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     const [activeTab, setActiveTab] = useState('all'); // 초기 선택 탭
 
-    const searchKeyword = '농구공1';
+    const searchKeyword = keyword;
     const keywordResult = products.filter(product =>
         product.name.includes(searchKeyword)
     );
@@ -40,7 +48,7 @@ function List() {
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="/item" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -76,11 +84,11 @@ function List() {
                             {group.map((item) => (
                                 <Col md={3} key={item.no}>
                                     <Card>
-                                        <Link to=".">
+                                        <Link to={`/item/${item.no}`}>
                                             <Card.Img variant="top" src={item.imglink} />
                                         </Link>
                                         <Card.Body>
-                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                 <Card.Title>{item.name}</Card.Title>
                                             </Link>
                                             <Card.Text>{item.companyname}</Card.Text>
@@ -112,11 +120,11 @@ function List() {
                             {group.map((item) => (
                                 <Col md={3} key={item.no}>
                                     <Card>
-                                        <Link to=".">
+                                        <Link to={`/item/${item.no}`}>
                                             <Card.Img variant="top" src={item.imglink} />
                                         </Link>
                                         <Card.Body>
-                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                 <Card.Title>{item.name}</Card.Title>
                                             </Link>
                                             <Card.Text>{item.companyname}</Card.Text>
@@ -148,11 +156,11 @@ function List() {
                             {group.map((item) => (
                                 <Col md={3} key={item.no}>
                                     <Card>
-                                        <Link to=".">
+                                        <Link to={`/item/${item.no}`}>
                                             <Card.Img variant="top" src={item.imglink} />
                                         </Link>
                                         <Card.Body>
-                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                 <Card.Title>{item.name}</Card.Title>
                                             </Link>
                                             <Card.Text>{item.companyname}</Card.Text>
@@ -197,11 +205,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -237,11 +245,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -277,11 +285,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -312,11 +320,11 @@ function List() {
                     {group.map((item) => (
                         <Col md={3} key={item.no}>
                             <Card>
-                                <Link to=".">
+                                <Link to={`/item/${item.no}`}>
                                     <Card.Img variant="top" src={item.imglink} />
                                 </Link>
                                 <Card.Body>
-                                    <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title>{item.name}</Card.Title>
                                     </Link>
                                     <Card.Text>{item.companyname}</Card.Text>
@@ -353,11 +361,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -392,11 +400,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -431,11 +439,11 @@ function List() {
                         {group.map((item) => (
                             <Col md={3} key={item.no}>
                                 <Card>
-                                    <Link to=".">
+                                    <Link to={`/item/${item.no}`}>
                                         <Card.Img variant="top" src={item.imglink} />
                                     </Link>
                                     <Card.Body>
-                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text>{item.companyname}</Card.Text>
@@ -465,11 +473,11 @@ function List() {
                     {group.map((item) => (
                         <Col md={3} key={item.no}>
                             <Card>
-                                <Link to=".">
+                                <Link to={`/item/${item.no}`}>
                                     <Card.Img variant="top" src={item.imglink} />
                                 </Link>
                                 <Card.Body>
-                                    <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title>{item.name}</Card.Title>
                                     </Link>
                                     <Card.Text>{item.companyname}</Card.Text>
@@ -498,40 +506,28 @@ function List() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
-                        <Navbar.Brand href="#">로고</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav
-                                className="ms-auto my-2 my-lg-0"
-                                // me-auto 왼쪽정렬 ms-auto 오른쪽정렬
-                                style={{ maxHeight: '100px' }}
-                                navbarScroll
-                            >
-                                <Nav.Link href="#action1" style={{ marginRight: '10px' }}>후원하기</Nav.Link>
+                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
+                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                                    후원하기
+                                </Nav.Link>
                                 <Form className="d-flex">
-                                    <Form.Control
-                                        type="search"
-                                        placeholder="Search"
-                                        className="me-2"
-                                        aria-label="Search"
-                                    />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }}>Search</Button>
+                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={in_SearchKeyword} onChange={(e) => in_SetSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(in_SearchKeyword)}`)}>
+                                        Search
+                                    </Button>
                                 </Form>
+                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                 <Nav.Link onClick={() => {
+                                    if (localStorage.getItem('id') != null)
+                                        setShowSellModal(true);
+                                    else
+                                        alert('로그인 하세요');
 
-                                <Nav.Link href="#action2">{localStorage.getItem('id')==null?'로그인':localStorage.getItem('id')}</Nav.Link>
-                                <Nav.Link href="#action3" onClick={() => setShowSellModal(true)}>펀딩신청</Nav.Link>
-                                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
-                            </NavDropdown> */}
+                                }} href="#action3">펀딩신청</Nav.Link>
                             </Nav>
-
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
@@ -590,7 +586,7 @@ function List() {
                     {/* 필터링 된거 보이도록 */}
                 </Container>
             </main>
-            <SellModal show={ShowSellModal} onClose={() => setShowSellModal(false)}></SellModal>
+            <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
             <footer>
                 <h2>5판3선</h2>
             </footer>

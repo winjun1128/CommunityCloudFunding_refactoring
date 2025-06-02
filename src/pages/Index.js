@@ -1,22 +1,25 @@
 import { Card, Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import './Index.css';
 import { useState } from 'react';
-import TpsSellModal from './SellModal';
+import SellModal from './SellModal';
 import { useProducts } from '../data/ProductContext';
 // import TpsItem from './TpsItem';
 import {Route,Routes} from 'react-router';
 function Index() {
+    const navigate = useNavigate();
+    const [searchKeyword, setSearchKeyword] = useState('');
+
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     let countSortedProducts = [...products].sort(
         (a, b) => a.count - b.count
     );
     countSortedProducts = countSortedProducts.slice(0, 4);
 
-    const [ShowSellModal, setShowSellModal] = useState(false);
+    const [showSellModal, setShowSellModal] = useState(false);
     // const item={id:'아이디1', itemnum:13,itemname:'',itemcategory:'전체',itemprice:0,itemrecruitprice:0,itemrecruitperiodstart:'',itemrecruitperiodend:'',itemcarousellink:['','',''],itemintro:'',itempicturelink:'',itemvideolink:''}
     // const[sellItem,setSellItem]=useState({item});
     return (
@@ -24,46 +27,28 @@ function Index() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
-                        <Navbar.Brand href="#">로고</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav
-                                className="ms-auto my-2 my-lg-0"
-                                // me-auto 왼쪽정렬 ms-auto 오른쪽정렬
-                                style={{ maxHeight: '100px' }}
-                                navbarScroll
-                            >
-                                <Nav.Link href="#action1" style={{ marginRight: '10px' }}>후원하기</Nav.Link>
+                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
+                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                                    후원하기
+                                </Nav.Link>
                                 <Form className="d-flex">
-                                    <Form.Control
-                                        type="search"
-                                        placeholder="Search"
-                                        className="me-2"
-                                        aria-label="Search"
-                                    />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }}>Search</Button>
+                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                        Search
+                                    </Button>
                                 </Form>
-
-                                <Nav.Link href="#action2">{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                <Nav.Link onClick={() => {
+                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
                                         alert('로그인 하세요');
 
                                 }} href="#action3">펀딩신청</Nav.Link>
-                                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
-                            </NavDropdown> */}
                             </Nav>
-
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
@@ -135,7 +120,7 @@ function Index() {
                     }
                 </Container>
             </main>
-            <TpsSellModal show={ShowSellModal} onClose={() => setShowSellModal(false)} ></TpsSellModal>
+            <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
             <footer>
                 <h2>5판3선</h2>
             </footer>

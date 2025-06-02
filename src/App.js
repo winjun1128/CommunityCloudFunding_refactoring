@@ -1,19 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Index from './pages/Index';
+import Index from './pages/Index';
 import List from './pages/List';
 import Item from './pages/Item';
 import { ProductProvider } from './data/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
 import {Route,Routes} from 'react-router';
+import LogIn from './pages/LogIn';
 function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
         {/* <Index /> */}
         {/* <List /> */}
+        {/* <LogIn/> */}
         <Routes>
+          <Route path="/" element={<Index />}></Route>
+          <Route path="/login" element={<LogIn />}></Route>
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>
         </Routes>
