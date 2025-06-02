@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import './Index.css';
 import { useState } from 'react';
-import TpsSellModal from './TpsSellModal';
-import { useProducts } from './TpsProductContext';
-import TpsItem from './TpsItem';
+import TpsSellModal from './SellModal';
+import { useProducts } from '../data/ProductContext';
+// import TpsItem from './TpsItem';
 import {Route,Routes} from 'react-router';
 function Index() {
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
@@ -67,10 +67,6 @@ function Index() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-
-                <Routes>
-                    <Route path="/item/:itemindex" element={<TpsItem/>}></Route>
-                </Routes>
             </header>
             <main>
                 <Container>
@@ -78,7 +74,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '600px' }}>
                             <img
                                 className="d-block"
-                                src="/basketball1.jpeg"
+                                src="/images/basketball1.jpeg"
                                 alt="First slide"
                                 style={{ width: '100%', height: '600px' }}
                             />
@@ -87,7 +83,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '600px' }}>
                             <img
                                 className="d-block"
-                                src="/soccerball1.jpg"
+                                src="/images/soccerball1.jpg"
                                 alt="Second slide"
                                 style={{ width: '100%', height: '600px' }}
                             />
@@ -96,7 +92,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '600px' }}>
                             <img
                                 className="d-block"
-                                src="/food1.jpg"
+                                src="/images/food1.jpg"
                                 alt="Third slide"
                                 style={{ width: '100%', height: '600px' }}
                             />

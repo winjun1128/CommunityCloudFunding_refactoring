@@ -1,9 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Index from './pages/Index';
+import { ProductProvider } from './data/ProductContext';
+import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
-    <Index/>
+    <BrowserRouter>
+      <ProductProvider>
+        <Index />
+      </ProductProvider>
+    </BrowserRouter>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
