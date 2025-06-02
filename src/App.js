@@ -1,14 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Index from './pages/Index';
+// import Index from './pages/Index';
+import List from './pages/List';
 import { ProductProvider } from './data/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
-        <Index />
+        {/* <Index /> */}
+        <List />
       </ProductProvider>
     </BrowserRouter>
     // <div className="App">

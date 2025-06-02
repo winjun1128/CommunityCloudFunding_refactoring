@@ -1,0 +1,600 @@
+// 부트스트랩이 안되네 헤더랑
+import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import { Row, Col } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useProducts } from '../data/ProductContext';
+
+import './Index.css';
+import './List.css';
+import SellModal from './SellModal';
+import EditModal from './EditModal';
+// import TpsItem  from './TpsItem';
+import {Routes,Route} from 'react-router';
+// 추가했을때 전체 탭에서만 뜸
+function List() {
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [updateIndex, setUpdateIndex] = useState(0);
+    const [ShowSellModal, setShowSellModal] = useState(false);
+    const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
+    const [activeTab, setActiveTab] = useState('all'); // 초기 선택 탭
+
+    const searchKeyword = '농구공1';
+    const keywordResult = products.filter(product =>
+        product.name.includes(searchKeyword)
+    );
+    const keywordContent = () => {
+        const keywordRows = [];
+        for (let i = 0; i < keywordResult.length; i += 4) {
+            const keywordGroup = keywordResult.slice(i, i + 4); // 4개씩 묶기
+            keywordRows.push(
+                <Row className="custom-row" key={i}>
+                    {
+                        keywordGroup.map((item) => {
+                            return(
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to={`/item/${item.no}`}>
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="/item" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                            )
+                        })
+                    }
+                </Row>
+            )
+        }
+        return keywordRows;
+    }
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'all':
+                const rows = [];
+                for (let i = 0; i < products.length; i += 4) {
+                    const group = products.slice(i, i + 4); // 4개씩 묶기
+                    rows.push(
+                        <Row className="custom-row" key={i}>
+                            {group.map((item) => (
+                                <Col md={3} key={item.no}>
+                                    <Card>
+                                        <Link to=".">
+                                            <Card.Img variant="top" src={item.imglink} />
+                                        </Link>
+                                        <Card.Body>
+                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                <Card.Title>{item.name}</Card.Title>
+                                            </Link>
+                                            <Card.Text>{item.companyname}</Card.Text>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                        </Card.Footer>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    );
+                }
+                return rows;
+            case 'food':
+                const foodproducts = products.filter(item => item.category === 'food');
+                const foodRows = [];
+
+                for (let i = 0; i < foodproducts.length; i += 4) {
+                    const group = foodproducts.slice(i, i + 4);
+                    foodRows.push(
+                        <Row className="custom-row" key={i}>
+                            {group.map((item) => (
+                                <Col md={3} key={item.no}>
+                                    <Card>
+                                        <Link to=".">
+                                            <Card.Img variant="top" src={item.imglink} />
+                                        </Link>
+                                        <Card.Body>
+                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                <Card.Title>{item.name}</Card.Title>
+                                            </Link>
+                                            <Card.Text>{item.companyname}</Card.Text>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                        </Card.Footer>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    );
+                }
+                return foodRows;
+            case 'living':
+                const livingproducts = products.filter(item => item.category === 'living');
+                const livingRows = [];
+
+                for (let i = 0; i < livingproducts.length; i += 4) {
+                    const group = livingproducts.slice(i, i + 4);
+                    livingRows.push(
+                        <Row className="custom-row" key={i}>
+                            {group.map((item) => (
+                                <Col md={3} key={item.no}>
+                                    <Card>
+                                        <Link to=".">
+                                            <Card.Img variant="top" src={item.imglink} />
+                                        </Link>
+                                        <Card.Body>
+                                            <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                <Card.Title>{item.name}</Card.Title>
+                                            </Link>
+                                            <Card.Text>{item.companyname}</Card.Text>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        </Card.Footer>
+                                        <Card.Footer>
+                                            <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                        </Card.Footer>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    );
+                }
+                return livingRows;
+            default:
+                return;
+        }
+    }
+
+    const [category, setCategory] = useState('all');
+
+
+    //전체가 아닐떄
+    const getContent = () => {
+        if (category === 'open-order') {
+            const setCategoryProducts = products.filter(item => item.category === activeTab);
+            const openSortedProducts = [...setCategoryProducts].sort(
+                (a, b) => new Date(a.startdate) - new Date(b.startdate)
+            );
+            const openRows = [];
+
+            for (let i = 0; i < openSortedProducts.length; i += 4) {
+                const group = openSortedProducts.slice(i, i + 4);
+                openRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return openRows;
+        }
+        if (category === 'close-order') {
+            const setCategoryProducts = products.filter(item => item.category === activeTab);
+            const closeSortedProducts = [...setCategoryProducts].sort(
+                (a, b) => new Date(a.enddate) - new Date(b.enddate)
+            );
+            const closeRows = [];
+
+            for (let i = 0; i < closeSortedProducts.length; i += 4) {
+                const group = closeSortedProducts.slice(i, i + 4);
+                closeRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return closeRows;
+        }
+        if (category === 'percent') {
+            const setCategoryProducts = products.filter(item => item.category === activeTab);
+            const percentSortedProducts = [...setCategoryProducts].sort(
+                (b, a) => new Date(a.percent) - new Date(b.percent)
+            );
+            const percentRows = [];
+
+            for (let i = 0; i < percentSortedProducts.length; i += 4) {
+                const group = percentSortedProducts.slice(i, i + 4);
+                percentRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return percentRows;
+        }
+        const setCategoryProducts = products.filter(item => item.category === activeTab);
+        const rows = [];
+        for (let i = 0; i < setCategoryProducts.length; i += 4) {
+            const group = setCategoryProducts.slice(i, i + 4); // 4개씩 묶기
+            rows.push(
+                <Row className="custom-row" key={i}>
+                    {group.map((item) => (
+                        <Col md={3} key={item.no}>
+                            <Card>
+                                <Link to=".">
+                                    <Card.Img variant="top" src={item.imglink} />
+                                </Link>
+                                <Card.Body>
+                                    <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Card.Title>{item.name}</Card.Title>
+                                    </Link>
+                                    <Card.Text>{item.companyname}</Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                </Card.Footer>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                </Card.Footer>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            );
+        }
+        return rows;
+    }
+
+    const getAllContent = () => {
+        if (category === 'open-order') {
+            const openSortedProducts = [...products].sort(
+                (a, b) => new Date(a.startdate) - new Date(b.startdate)
+            );
+            const openRows = [];
+
+            for (let i = 0; i < openSortedProducts.length; i += 4) {
+                const group = openSortedProducts.slice(i, i + 4);
+                openRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return openRows;
+        }
+        if (category === 'close-order') {
+            const closeSortedProducts = [...products].sort(
+                (a, b) => new Date(a.enddate) - new Date(b.enddate)
+            );
+            const closeRows = [];
+
+            for (let i = 0; i < closeSortedProducts.length; i += 4) {
+                const group = closeSortedProducts.slice(i, i + 4);
+                closeRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return closeRows;
+        }
+        if (category === 'percent') {
+            const percentSortedProducts = [...products].sort(
+                (b, a) => new Date(a.percent) - new Date(b.percent)
+            );
+            const percentRows = [];
+
+            for (let i = 0; i < percentSortedProducts.length; i += 4) {
+                const group = percentSortedProducts.slice(i, i + 4);
+                percentRows.push(
+                    <Row className="custom-row" key={i}>
+                        {group.map((item) => (
+                            <Col md={3} key={item.no}>
+                                <Card>
+                                    <Link to=".">
+                                        <Card.Img variant="top" src={item.imglink} />
+                                    </Link>
+                                    <Card.Body>
+                                        <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            <Card.Title>{item.name}</Card.Title>
+                                        </Link>
+                                        <Card.Text>{item.companyname}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                );
+            }
+            return percentRows;
+        }
+        const rows = [];
+        for (let i = 0; i < products.length; i += 4) {
+            const group = products.slice(i, i + 4); // 4개씩 묶기
+            rows.push(
+                <Row className="custom-row" key={i}>
+                    {group.map((item) => (
+                        <Col md={3} key={item.no}>
+                            <Card>
+                                <Link to=".">
+                                    <Card.Img variant="top" src={item.imglink} />
+                                </Link>
+                                <Card.Body>
+                                    <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Card.Title>{item.name}</Card.Title>
+                                    </Link>
+                                    <Card.Text>{item.companyname}</Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                </Card.Footer>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                </Card.Footer>
+                                <Card.Footer>
+                                    <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            );
+        }
+        return rows;
+    }
+    const sellproducts = products.filter(item => item.seller === localStorage.getItem('id'));
+
+    return (
+        <div>
+            <header>
+                <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
+                    <Container fluid>
+                        <Navbar.Brand href="#">로고</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Nav
+                                className="ms-auto my-2 my-lg-0"
+                                // me-auto 왼쪽정렬 ms-auto 오른쪽정렬
+                                style={{ maxHeight: '100px' }}
+                                navbarScroll
+                            >
+                                <Nav.Link href="#action1" style={{ marginRight: '10px' }}>후원하기</Nav.Link>
+                                <Form className="d-flex">
+                                    <Form.Control
+                                        type="search"
+                                        placeholder="Search"
+                                        className="me-2"
+                                        aria-label="Search"
+                                    />
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }}>Search</Button>
+                                </Form>
+
+                                <Nav.Link href="#action2">{localStorage.getItem('id')==null?'로그인':localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link href="#action3" onClick={() => setShowSellModal(true)}>펀딩신청</Nav.Link>
+                                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
+                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action4">
+                                    Another action
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action5">
+                                    Something else here
+                                </NavDropdown.Item>
+                            </NavDropdown> */}
+                            </Nav>
+
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </header>
+            <main>
+                <Container>
+                    <h1>검색내용</h1>
+                    {keywordContent()}
+                    <Nav fill variant="tabs">
+                        <Nav.Item>
+                            <Nav.Link onClick={() => setActiveTab('all')} active={activeTab === 'all'}>전체</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link onClick={() => setActiveTab('food')} active={activeTab === 'food'}>푸드</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link onClick={() => setActiveTab('living')} active={activeTab === 'living'}>리빙</Nav.Link>
+                        </Nav.Item>
+
+                    </Nav>
+                    {/* 윗카테고리 */}
+                    {/* 선택한 값을 알아내지 않고 누르면 직접 값을 지정해서 넘겨줘야하므로 매개변수 필요없음 */}
+                    {/* 이벤트객체를 넘겨주면  지금 네브들은 밸류속성이 없어서 undefined 뜸 */}
+
+
+                    {/* 셀렉트에서 선택한 값을 알기 위해 이벤트 객체를 받아야 함 */}
+                    <div className='categorySelectArea'>
+                        <select id="categorySelect" onChange={(e) => setCategory(e.target.value)}>
+                            <option value="all">전체</option>
+                            <option value="open-order">등록순</option>
+                            <option value="close-order">마감임박순</option>
+                            <option value="percent">진행도</option>
+                        </select>
+                    </div>
+                    {/* 판매자 상품 수정 및 삭제하기 */}
+                    <Button onClick={() => setShowEditModal(true)}>수정</Button>
+                    <Button onClick={() => {
+                        // const delpost = posts.filter(item=>item.no!==post.no);
+                        const delproduct = products.filter(item => item.no !== sellproducts[updateIndex].no);
+                        setProducts(delproduct);
+                    }}>삭제</Button>
+                    {sellproducts.map((item, index) => {
+                        return (
+                            <div>
+                                <div>
+                                    <p onClick={() => setUpdateIndex(index)}>{item.name}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                    {<p>{updateIndex}</p>}
+                    <EditModal show={showEditModal} onClose={() => setShowEditModal(false)} product={sellproducts[updateIndex]}></EditModal>
+                    {/* {(activeTab === "all" || activeTab === 'food' || activeTab === 'living') && renderContent()} */}
+                    {/* 아랫카테고리 */}
+                    {(activeTab === 'all') ? getAllContent() : getContent()}
+                    {/* 필터링 된거 보이도록 */}
+                </Container>
+            </main>
+            <SellModal show={ShowSellModal} onClose={() => setShowSellModal(false)}></SellModal>
+            <footer>
+                <h2>5판3선</h2>
+            </footer>
+        </div>
+    );
+}
+export default List;
