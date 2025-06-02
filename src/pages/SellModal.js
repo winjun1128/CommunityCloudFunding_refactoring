@@ -8,7 +8,7 @@ function SellModal({ show, onClose}) {
     const [sellImgLink,setSellImgLink] = useState('');
     const [sellCompanyName,setSellCompanyName] = useState('');
     const [sellName, setSellName] = useState(0);
-    const [sellCategory, setSellCategory] = useState('');
+    const [sellCategory, setSellCategory] = useState('food');
     const [sellPrice, setSellPrice] = useState(0);
     const [sellRecruitMoney, setSellRecruitMoney] = useState(0);
     const [sellStartDate, setSellStartDate] = useState('');

@@ -1,6 +1,6 @@
 
 
-main{
+.list-main{
     width: 100%;
     height: 240vh;
     color: black;
@@ -14,11 +14,11 @@ main{
     overflow: auto;
 }
 
- main .container .custom-row{
+ .list-main .container .custom-row{
     margin-bottom: 5vh;
  }
 
- main .container .categorySelectArea{
+ .list-main .container .categorySelectArea{
     width: 100%;
     height: 20vh;
     text-align: right;

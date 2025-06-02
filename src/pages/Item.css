@@ -1,42 +1,44 @@
-main{
+.item-main{
     overflow: hidden;
+    height: 200vh;
+    background-color: beige;
 }
-main .container .custom-row img{
+.item-main .container .custom-row img{
     width: 100%;
     object-fit: cover;
 }
-main .container .custom-row .gain-money{
+.item-main .container .custom-row .gain-money{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
-main .container .custom-row .gain-money span{
+.item-main .container .custom-row .gain-money span{
     font-size: 1.2rem;
 }
-main .container .custom-row table {
+.item-main .container .custom-row table {
     border-collapse: collapse;
     width: 100%;
 }
 
-main .container .custom-row table td {
+.item-main .container .custom-row table td {
     /* border: 1px solid black; */
     padding: 8px;
     text-align: left;
 }
 
-main .container .custom-row .like-pay{
+.item-main .container .custom-row .like-pay{
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-main .container .item-intro{
+.item-main .container .item-intro{
     width: 80%;
     height: 100vh;
     background-color: pink;
     text-align: center;
 }
-main .container .item-intro img,video{
+.item-main .container .item-intro img,video{
     width: 50%;
     height: 40%;
     object-fit: cover;

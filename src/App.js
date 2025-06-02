@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Index from './pages/Index';
 import List from './pages/List';
 import Item from './pages/Item';
+import Community from './pages/Community';
 import { ProductProvider } from './data/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
 import {Route,Routes} from 'react-router';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<LogIn />}></Route>
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>
+          <Route path="/community" element={<Community />}></Route>
         </Routes>
       </ProductProvider>
     </BrowserRouter>

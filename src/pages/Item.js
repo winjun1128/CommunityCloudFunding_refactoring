@@ -2,7 +2,7 @@ import { Container, Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { Link} from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
-import './Index.css';
+
 import './Item.css';
 
 import PayModal from './PayModal';
@@ -59,7 +59,7 @@ function Item() {
                     </Container>
                 </Navbar>
             </header>
-            <main>
+            <main className='item-main'>
                 <Container>
                     <Row className='custom-row'>
                         <Col md={6}>

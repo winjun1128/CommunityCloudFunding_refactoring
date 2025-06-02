@@ -15,7 +15,7 @@ function Index() {
 
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     let countSortedProducts = [...products].sort(
-        (a, b) => a.count - b.count
+        (b, a) => a.count - b.count
     );
     countSortedProducts = countSortedProducts.slice(0, 4);
 
@@ -53,7 +53,7 @@ function Index() {
                     </Container>
                 </Navbar>
             </header>
-            <main>
+            <main className='index-main'>
                 <Container>
                     <Carousel style={{ width: '100%', height: '600px' }}>
                         <Carousel.Item style={{ width: '100%', height: '600px' }}>
@@ -87,15 +87,15 @@ function Index() {
                     {
                         <Row className='custom-row'>
                             {
-                                countSortedProducts.map((item, count) => {
+                                countSortedProducts.map((item) => {
                                     return (
                                         <Col md={3}>
                                             <Card>
-                                                <Link to=".">
+                                                <Link to={`/item/${item.no}`}>
                                                     <Card.Img variant="top" src={item.imglink} />
                                                 </Link>
                                                 <Card.Body>
-                                                    <Link to="." style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                    <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                         <Card.Title>{item.name}</Card.Title>
                                                     </Link>
                                                     <Card.Text>{item.companyname}</Card.Text>

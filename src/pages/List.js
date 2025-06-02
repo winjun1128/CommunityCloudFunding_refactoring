@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Link,useLocation } from 'react-router-dom';
 import { useProducts } from '../data/ProductContext';
 
-import './Index.css';
+//import './Index.css';
 import './List.css';
 import SellModal from './SellModal';
 import EditModal from './EditModal';
@@ -532,7 +532,7 @@ function List() {
                     </Container>
                 </Navbar>
             </header>
-            <main>
+            <main className='list-main'>
                 <Container>
                     <h1>검색내용</h1>
                     {keywordContent()}

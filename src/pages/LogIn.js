@@ -48,7 +48,7 @@ function LogIn() {
                     </Container>
                 </Navbar>
             </header>
-            <main>
+            <main className='login-main'>
                 <div className='login_container'>
                     <form className='login_form'>
                         <h2>로그인</h2>

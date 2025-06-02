@@ -1,0 +1,39 @@
+.community-main{
+    width: 100vw;
+    height: 100vh;
+    color: black;
+  
+
+    display: block;
+    
+    background-color:beige;
+}
+.community-main .container .buttonareacommunity{
+    display: flex;
+    justify-content: space-between;
+}
+.community-main .container .buttonareacommunity .writebuttoncommunity{
+    margin-right: 20%;
+}
+.community-main .container .board{
+    width: 80%;
+}
+.community-main .container .board table{
+    width: 100%;
+    background-color: white;
+}
+.community-main .container .board table a{
+    text-decoration: none;
+    color: black;
+}
+.community-main .container .board .indexareacommunity{
+    display: flex;
+    justify-content:center;
+}
+.community-main .container .board .changetablearea{
+    display: flex;
+    justify-content: center;
+}
+.community-main .container .board .changetablearea button{
+    margin: 0 10%;
+}

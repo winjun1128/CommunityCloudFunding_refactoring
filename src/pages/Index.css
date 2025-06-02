@@ -21,7 +21,7 @@ header{
 }
 
 
-main{
+.index-main{
     width: 100%;
     height: 180vh;
     color: black;
@@ -34,7 +34,7 @@ main{
     background-color:beige;
 }
 
-main .container .hotfunding{
+.index-main .container .hotfunding{
     margin-top: 30%;
     color: red;
 }
