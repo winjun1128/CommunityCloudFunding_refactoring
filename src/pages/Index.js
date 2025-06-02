@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import './Index.css';
 import { useState } from 'react';
-import TpsSellModal from './TpsSellModal';
-import { useProducts } from './TpsProductContext';
-import TpsItem from './TpsItem';
+// import TpsSellModal from './TpsSellModal';
+// import { useProducts } from './TpsProductContext';
+// import TpsItem from './TpsItem';
 import {Route,Routes} from 'react-router';
 function Index() {
-    const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
-    let countSortedProducts = [...products].sort(
-        (a, b) => a.count - b.count
-    );
-    countSortedProducts = countSortedProducts.slice(0, 4);
+    // const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
+    // let countSortedProducts = [...products].sort(
+    //     (a, b) => a.count - b.count
+    // );
+    // countSortedProducts = countSortedProducts.slice(0, 4);
 
     const [ShowSellModal, setShowSellModal] = useState(false);
     // const item={id:'아이디1', itemnum:13,itemname:'',itemcategory:'전체',itemprice:0,itemrecruitprice:0,itemrecruitperiodstart:'',itemrecruitperiodend:'',itemcarousellink:['','',''],itemintro:'',itempicturelink:'',itemvideolink:''}
@@ -68,9 +68,9 @@ function Index() {
                     </Container>
                 </Navbar>
 
-                <Routes>
+                {/* <Routes>
                     <Route path="/item/:itemindex" element={<TpsItem/>}></Route>
-                </Routes>
+                </Routes> */}
             </header>
             <main>
                 <Container>
@@ -105,7 +105,7 @@ function Index() {
                     <h2 className='hotfunding'>인기펀딩</h2>
                     {
                         <Row className='custom-row'>
-                            {
+                            {/* {
                                 countSortedProducts.map((item, count) => {
                                     return (
                                         <Col md={3}>
@@ -134,12 +134,12 @@ function Index() {
                                     )
 
                                 })
-                            }
+                            } */}
                         </Row>
                     }
                 </Container>
             </main>
-            <TpsSellModal show={ShowSellModal} onClose={() => setShowSellModal(false)} ></TpsSellModal>
+            {/* <TpsSellModal show={ShowSellModal} onClose={() => setShowSellModal(false)} ></TpsSellModal> */}
             <footer>
                 <h2>5판3선</h2>
             </footer>

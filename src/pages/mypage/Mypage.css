@@ -1,0 +1,55 @@
+.mainCt {
+    width: 30%;
+    background-color: transparent;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+}
+
+.mypage {
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding-top: 56px;
+}
+
+.sidebar {
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    color: #0d6efd;
+}
+
+.profileBox {
+    width: 80%;
+    border: 1px solid gray;
+    margin: 0 auto;
+    border-radius: 30px 30px 30px 30px;
+    padding: 20px;
+}
+
+.profile-imgChange {
+    display: flex;
+    font-size: smaller;
+    border: none;
+    float: right;
+}
+
+.profile-numEmailChange {
+    display: flex;
+    float: right;
+    border: none;
+    font-size: smaller;
+}
+
+.exit-member {
+    font-size: smaller;
+    display: flex;
+    float: right;
+    margin-right: 10%;
+}
