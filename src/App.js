@@ -3,14 +3,20 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import Index from './pages/Index';
 import List from './pages/List';
+import Item from './pages/Item';
 import { ProductProvider } from './data/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
+import {Route,Routes} from 'react-router';
 function App() {
   return (
     <BrowserRouter>
       <ProductProvider>
         {/* <Index /> */}
-        <List />
+        {/* <List /> */}
+        <Routes>
+          <Route path="/list" element={<List />}></Route>
+          <Route path="/item/:itemno" element={<Item />}></Route>
+        </Routes>
       </ProductProvider>
     </BrowserRouter>
     // <div className="App">
