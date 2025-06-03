@@ -1,16 +1,16 @@
 import { Card, ProgressBar, Badge } from 'react-bootstrap';
 
-function ProjectCard(props) {
+function ProjectCard({item}) {
     return (
         <Card className="h-100 shadow-sm">
-            <Card.Img variant="top" src={props.project.img} />
+            <Card.Img variant="top" src={item.imglink} />
             <Card.Body>
-                <Card.Title>{props.project.title}</Card.Title>
-                {props.project.title === '텀블러 프로젝트' &&
+                <Card.Title>{item.name}</Card.Title>
+                {item.name === '텀블러 프로젝트' &&
                     <Badge bg="danger" >Hot</Badge>
                 }
-                <Card.Text>{props.project.description}</Card.Text>
-                <ProgressBar now={props.project.progress} label={`${props.project.progress}%`} />
+                <Card.Text>{item.companyname}</Card.Text>
+                <ProgressBar now={item.percent} label={`${item.percent}%`} />
             </Card.Body>
         </Card>
     );
