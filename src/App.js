@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {Route,Routes} from 'react-router';
 import LogIn from './pages/LogIn';
 import Mypage from './components/Mypage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,7 +24,8 @@ function App() {
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>
           <Route path="/community" element={<Community />}></Route>
-          <Route path="/mypage" element={<Mypage />}></Route>
+          
+          <Route path="/mypage/*" element={<Mypage />}></Route>
 
         </Routes>
       </ProductProvider>

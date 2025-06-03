@@ -78,7 +78,7 @@ function LogIn() {
                             <button type="button">
                                 회원가입
                             </button>
-                            <button type="submit" onClick={()=>localStorage.setItem('id',userid)}>로그인</button>
+                            <button type="submit" onClick={()=>{localStorage.setItem('id',userid); navigate("/mypage")}}>로그인</button>
                         </div>
                     </form>
                     <p style={{ color: message === '로그인 성공' ? 'green' : 'red' }}>{message}</p>
