@@ -41,7 +41,7 @@ function Index() {
                                     </Button>
                                 </Form>
                                 <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                 <Nav.Link onClick={() => {
+                                <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else

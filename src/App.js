@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Index from './pages/Index';
+<<<<<<< HEAD
 import List from './pages/List';
 import Item from './pages/Item';
 import Community from './pages/Community';
@@ -41,6 +42,16 @@ function App() {
     //     </a>
     //   </header>
     // </div>
+=======
+import Mypage from './components/Mypage';
+import {BrowserRouter} from 'react-router-dom';
+function App() {
+  return (
+    // <Index/>
+    <BrowserRouter>
+      <Mypage />
+    </BrowserRouter>
+>>>>>>> ft-mypage
   );
 }
 
