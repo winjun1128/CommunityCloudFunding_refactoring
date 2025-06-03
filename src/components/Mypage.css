@@ -1,0 +1,65 @@
+.all-container {
+  padding-top: 80px;
+  /* navbar 높이만큼 */
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: white;
+  border-right: 1px solid #ddd;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  height: calc(100vh - 80px); /* Navbar 높이 제외 */
+  position: relative;
+}
+
+.sidebar .nav-link {
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+  color: #0d6efd; /* 부트스트랩 기본 파랑색 */
+}
+
+.profileBox {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-numEmailChange {
+  margin-left: 10px;
+}
+
+.exit-member {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.logout-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 120px;  /* 줄였음 */
+  font-size: 0.9rem; /* 조금 작게 */
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.exit-member {
+  display: block;
+  margin-left: auto; /* 오른쪽 정렬 */
+  margin-right: 0;
+  margin-top: 20px;
+  width: 150px;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+}

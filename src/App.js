@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import Index from './pages/Index';
-import Mypage from './pages/mypage/Mypage';
+import Mypage from './components/Mypage';
+import {BrowserRouter} from 'react-router-dom';
 function App() {
   return (
     // <Index/>
-    <Mypage/>
+    <BrowserRouter>
+      <Mypage />
+    </BrowserRouter>
   );
 }
 

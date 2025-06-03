@@ -2,7 +2,7 @@ import { Card, ProgressBar, Badge } from 'react-bootstrap';
 
 function ProjectCard(props) {
     return (
-        <Card className="h-100">
+        <Card className="h-100 shadow-sm">
             <Card.Img variant="top" src={props.project.img} />
             <Card.Body>
                 <Card.Title>{props.project.title}</Card.Title>
