@@ -56,7 +56,7 @@ function Mypage() {
                     <Col md={3} className="sidebar p-4 border-end position-relative">
                         <div className="text-center mb-4">
                             <Image src={basic} roundedCircle width={100} height={100} />
-                            <h5 className="mt-3">한주승</h5>
+                            <h5 className="mt-3">{localStorage.getItem('id')}</h5>
                             <p className="text-muted">abcd****@naver.com</p>
                         </div>
 

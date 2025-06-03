@@ -23,7 +23,7 @@ function Profile({ showInfo, setShowInfo }) {
                     <div className='d-flex gap-3 align-items-center'>
                         <Image src={basic} roundedCircle width={60} height={60} />
                         <div>
-                            <h5>한주승</h5>
+                            <h5>{localStorage.getItem('id')}</h5>
                             <p className="text-muted">{infomation[1]}</p>
                         </div>
                     </div>
