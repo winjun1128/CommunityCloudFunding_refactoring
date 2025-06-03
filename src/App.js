@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Index from './pages/Index';
-<<<<<<< HEAD
 import List from './pages/List';
 import Item from './pages/Item';
 import Community from './pages/Community';
@@ -10,6 +9,7 @@ import { ProductProvider } from './data/ProductContext';
 import { BrowserRouter } from 'react-router-dom';
 import {Route,Routes} from 'react-router';
 import LogIn from './pages/LogIn';
+import Mypage from './components/Mypage';
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +23,8 @@ function App() {
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>
           <Route path="/community" element={<Community />}></Route>
+          <Route path="/mypage" element={<Mypage />}></Route>
+
         </Routes>
       </ProductProvider>
     </BrowserRouter>
@@ -42,16 +44,6 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-=======
-import Mypage from './components/Mypage';
-import {BrowserRouter} from 'react-router-dom';
-function App() {
-  return (
-    // <Index/>
-    <BrowserRouter>
-      <Mypage />
-    </BrowserRouter>
->>>>>>> ft-mypage
   );
 }
 

@@ -1,5 +1,5 @@
-import { Container, Navbar, Nav, Button, Form, Row, Col, Image } from 'react-bootstrap';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Container, Navbar, Nav, Button, Form, Row, Col, Image  } from 'react-bootstrap';
+import { Routes, Route, useNavigate, useLocation ,Link} from 'react-router-dom';
 import './Mypage.css';
 import basic from '../images/basic.JPG';
 import Profile from './Profile';
@@ -7,6 +7,7 @@ import MyProject from './MyProject';
 import Spon from './Spon';
 import Wishlist from './Wishlist';
 import { useState } from 'react';
+import SellModal from '../pages/SellModal';
 
 function Mypage() {
     const navigate = useNavigate();
@@ -14,25 +15,40 @@ function Mypage() {
     const [showInfo, setShowInfo] = useState(false);
     const currentPath = location.pathname;
 
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [ showSellModal, setShowSellModal] = useState(false);
+
     return (
+
         <div className='all-container'>
-            <Navbar expand="lg" className="bg-body-tertiary" fixed='top' style={{ boxShadow: '5px 5px 5px gray' }}>
-                <Container fluid>
-                    <Navbar.Brand href="#">로고</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
-                        <Nav className="ms-auto my-2 my-lg-0" navbarScroll>
-                            <Nav.Link href="#action1">후원하기</Nav.Link>
-                            <Form className="d-flex mx-2">
-                                <Form.Control type="search" placeholder="Search" className="me-2" />
-                                <Button variant="outline-success">Search</Button>
-                            </Form>
-                            <Nav.Link href="#action2">마이페이지</Nav.Link>
-                            <Nav.Link href="#action3">펀딩신청</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
+                    <Container fluid>
+                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
+                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                                    후원하기
+                                </Nav.Link>
+                                <Form className="d-flex">
+                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                        Search
+                                    </Button>
+                                </Form>
+                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link onClick={() => {
+                                    if (localStorage.getItem('id') != null)
+                                        setShowSellModal(true);
+                                    else
+                                        alert('로그인 하세요');
+
+                                }} href="#action3">펀딩신청</Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                        
+                    </Container>
+                </Navbar>
 
             <Container fluid className="mypage">
                 <Row>
@@ -64,6 +80,7 @@ function Mypage() {
                     </Col>
                 </Row>
             </Container>
+            <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
         </div>
     );
 }

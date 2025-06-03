@@ -1,8 +1,10 @@
 .all-container {
-  padding-top: 80px;
   /* navbar 높이만큼 */
   background-color: #f9f9f9;
   min-height: 100vh;
+}
+.mypage {
+    margin-top: 20px;
 }
 
 .sidebar {
