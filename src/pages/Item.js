@@ -140,27 +140,6 @@ function Item() {
                             <Button variant='primary' style={{ marginTop: '10%' }} onClick={()=>navigate('/community')}>게시판가기</Button>
                         </Col>
                     </Row>
-                    {/* 컨슈머와 좋아요 */}
-                    {
-                        consumerproducts.map((item, index) => {
-                            return (
-                                <div>
-                                    <p onClick={() => setConsumerIndex(index)}>{item.name}</p>
-                                </div>
-                            )
-                        })
-                    }
-                    <p>{consumerIndex}</p>
-                    {
-                        heartproducts.map((item, index) => {
-                            return (
-                                <div>
-                                    <p onClick={() => setHeartIndex(index)}>{item.name}</p>
-                                </div>
-                            )
-                        })
-                    }
-                    <p>{heartIndex}</p>
                     <div className='item-intro'>
                         <h3>제품소개</h3>
                         <h4>{products[itemindex].intro}</h4>

@@ -449,24 +449,6 @@ function List() {
                             <option value="percent">진행도</option>
                         </select>
                     </div>
-                    {/* 판매자 상품 수정 및 삭제하기 */}
-                    <Button onClick={() => setShowEditModal(true)}>수정</Button>
-                    <Button onClick={() => {
-                        // const delpost = posts.filter(item=>item.no!==post.no);
-                        const delproduct = products.filter(item => item.no !== sellproducts[updateIndex].no);
-                        setProducts(delproduct);
-                    }}>삭제</Button>
-                    {sellproducts.map((item, index) => {
-                        return (
-                            <div>
-                                <div>
-                                    <p onClick={() => setUpdateIndex(index)}>{item.name}</p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    {<p>{updateIndex}</p>}
-                    <EditModal show={showEditModal} onClose={() => setShowEditModal(false)} product={sellproducts[updateIndex]}></EditModal>
                     {/* {(activeTab === "all" || activeTab === 'food' || activeTab === 'living') && renderContent()} */}
                     {/* 아랫카테고리 */}
                     {(activeTab === 'all') ? getAllContent() : getContent()}
