@@ -1,0 +1,113 @@
+/* 전체 화면 중앙 정렬 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.sign-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-wrapper {
+    background-color: #fff;
+    padding: 25px 20px;  /* 줄임 */
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;  /* 살짝 좁힘 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sign-header-container {
+    text-align: center;
+    margin-bottom: 20px;  /* 줄임 */
+}
+
+.sign-header-container h2 {
+    font-size: 26px;  /* 살짝 축소 */
+    font-weight: bold;
+    color: #333;
+}
+
+.SignContainer {
+    text-align: left;
+}
+
+.SignInputBox {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px; /* 입력칸 사이 간격 줄임 */
+}
+
+.SignInputBox label {
+    margin-bottom: 3px;  /* 라벨과 인풋 사이 줄임 */
+    font-weight: 500;
+    color: #555;
+}
+
+.SignInputBox input[type="text"],
+.SignInputBox input[type="password"] {
+    padding: 8px 12px; /* 인풋 높이 줄임 */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.SignInputBox input[type="text"]:focus,
+.SignInputBox input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.agree-section {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.agree-section label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.warning {
+    color: red;
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;  /* 버튼 위 여백 축소 */
+}
+
+.button-group button {
+    padding: 8px 25px;  /* 버튼 크기 줄임 */
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+    background-color: #0056b3;
+}
+
+.button-group .cancel {
+    background-color: #6c757d;
+}
+
+.button-group .cancel:hover {
+    background-color: #5a6268;
+}

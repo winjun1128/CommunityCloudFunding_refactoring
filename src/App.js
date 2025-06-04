@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {Route,Routes} from 'react-router';
 import LogIn from './pages/LogIn';
 import Mypage from './components/Mypage';
+import Sign from './pages/Sign';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         {/* <LogIn/> */}
         <Routes>
           <Route path="/" element={<Index />}></Route>
+          <Route path="/sign" element={<Sign />}></Route>
           <Route path="/login" element={<LogIn />}></Route>
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>

@@ -20,10 +20,7 @@ function Item() {
      const itemindex = products.findIndex(product => product.no===Number(itemno));
     //컨슈머와 좋아요
     const [heartToggle,setHeartToggle] = useState(false);
-    const [heartIndex,setHeartIndex] = useState(0);
-    const heartproducts = products.filter(item => item.heart.includes(localStorage.getItem('id')));
-    const [consumerIndex, setConsumerIndex] = useState(0);
-    const consumerproducts = products.filter(item => item.consumer.includes(localStorage.getItem('id')));
+
     // const item={itemname:'상품1',itemnum:1,itemcount:0,itemprice:10000,period:'2025-05-28~2025-06-11',percent:50}
     // const [buyItem,setBuyItem]=useState(item)
     const [showPayModal, setShowPayModal] = useState(false);
@@ -134,7 +131,7 @@ function Item() {
                                         setProducts(temp);
                                         setHeartToggle(false);
                                     }
-                                }} style={(heartToggle?{backgroundColor:'black'}:{backgroundColor:'white'})}>❤</button>
+                                }} style={(heartToggle?{backgroundColor:'black'}:{backgroundColor:'white'})}>💘</button>
                                 <Link to="."><Button onClick={() => setShowPayModal(true)}>결제가기</Button></Link>
                             </div>
                             <Button variant='primary' style={{ marginTop: '10%' }} onClick={()=>navigate('/community')}>게시판가기</Button>

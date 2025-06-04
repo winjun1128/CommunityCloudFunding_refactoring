@@ -75,7 +75,7 @@ function LogIn() {
                             />
                         </div>
                         <div className="buttons">
-                            <button type="button">
+                            <button type="button" onClick={()=>navigate("/sign")}>
                                 회원가입
                             </button>
                             <button type="submit" onClick={()=>{localStorage.setItem('id',userid); navigate("/")}}>로그인</button>

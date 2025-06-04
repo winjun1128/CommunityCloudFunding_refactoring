@@ -23,8 +23,6 @@ function List() {
     const params = new URLSearchParams(location.search);
     const keyword = params.get('keyword');
 
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [updateIndex, setUpdateIndex] = useState(0);
     const [showSellModal, setShowSellModal] = useState(false);
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     const [activeTab, setActiveTab] = useState('all'); // 초기 선택 탭
@@ -51,7 +49,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -99,7 +97,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -139,7 +137,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -179,7 +177,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -214,7 +212,7 @@ function List() {
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title>{item.name}</Card.Title>
                                     </Link>
-                                    <Card.Text>{item.companyname}</Card.Text>
+                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
                                     <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -255,7 +253,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -294,7 +292,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -333,7 +331,7 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text>{item.companyname}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -367,7 +365,7 @@ function List() {
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title>{item.name}</Card.Title>
                                     </Link>
-                                    <Card.Text>{item.companyname}</Card.Text>
+                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
                                     <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
@@ -386,7 +384,7 @@ function List() {
         }
         return rows;
     }
-    const sellproducts = products.filter(item => item.seller === localStorage.getItem('id'));
+
 
     return (
         <div>

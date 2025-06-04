@@ -98,7 +98,7 @@ function Index() {
                                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                         <Card.Title>{item.name}</Card.Title>
                                                     </Link>
-                                                    <Card.Text>{item.companyname}</Card.Text>
+                                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                                 </Card.Body>
                                                 <Card.Footer>
                                                     <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>

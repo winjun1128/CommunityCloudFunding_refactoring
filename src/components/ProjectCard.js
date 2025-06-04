@@ -10,7 +10,7 @@ function ProjectCard({item,setUpdateIndex,index}) {
                 {item.name === '텀블러 프로젝트' &&
                     <Badge bg="danger" >Hot</Badge>
                 }
-                <Card.Text>{item.companyname}</Card.Text>
+                <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                 <ProgressBar now={item.percent} label={`${item.percent}%`} />
             </Card.Body>
         </Card>
