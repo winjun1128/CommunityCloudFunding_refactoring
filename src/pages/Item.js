@@ -26,7 +26,7 @@ function Item() {
     const [showPayModal, setShowPayModal] = useState(false);
     const [showSellModal, setShowSellModal] = useState(false);
     return (
-        <div>
+        <div className='item-all-container'>
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
@@ -90,14 +90,13 @@ function Item() {
                             </Carousel>
                         </Col>
                         <Col md={6}>
-                            <h4>{products[itemindex].category}</h4>
                             <h3>{products[itemindex].name}</h3>
                             <h4>{products[itemindex].companyname}</h4>
                             <h4>{products[itemindex].price + '원'}</h4>
                             <p>모인금액</p>
                             <div className='gain-money'>
                                 <span>{products[itemindex].gainmoney + '원'}</span>
-                                <span>{products[itemindex].percent + '%'}</span>
+                                <span style={{color:'red'}}>{products[itemindex].percent + '%'}</span>
                             </div>
                             <table>
                                 <tr>
@@ -119,7 +118,7 @@ function Item() {
                             </table>
                             <div className='like-pay'>
                                 <button onClick={() => {
-                                    if(heartToggle==false){
+                                    if(products[itemindex].heart.includes(localStorage.getItem('id'))==false){
                                         let temp = [...products];
                                         temp[itemindex].heart.push(localStorage.getItem('id'));
                                         setProducts(temp);
@@ -131,7 +130,7 @@ function Item() {
                                         setProducts(temp);
                                         setHeartToggle(false);
                                     }
-                                }} style={(heartToggle?{backgroundColor:'black'}:{backgroundColor:'white'})}>💘</button>
+                                }} >{(products[itemindex].heart.includes(localStorage.getItem('id'))?'💘':'🤍')}</button>
                                 <Link to="."><Button onClick={() => setShowPayModal(true)}>결제가기</Button></Link>
                             </div>
                             <Button variant='primary' style={{ marginTop: '10%' }} onClick={()=>navigate('/community')}>게시판가기</Button>
@@ -150,9 +149,10 @@ function Item() {
             <PayModal itemindex={itemindex} show={showPayModal} onClose={() => setShowPayModal(false)}  ></PayModal>
             <SellModal show={showSellModal} onClose={()=>setShowSellModal(false)}></SellModal>
             <footer>
-                5판3선
-                {/* <p>{buyItem.itemname}</p>
-                <p>{buyItem.itemcount}</p> */}
+                <h2>5판3선</h2>
+                <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
+                <h6>연락처: 041-561-1126</h6>
+                <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
             </footer>
         </div>
     );

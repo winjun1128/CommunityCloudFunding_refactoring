@@ -81,7 +81,7 @@ function LogIn() {
                             <button type="submit" onClick={()=>{localStorage.setItem('id',userid); navigate("/")}}>로그인</button>
                         </div>
                     </form>
-                    <p style={{ color: message === '로그인 성공' ? 'green' : 'red' }}>{message}</p>
+                    <p className="login-p" style={{ color: message === '로그인 성공' ? 'green' : 'red' }}>{message}</p>
                 </div>
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>

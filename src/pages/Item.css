@@ -1,45 +1,123 @@
-.item-main{
-    overflow: hidden;
-    height: 200vh;
-    background-color: beige;
-}
-.item-main .container .custom-row img{
-    width: 100%;
-    object-fit: cover;
-}
-.item-main .container .custom-row .gain-money{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-.item-main .container .custom-row .gain-money span{
-    font-size: 1.2rem;
-}
-.item-main .container .custom-row table {
-    border-collapse: collapse;
-    width: 100%;
+/* 전체 배경 */
+.item-all-container {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
 }
 
-.item-main .container .custom-row table td {
-    /* border: 1px solid black; */
-    padding: 8px;
-    text-align: left;
+/* 메인 컨테이너 */
+.item-main {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 40px 0;
+  min-height: 100vh;
 }
 
-.item-main .container .custom-row .like-pay{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+/* 제품 이미지 영역 */
+.item-main .custom-row img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.item-main .container .item-intro{
-    width: 80%;
-    height: 100vh;
-    background-color: pink;
-    text-align: center;
+/* 제품 정보 영역 */
+.item-main .custom-row {
+  margin-bottom: 60px;
 }
-.item-main .container .item-intro img,video{
-    width: 50%;
-    height: 40%;
-    object-fit: cover;
+
+/* 금액 및 퍼센트 표시 */
+.gain-money {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.gain-money span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/* 퍼센트 색상 강조 */
+.gain-money span:last-child {
+  color: #dc3545; /* 부트스트랩 빨강 */
+}
+
+/* 제품 상세 정보 테이블 */
+.item-main table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 15px;
+  color: #555;
+}
+
+.item-main table td {
+  padding: 10px 0;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+/* 좋아요 + 결제 버튼 */
+.like-pay {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.like-pay button {
+  border: none;
+  /* font-size: 1.5rem; */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.like-pay button:hover {
+  transform: scale(1.1);
+}
+
+/* 제품 소개 영역 */
+.item-intro {
+  width: 100%;
+  background-color: #ffe3e3;
+  padding: 40px;
+  margin-top: 60px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.item-intro h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.item-intro h4 {
+  margin: 10px 0;
+  color: #555;
+}
+
+.item-intro img,
+.item-intro video {
+  width: 60%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+/* 푸터 */
+footer {
+  background-color: #ffffff;
+  text-align: left;
+  color: #888;
+}
+footer a{
+    text-decoration: none;
+    color: #888;
 }

@@ -289,7 +289,7 @@ function Community() {
 
 
     return (
-        <div>
+        <div className="community-all-container">
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
@@ -385,8 +385,11 @@ function Community() {
             <PostWriteModal show={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddPostIndex} type={showTableTab} no={posts.length} />
             <PostSettingModal show={showSettingModal} onClose={() => setShowSettingModal(false)} post={updatePost} commentAr={commentAr} posts={posts} onUpdate={setPosts} onDelete={setPosts}/>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-            <footer>
-                5판3선
+             <footer>
+                <h2>5판3선</h2>
+                <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
+                <h6>연락처: 041-561-1126</h6>
+                <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
             </footer>
 
         </div>

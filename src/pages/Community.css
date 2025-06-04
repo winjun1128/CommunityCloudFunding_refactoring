@@ -1,39 +1,95 @@
-.community-main{
-    width: 100vw;
-    height: 100vh;
-    color: black;
-  
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    display: block;
-    
-    background-color:beige;
+.community-all-container {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
 }
-.community-main .container .buttonareacommunity{
-    display: flex;
-    justify-content: space-between;
+
+/* 메인 섹션 */
+.community-main {
+  margin-top: 20px;
+  padding: 40px 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  color: #212529;
 }
-.community-main .container .buttonareacommunity .writebuttoncommunity{
-    margin-right: 20%;
+
+/* 버튼 영역 */
+.buttonareacommunity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.community-main .container .board{
-    width: 80%;
+
+.writebuttoncommunity {
+  margin-right: 20%;
 }
-.community-main .container .board table{
-    width: 100%;
-    background-color: white;
+
+/* 게시판 영역 */
+.board {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
-.community-main .container .board table a{
+
+.board table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.board th,
+.board td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  font-size: 0.9rem;
+}
+
+.board th {
+  background-color: #f1f3f5;
+  font-weight: 600;
+}
+
+.board a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.board a:hover {
+  color: #0d6efd;
+}
+
+/* 페이지 인덱스 영역 */
+.indexareacommunity,
+.changetablearea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.changetablearea button {
+  margin: 0 10px;
+}
+
+/* 푸터 */
+footer {
+  background-color: #ffffff;
+  text-align: left;
+  color: #888;
+}
+footer a{
     text-decoration: none;
-    color: black;
-}
-.community-main .container .board .indexareacommunity{
-    display: flex;
-    justify-content:center;
-}
-.community-main .container .board .changetablearea{
-    display: flex;
-    justify-content: center;
-}
-.community-main .container .board .changetablearea button{
-    margin: 0 10%;
+    color: #888;
 }

@@ -1,6 +1,6 @@
 import { Card, Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
-import { Navbar, Nav, Form, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, Button,ProgressBar } from 'react-bootstrap';
 import { Link,useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import './Index.css';
@@ -19,11 +19,16 @@ function Index() {
     );
     countSortedProducts = countSortedProducts.slice(0, 4);
 
+     let heartSortedProducts = [...products].sort(
+        (b, a) => a.heart.length - b.heart.length
+    );
+    heartSortedProducts = heartSortedProducts.slice(0, 4);
+
     const [showSellModal, setShowSellModal] = useState(false);
     // const item={id:'아이디1', itemnum:13,itemname:'',itemcategory:'전체',itemprice:0,itemrecruitprice:0,itemrecruitperiodstart:'',itemrecruitperiodend:'',itemcarousellink:['','',''],itemintro:'',itempicturelink:'',itemvideolink:''}
     // const[sellItem,setSellItem]=useState({item});
     return (
-        <div>
+        <div className='index-all-container'>
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
@@ -55,31 +60,31 @@ function Index() {
             </header>
             <main className='index-main'>
                 <Container>
-                    <Carousel style={{ width: '100%', height: '600px' }}>
-                        <Carousel.Item style={{ width: '100%', height: '600px' }}>
+                    <Carousel style={{ width: '100%', height: '400px'}}>
+                        <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
                                 src="/images/basketball1.jpeg"
                                 alt="First slide"
-                                style={{ width: '100%', height: '600px' }}
+                                style={{ width: '100%', height: '400px' }}
                             />
                         </Carousel.Item>
 
-                        <Carousel.Item style={{ width: '100%', height: '600px' }}>
+                        <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
                                 src="/images/soccerball1.jpg"
                                 alt="Second slide"
-                                style={{ width: '100%', height: '600px' }}
+                                style={{ width: '100%', height: '400px' }}
                             />
                         </Carousel.Item>
 
-                        <Carousel.Item style={{ width: '100%', height: '600px' }}>
+                        <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
                                 src="/images/food1.jpg"
                                 alt="Third slide"
-                                style={{ width: '100%', height: '600px' }}
+                                style={{ width: '100%', height: '400px' }}
                             />
                         </Carousel.Item>
                     </Carousel>
@@ -107,7 +112,42 @@ function Index() {
                                                     <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
                                                 </Card.Footer>
                                                 <Card.Footer>
-                                                    <small className="text-muted"><strong>진행도:</strong>{item.percent + '%'}</small>
+                                                    <ProgressBar now={item.percent} label={`${item.percent}%`} />
+                                                </Card.Footer>
+                                            </Card>
+                                        </Col>
+
+                                    )
+
+                                })
+                            }
+                        </Row>
+                    }
+                    <h2 className='heartfunding'>좋아요 탑 펀딩💘</h2>
+                    {
+                        <Row className='custom-row'>
+                            {
+                                heartSortedProducts.map((item) => {
+                                    return (
+                                        <Col md={3}>
+                                            <Card>
+                                                <Link to={`/item/${item.no}`}>
+                                                    <Card.Img variant="top" src={item.imglink} />
+                                                </Link>
+                                                <Card.Body>
+                                                    <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                                        <Card.Title>{item.name}</Card.Title>
+                                                    </Link>
+                                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                                </Card.Body>
+                                                <Card.Footer>
+                                                    <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                                </Card.Footer>
+                                                <Card.Footer>
+                                                    <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                                </Card.Footer>
+                                                <Card.Footer>
+                                                    <ProgressBar now={item.percent} label={`${item.percent}%`} />
                                                 </Card.Footer>
                                             </Card>
                                         </Col>
@@ -123,6 +163,9 @@ function Index() {
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
             <footer>
                 <h2>5판3선</h2>
+                <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
+                <h6>연락처: 041-561-1126</h6>
+                <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
             </footer>
         </div>
     );
