@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col, InputGroup } from 'react-bootstrap';
+import './BirthDayModal.css';
 
 function BirthDayModal({ show, closeModal }) {
     const [isBirthdayPublic, setIsBirthdayPublic] = useState(true);
