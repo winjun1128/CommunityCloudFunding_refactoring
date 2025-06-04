@@ -1,5 +1,6 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import './InfomationModal.css';
 
 function InfomationModal({ show, onClose, infomation, setInfomation, asd }) {
     const [content, setContent] = useState('');
