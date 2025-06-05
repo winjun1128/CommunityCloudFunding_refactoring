@@ -1,116 +1,262 @@
 /* 초기화 */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 /* 전체 페이지 배경 */
 .index-all-container {
-  background-color: #f8f9fa;
-  font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
 }
 
 /* 헤더 */
 header {
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  z-index: 10;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 10;
 }
 
 /* 메인 영역 */
 .index-main {
-  margin-top: 20px;
-  padding: 40px 0;
-  background-color: #ffffff;
-  color: #212529;
+    margin-top: 20px;
+    padding: 40px 0;
+    background-color: #ffffff;
+    color: #212529;
 }
 
 /* 인기펀딩 타이틀 */
 .index-main .hotfunding {
-  margin-top: 60px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #dc3545; /* 부트스트랩 레드 */
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #dc3545;
+
+    opacity: 0.2;
+    transition: opacity 0.4s ease-in-out;
+    /* 부트스트랩 레드 */
 }
+.index-main .hotfunding.visible{
+    opacity: 1;
+}
+
 /* 좋아요 타이틀 */
 .index-main .heartfunding {
-  margin-top: 60px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #dc3545; /* 부트스트랩 레드 */
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #dc3545;
+
+    opacity: 0.2;
+    transition: opacity 0.4s ease-in-out;
+    /* 부트스트랩 레드 */
 }
+
+.index-main .heartfunding.visible{
+    opacity: 1;
+}
+
 
 /* 카드 row 간격 */
 .index-main .custom-row {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 /* 카드 내부 */
 .index-main .custom-row .card {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
 }
 
 .index-main .custom-row .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .index-main .custom-row .card img {
-  object-fit: cover;
-  height: 200px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+    object-fit: cover;
+    height: 200px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 /* 카드 내용 */
 .index-main .custom-row .card-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
 }
 
 .index-main .custom-row .card-text {
-  font-size: 0.9rem;
-  color: #555;
+    font-size: 0.9rem;
+    color: #555;
 }
 
 /* 카드 푸터 */
 .index-main .custom-row .card-footer {
-  font-size: 0.8rem;
-  background-color: #f8f9fa;
-  border-top: none;
+    font-size: 0.8rem;
+    background-color: #f8f9fa;
+    border-top: none;
 }
 
 /* 캐러셀 이미지 */
 .carousel-item img {
-  object-fit: cover;
-  height: 600px;
-  border-radius: 8px;
+    object-fit: cover;
+    height: 600px;
+    border-radius: 8px;
 }
 
 /* 푸터 */
-.index-footer {
-  background-color: #ffffff;
-  text-align: left;
-  /* padding: 20px 0;
-  font-weight: bold; */
-  color: #888;
-  /* border-top: 1px solid #ddd; */
+footer {
+    background-color: #ffffff;
+    text-align: left;
+    color: #888;
 }
-.index-footer a{
+
+footer a {
     text-decoration: none;
     color: #888;
+}
+
+
+/* 조건이 충족되었을 때에만 텍스트 영역 서서히 나타나기
+.fade-in {
+  animation: fadeInText 1s ease forwards;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.9;
+  }
+} */
+
+
+
+.zoom-in {
+    animation: zoomIn 4s ease-in-out infinite alternate;
+}
+
+
+/* 광고 텍스트 애니메이션 */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.ad-slide1 {
+    background-color: #fff0f0;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.ad-slide2 {
+    background-color: yellow;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.ad-slide3 {
+    background-color: beige;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.ad-image-container {
+    animation: zoomIn 4s ease-in-out infinite alternate;
+}
+
+.ad-text-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.ad-text h1 {
+    font-size: 2rem;
+    color: #dc3545;
+    animation: slideIn 1s ease-out;
+    margin-bottom: 20px;
+}
+
+.ad-text p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.blink-button1 {
+    animation: blink 1s infinite;
+}
+
+.blink-button2 {
+    animation: blink 1s infinite;
+}
+
+.blink-button3 {
+    animation: blink 1s infinite;
+}
+
+@keyframes jump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.text-jump {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: red;
+    animation: jump 1s ease-in-out infinite;
 }

@@ -427,25 +427,101 @@ function List() {
                     }
                     {!(in_SearchKeyword || searchKeyword) &&
                         <>
-                            <Nav fill variant="tabs">
-                                <Nav.Item>
-                                    <Nav.Link onClick={() => setActiveTab('all')} active={activeTab === 'all'}>전체</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link onClick={() => setActiveTab('food')} active={activeTab === 'food'}>푸드</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link onClick={() => setActiveTab('living')} active={activeTab === 'living'}>리빙</Nav.Link>
-                                </Nav.Item>
+                            <Row className='justify-content-center' style={{marginTop:'50px'}}>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('all')} active={activeTab === 'all'} className={`category-image ${activeTab === 'all' ? 'active' : ''}`}>
+                                        <div>
+                                            <img src='/images/all.jpg' style={{ width: '36px',height: '36px' }} ></img>
+                                            <p>전체</p>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('food')} active={activeTab === 'food'} className={`category-image ${activeTab === 'food' ? 'active' : ''}`}>
+                                        <img src='/images/food.jpg' style={{ width: '36px' }} ></img>
+                                        <p>푸드</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('living')} active={activeTab === 'living'} className={`category-image ${activeTab === 'living' ? 'active' : ''}`}>
+                                        <img src='/images/living.jpg' style={{ width: '36px' }} ></img>
+                                        <p>리빙</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('area')} active={activeTab === 'area'} className={`category-image ${activeTab === 'area' ? 'active' : ''}`}>
+                                        <img src='/images/area.jpg' style={{ width: '36px' }} ></img>
+                                        <p>지역</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('book')} active={activeTab === 'book'} className={`category-image ${activeTab === 'book' ? 'active' : ''}`}>
+                                        <img src='/images/book.jpg' style={{ width: '36px' }} ></img>
+                                        <p>서적</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('learning')} active={activeTab === 'learning'} className={`category-image ${activeTab === 'learning' ? 'active' : ''}`}>
+                                        <img src='/images/learning.jpg' style={{ width: '36px' }} ></img>
+                                        <p>교육</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('environment')} active={activeTab === 'environment'} className={`category-image ${activeTab === 'environment' ? 'active' : ''}`}>
+                                        <img src='/images/environment.jpg' style={{ width: '36px' }} ></img>
+                                        <p>환경</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('pet')} active={activeTab === 'pet'} className={`category-image ${activeTab === 'pet' ? 'active' : ''}`}>
+                                        <img src='/images/pet.jpg' style={{ width: '36px' }} ></img>
+                                        <p>펫</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('travel')} active={activeTab === 'travel'} className={`category-image ${activeTab === 'travel' ? 'active' : ''}`}>
+                                        <img src='/images/travel.jpg' style={{ width: '36px' }} ></img>
+                                        <p>여행</p>
+                                    </div>
+                                </Col>
+                                <Col xs="auto">
+                                    <div onClick={() => setActiveTab('beauty')} active={activeTab === 'beauty'} className={`category-image ${activeTab === 'beauty' ? 'active' : ''}`}>
+                                        <img src='/images/beauty.jpg' style={{ width: '36px' }} ></img>
+                                        <p>뷰티</p>
+                                    </div>
+                                </Col>
 
-                            </Nav>
+                                {/* <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('area')} active={activeTab === 'area'}><img src='/images/area.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('book')} active={activeTab === 'book'}><img src='/images/book.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                 <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('learning')} active={activeTab === 'learning'}><img src='/images/learning.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                 <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('environment')} active={activeTab === 'environment'}><img src='/images/environment.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                 <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('pet')} active={activeTab === 'pet'}><img src='/images/pet.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('travel')} active={activeTab === 'travel'}><img src='/images/travel.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link onClick={() => setActiveTab('beauty')} active={activeTab === 'beauty'}><img src='/images/beauty.jpg' style={{height:'42px'}}></img></Nav.Link>
+                                </Nav.Item> */}
+                            </Row>
                             {/* 윗카테고리 */}
                             {/* 선택한 값을 알아내지 않고 누르면 직접 값을 지정해서 넘겨줘야하므로 매개변수 필요없음 */}
                             {/* 이벤트객체를 넘겨주면  지금 네브들은 밸류속성이 없어서 undefined 뜸 */}
 
 
                             {/* 셀렉트에서 선택한 값을 알기 위해 이벤트 객체를 받아야 함 */}
+
                             <div className='categorySelectArea'>
+                                <h2>{activeTab}</h2>
                                 <select id="categorySelect" onChange={(e) => setCategory(e.target.value)}>
                                     <option value="all">전체</option>
                                     <option value="open-order">등록순</option>
@@ -461,7 +537,7 @@ function List() {
                 </Container>
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
-             <footer>
+            <footer>
                 <h2>5판3선</h2>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>
