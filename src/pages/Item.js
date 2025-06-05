@@ -30,7 +30,7 @@ function Item() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
-                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>

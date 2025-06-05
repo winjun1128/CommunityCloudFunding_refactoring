@@ -32,7 +32,7 @@ function Index() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
-                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
@@ -64,7 +64,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/basketball1.jpeg"
+                                src="/images/event1.jpg"
                                 alt="First slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
@@ -73,7 +73,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/soccerball1.jpg"
+                                src="/images/event2.jpg"
                                 alt="Second slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
@@ -82,7 +82,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/food1.jpg"
+                                src="/images/event3.jpg"
                                 alt="Third slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
