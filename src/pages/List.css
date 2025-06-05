@@ -25,6 +25,9 @@
   width: 100%;
   margin: 20px 0;
   text-align: right;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .list-main .container .categorySelectArea select {
@@ -93,4 +96,17 @@ footer {
 footer a{
     text-decoration: none;
     color: #888;
+}
+
+
+
+.category-image {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  filter: grayscale(60%);
+}
+
+.category-image.active {
+  opacity: 1;
+  filter: none;
 }
