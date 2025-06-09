@@ -119,9 +119,20 @@ function Item() {
                                 </table>
                             </div>
                             <div className='like-pay-community' style={{ height: '10%' }}>
-                                <Button className='go_community' variant='primary' onClick={() => navigate('/community/' + itemno)}>게시판가기</Button>
+                                <Button className='go_community' variant='primary' onClick={() => {
+                                    if(localStorage.getItem('id') != null){
+                                        navigate('/community/' + itemno);
+                                    }
+                                    else{
+                                        alert('로그인 먼저 하세요.!');
+                                    }
+                                }}>게시판가기</Button>
                                 <div className='like-pay'>
                                     <button onClick={() => {
+                                        if(localStorage.getItem('id') == null){
+                                            alert('로그인 먼저 하세요.!');
+                                            return;
+                                        }
                                         if (products[itemindex].heart.includes(localStorage.getItem('id')) == false) {
                                             let temp = [...products];
                                             temp[itemindex].heart.push(localStorage.getItem('id'));
@@ -135,7 +146,14 @@ function Item() {
                                             setHeartToggle(false);
                                         }
                                     }} >{(products[itemindex].heart.includes(localStorage.getItem('id')) ? '💘' : '🤍')}</button>
-                                    <Button style={{ width: '20%' }} onClick={() => setShowPayModal(true)}>결제가기</Button>
+                                    <Button style={{ width: '20%' }} onClick={() => {
+                                            if(localStorage.getItem('id') != null){
+                                                setShowPayModal(true);
+                                            }
+                                            else{
+                                                alert('로그인 먼저 하세요.!');
+                                            }
+                                        }}>결제가기</Button>
                                 </div>
                             </div>
                         </Col>
