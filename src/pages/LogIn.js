@@ -82,7 +82,16 @@ function LogIn() {
                                 <button type="button" onClick={() => navigate("/sign")}>
                                     회원가입
                                 </button>
-                                <button type="submit" onClick={() => { localStorage.setItem('id', userid); navigate("/") }}>로그인</button>
+                               <button type="submit" onClick={(e) => {
+                                    e.preventDefault();
+                                    if(userid.trim()===''||password.trim()===''){
+                                        alert('아이디와 비밀번호를 입력해주세요!');
+                                        return;
+                                    }
+                                    localStorage.setItem('id', userid);
+                                    setMessage('로그인 성공');
+                                    navigate("/");
+                                }}>로그인</button>
                             </div>
                         </form>
                     </div>

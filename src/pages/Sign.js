@@ -4,6 +4,14 @@ import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SellModal from './SellModal';
 function Sign() {
+    const [phone,setPhone] = useState('');
+    const [agree,setAgree] = useState(false);
+    const [agree2,setAgree2] = useState(false);
+
+    const [userId,setUserId] = useState('');
+    const [userPass,setUserPass] = useState('');
+    const [userPassChk,setUserPassChk] = useState('');
+
     const [searchKeyword, setSearchKeyword] = useState('');
     const [showSellModal, setShowSellModal] = useState(false);
     const navigate = useNavigate();
@@ -48,38 +56,62 @@ function Sign() {
 
                     <div class="SignContainer">
                         <div class="SignInputBox">
-                            <label>아이디</label>
-                            <input type="text" placeholder="아이디"/>
+                            <label for='userId'>아이디</label>
+                            <input
+                                id='userId'
+                                type="text"
+                                placeholder="아이디"
+                                value={userId}
+                                onChange={(e) => setUserId(e.target.value)}
+                                required
+                            />
                         </div>
 
                         <div class="SignInputBox">
-                            <label>비밀번호</label>
-                            <input type="password" placeholder="비밀번호"/>
+                            <label for='userPw'>비밀번호</label>
+                            <input
+                                id='userPw'
+                                type="password"
+                                placeholder="비밀번호"
+                                value={userPass}
+                                onChange={(e)=> setUserPass(e.target.value)}
+                                required
+                            />
                         </div>
 
                         <div class="SignInputBox">
-                            <label>비밀번호 확인</label>
-                            <input type="password" placeholder="비밀번호 확인"/>
+                            <label for='userPwChk'>비밀번호 확인</label>
+                            <input
+                                id='userPwChk'
+                                type="password"
+                                placeholder="비밀번호 확인"
+                                value={userPassChk}
+                                onChange={(e)=>setUserPassChk(e.target.value)}
+                                required
+                            />
                         </div>
 
                         <div class="SignInputBox">
-                            <label>이름</label>
-                            <input type="text" placeholder="이름"/>
+                            <label for='userName'>이름</label>
+                            <input id='userName' type="text" placeholder="이름"/>
                         </div>
 
                         <div class="SignInputBox">
-                            <label>전화번호</label>
-                            <input type="text" placeholder="전화번호"/>
+                            <label for='userPn'>전화번호</label>
+                            <input  id='userPn' type="tel" value={phone} onChange={(e)=>{
+                                const onlyNumber = e.target.value.replace(/[^0-9\-]/g, '');
+                                setPhone(onlyNumber);
+                            }} placeholder='010-1234-5678' />
                         </div>
 
                         <div class="SignInputBox">
-                            <label>주소</label>
-                            <input type="text" placeholder="주소"/>
+                            <label for='userAddr'>주소</label>
+                            <input id='userAddr' type="text" placeholder="주소"/>
                         </div>
 
                         <div class="agree-section">
-                            <label><input type="checkbox"/> 개인정보 수집 및 이용 (필수)</label>
-                            <label><input type="checkbox"/> 사이트 이용 약관 (필수)</label>
+                            <label><input type="checkbox" checked={agree} onChange={(e)=>setAgree(e.target.checked)}/> 개인정보 수집 및 이용 (필수)</label>
+                            <label><input type="checkbox" checked={agree2} onChange={(e)=>setAgree2(e.target.checked)}/> 사이트 이용 약관 (필수)</label>
                             <label><input type="checkbox"/> 위치기반 서비스 이용 (선택)</label>
                         </div>
 
@@ -89,7 +121,22 @@ function Sign() {
 
                         <div class="button-group">
                             <button class="cancel">취소</button>
-                            <button onClick={()=>navigate("/login")}>가입</button>
+                            <button onClick={(e)=>{
+                                e.preventDefault();
+                                if(userId.trim()===''||userPass.trim()===''){
+                                    alert('아이디와 비밀번호를 입력해주세요!');
+                                    return;
+                                }
+                                if(userPass.trim()!==userPassChk.trim()){
+                                    alert('비밀번호가 다릅니다.!');
+                                    return;
+                                }
+                                if(!agree||!agree2){
+                                    alert('필수약관 동의해주세요.!');
+                                    return;
+                                }
+                                navigate("/login");
+                            }}>가입</button>
                         </div>
                     </div>
                 </div>

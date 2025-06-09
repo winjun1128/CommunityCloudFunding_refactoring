@@ -122,6 +122,10 @@ footer a {
     color: #888;
 }
 
+
+
+
+
 .zoom-in {
     animation: zoomIn 4s ease-in-out infinite alternate;
 }
@@ -163,13 +167,13 @@ footer a {
 }
 
 .ad-slide1 {
-    background-color: #fff0f0;
+    background-color: #ffe2d6;
     border-radius: 12px;
     padding: 30px;
 }
 
 .ad-slide2 {
-    background-color: yellow;
+    background-color: #e9f2f1;
     border-radius: 12px;
     padding: 30px;
 }
