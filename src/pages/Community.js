@@ -443,7 +443,7 @@ function Community() {
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
             <footer>
                 <hr></hr>
-                <h2>5판3선</h2>
+                <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>
                 <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
