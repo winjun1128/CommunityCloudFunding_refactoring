@@ -40,13 +40,9 @@ header {
     font-weight: bold;
     color: #dc3545;
 
-    opacity: 0.2;
-    transition: opacity 0.4s ease-in-out;
     /* 부트스트랩 레드 */
 }
-.index-main .hotfunding.visible{
-    opacity: 1;
-}
+
 
 /* 좋아요 타이틀 */
 .index-main .heartfunding {
@@ -57,14 +53,10 @@ header {
     font-weight: bold;
     color: #dc3545;
 
-    opacity: 0.2;
-    transition: opacity 0.4s ease-in-out;
     /* 부트스트랩 레드 */
 }
 
-.index-main .heartfunding.visible{
-    opacity: 1;
-}
+
 
 
 /* 카드 row 간격 */
@@ -129,23 +121,6 @@ footer a {
     text-decoration: none;
     color: #888;
 }
-
-
-/* 조건이 충족되었을 때에만 텍스트 영역 서서히 나타나기
-.fade-in {
-  animation: fadeInText 1s ease forwards;
-}
-
-@keyframes fadeInText {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.9;
-  }
-} */
-
-
 
 .zoom-in {
     animation: zoomIn 4s ease-in-out infinite alternate;

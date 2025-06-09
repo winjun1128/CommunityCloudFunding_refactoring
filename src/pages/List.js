@@ -47,7 +47,7 @@ function List() {
                                         </Link>
                                         <Card.Body>
                                             <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                                <Card.Title>{item.name}</Card.Title>
+                                                <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                             </Link>
                                             <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                         </Card.Body>
@@ -95,7 +95,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -135,7 +135,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -175,7 +175,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -210,7 +210,7 @@ function List() {
                                 </Link>
                                 <Card.Body>
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <Card.Title>{item.name}</Card.Title>
+                                        <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                     </Link>
                                     <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                 </Card.Body>
@@ -251,7 +251,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -290,7 +290,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -329,7 +329,7 @@ function List() {
                                     </Link>
                                     <Card.Body>
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            <Card.Title>{item.name}</Card.Title>
+                                            <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
                                         <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                     </Card.Body>
@@ -363,7 +363,7 @@ function List() {
                                 </Link>
                                 <Card.Body>
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <Card.Title>{item.name}</Card.Title>
+                                        <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                     </Link>
                                     <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
                                 </Card.Body>
@@ -538,6 +538,7 @@ function List() {
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
             <footer>
+                <hr></hr>
                 <h2>5판3선</h2>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

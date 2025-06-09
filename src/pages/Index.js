@@ -92,9 +92,9 @@ function Index() {
                             />
                         </Carousel.Item>
                     </Carousel>
-                    <h2 className={`hotfunding ${isHoveredHot ? 'visible' : ''}`}>인기펀딩</h2>
+                    <h2 className='hotfunding'>인기펀딩✨</h2>
                     {
-                        <Row className='custom-row fade-in-area' onMouseEnter={()=>setIsHoveredHot(true)} onMouseLeave={()=>setIsHoveredHot(false)}>
+                        <Row className='custom-row'>
                             {
                                 countSortedProducts.map((item) => {
                                     return (
@@ -127,9 +127,9 @@ function Index() {
                             }
                         </Row>
                     }
-                    <h2 className={`heartfunding ${isHoveredHeart ? 'visible' : ''}`}>좋아요 펀딩💘</h2>
+                    <h2 className='heartfunding'>좋아요 펀딩💘</h2>
                     {
-                        <Row className='custom-row fade-in-area' onMouseEnter={()=>setIsHoveredHeart(true)} onMouseLeave={()=>setIsHoveredHeart(false)}>
+                        <Row className='custom-row'>
                             {
                                 heartSortedProducts.map((item) => {
                                     return (
@@ -181,16 +181,16 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/soccerball1.jpg"
+                                        src="/images/bam1.jpg"
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
                                 </Col>
                                 <Col md={6} className="ad-text-area">
                                     <div className="ad-text">
-                                        <h1 className="slide-in">⚽ 신제품 축구공 등록!</h1>
-                                        <h2>축구공 1호</h2>
-                                        <h3>축구공회사</h3>
+                                        <h1 className="slide-in">신제품 밤티라미수 등록!</h1>
+                                        <h2>밤티라미수</h2>
+                                        <h3>티라미숙해</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
                                         <h2 className='text-jump'>5000원</h2>
@@ -206,16 +206,16 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/basketball1.jpeg"
+                                        src="/images/earPhone.jpg"
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
                                 </Col>
                                 <Col md={6} className="ad-text-area">
                                     <div className="ad-text">
-                                        <h1 className="slide-in">⚽ 신제품 축구공 등록!</h1>
-                                        <h2>축구공 1호</h2>
-                                        <h3>축구공회사</h3>
+                                        <h1 className="slide-in">신제품 이어폰 등록!</h1>
+                                        <h2>이어폰</h2>
+                                        <h3>이어폰컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
                                         <h2 className='text-jump'>5000원</h2>
@@ -238,9 +238,9 @@ function Index() {
                                 </Col>
                                 <Col md={6} className="ad-text-area">
                                     <div className="ad-text">
-                                        <h1 className="slide-in">⚽ 신제품 축구공 출시!</h1>
-                                        <h2>축구공 1호</h2>
-                                        <h3>축구공회사</h3>
+                                        <h1 className="slide-in">신제품 케이크 등록!</h1>
+                                        <h2>케이크</h2>
+                                        <h3>케이크컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
                                         <h2 className='text-jump'>5000원</h2>
@@ -255,6 +255,7 @@ function Index() {
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
             <footer>
+                <hr></hr>
                 <h2>5판3선</h2>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

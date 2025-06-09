@@ -40,6 +40,7 @@ function Sign() {
             </div>
 
             <div class="sign-container">
+              <h1>Funders</h1>
                 <div class="form-wrapper">
                     <div class="sign-header-container">
                         <h2>회원가입</h2>

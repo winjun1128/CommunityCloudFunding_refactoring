@@ -89,7 +89,7 @@ function PostUpdateModal({ show, onClose, post, commentAr, posts, onUpdate }) {
                 }
                 <Row>
                     <div className='updateareapostmodal'>
-                        <Col md={6}><Button onClick={() => {
+                        <Col md={12}><Button onClick={() => {
                             const updatedPosts = posts.map(item =>
                                 item.no === post.no
                                     ? { ...item, title: getTitle, content: getContent, type: getType }

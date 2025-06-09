@@ -1,25 +1,25 @@
 import { Container, Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 
 import './Item.css';
 
 import PayModal from './PayModal';
 import { useState } from 'react';
-import {useNavigate, useParams} from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useProducts } from '../data/ProductContext';
 import SellModal from './SellModal';
 function Item() {
     const navigate = useNavigate();
     const [searchKeyword, setSearchKeyword] = useState('');
     let { itemno } = useParams();
-   
+
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
 
-     const itemindex = products.findIndex(product => product.no===Number(itemno));
+    const itemindex = products.findIndex(product => product.no === Number(itemno));
     //컨슈머와 좋아요
-    const [heartToggle,setHeartToggle] = useState(false);
+    const [heartToggle, setHeartToggle] = useState(false);
 
     // const item={itemname:'상품1',itemnum:1,itemcount:0,itemprice:10000,period:'2025-05-28~2025-06-11',percent:50}
     // const [buyItem,setBuyItem]=useState(item)
@@ -39,12 +39,12 @@ function Item() {
                                 </Nav.Link>
                                 <Form className="d-flex">
                                     <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
-                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                 <Nav.Link onClick={() => {
+                                <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
@@ -58,97 +58,103 @@ function Item() {
             </header>
             <main className='item-main'>
                 <Container>
-                    <Row className='custom-row'>
-                        <Col md={6}>
-                            <Carousel style={{ width: '100%', height: '600px' }}>
-                                <Carousel.Item style={{ width: '100%', height: '600px' }}>
+                    <Row className='item-custom-row'>
+                        <Col xs={12} md={6} style={{ height: '500px' }}>
+                            <Carousel style={{ width: '100%', height: '500px' }}>
+                                <Carousel.Item style={{ width: '100%', height: '500px' }}>
                                     <img
                                         className="d-block w-100"
                                         src={products[itemindex].carousellink[0]}
                                         alt="First slide"
-                                        style={{ width: '100%', height: '600px', objectFit: 'cover' }}
+                                        style={{ width: '100%', height: '500px', objectFit: 'cover' }}
                                     />
                                 </Carousel.Item>
 
-                                <Carousel.Item>
+                                <Carousel.Item style={{ width: '100%', height: '500px' }}>
                                     <img
                                         className="d-block w-100"
                                         src={products[itemindex].carousellink[1]}
                                         alt="Second slide"
-                                        style={{ width: '100%', height: '600px', objectFit: 'cover' }}
+                                        style={{ width: '100%', height: '500px', objectFit: 'cover' }}
                                     />
                                 </Carousel.Item>
 
-                                <Carousel.Item>
+                                <Carousel.Item style={{ width: '100%', height: '500px' }}>
                                     <img
                                         className="d-block w-100"
                                         src={products[itemindex].carousellink[2]}
                                         alt="Third slide"
-                                        style={{ width: '100%', height: '600px', objectFit: 'cover' }}
+                                        style={{ width: '100%', height: '500px', objectFit: 'cover' }}
                                     />
                                 </Carousel.Item>
                             </Carousel>
                         </Col>
-                        <Col md={6}>
-                            <h3>{products[itemindex].name}</h3>
-                            <h4>{products[itemindex].companyname}</h4>
-                            <h4>{products[itemindex].price + '원'}</h4>
-                            <p>모인금액</p>
-                            <div className='gain-money'>
-                                <span>{products[itemindex].gainmoney + '원'}</span>
-                                <span style={{color:'red'}}>{products[itemindex].percent + '%'}</span>
+                        <Col xs={12} md={6} style={{height: '500px' }}>
+                            <div style={{ height: '90%' }}>
+                                <h3 className='itemProductName'>{products[itemindex].name}</h3>
+                                <h4>{products[itemindex].companyname}</h4>
+                                <h4>{products[itemindex].price + '원'}</h4>
+                                <p>모인금액</p>
+                                <div className='gain-money'>
+                                    <span>{products[itemindex].gainmoney + '원'}</span>
+                                    <span style={{ color: 'red' }}>{products[itemindex].percent + '%'}</span>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>목표금액</td>
+                                        <td>{products[itemindex].recruitmoney}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>모집시작일</td>
+                                        <td>{products[itemindex].startdate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>모집마감일</td>
+                                        <td>{products[itemindex].enddate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>상태여부</td>
+                                        <td>진행</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <table>
-                                <tr>
-                                    <td>목표금액</td>
-                                    <td>{products[itemindex].recruitmoney}</td>
-                                </tr>
-                                <tr>
-                                    <td>모집시작일</td>
-                                    <td>{products[itemindex].startdate}</td>
-                                </tr>
-                                <tr>
-                                    <td>모집마감일</td>
-                                    <td>{products[itemindex].enddate}</td>
-                                </tr>
-                                <tr>
-                                    <td>상태여부</td>
-                                    <td>진행</td>
-                                </tr>
-                            </table>
-                            <div className='like-pay'>
-                                <button onClick={() => {
-                                    if(products[itemindex].heart.includes(localStorage.getItem('id'))==false){
-                                        let temp = [...products];
-                                        temp[itemindex].heart.push(localStorage.getItem('id'));
-                                        setProducts(temp);
-                                        setHeartToggle(true);
-                                    }
-                                    else{
-                                        let temp = [...products];
-                                        temp[itemindex].heart = temp[itemindex].heart.filter(id=>id!==localStorage.getItem('id'));
-                                        setProducts(temp);
-                                        setHeartToggle(false);
-                                    }
-                                }} >{(products[itemindex].heart.includes(localStorage.getItem('id'))?'💘':'🤍')}</button>
-                                <Link to="."><Button onClick={() => setShowPayModal(true)}>결제가기</Button></Link>
+                            <div className='like-pay-community' style={{ height: '10%' }}>
+                                <Button className='go_community' variant='primary' onClick={() => navigate('/community/' + itemno)}>게시판가기</Button>
+                                <div className='like-pay'>
+                                    <button onClick={() => {
+                                        if (products[itemindex].heart.includes(localStorage.getItem('id')) == false) {
+                                            let temp = [...products];
+                                            temp[itemindex].heart.push(localStorage.getItem('id'));
+                                            setProducts(temp);
+                                            setHeartToggle(true);
+                                        }
+                                        else {
+                                            let temp = [...products];
+                                            temp[itemindex].heart = temp[itemindex].heart.filter(id => id !== localStorage.getItem('id'));
+                                            setProducts(temp);
+                                            setHeartToggle(false);
+                                        }
+                                    }} >{(products[itemindex].heart.includes(localStorage.getItem('id')) ? '💘' : '🤍')}</button>
+                                    <Button style={{ width: '20%' }} onClick={() => setShowPayModal(true)}>결제가기</Button>
+                                </div>
                             </div>
-                            <Button variant='primary' style={{ marginTop: '10%' }} onClick={()=>navigate('/community')}>게시판가기</Button>
                         </Col>
                     </Row>
-                    <div className='item-intro'>
-                        <h3>제품소개</h3>
-                        <h4>{products[itemindex].intro}</h4>
-                        <h4>제품사진</h4>
-                        <img src={products[itemindex].picturelink}></img>
-                        <h4>제품영상</h4>
-                        <video src={products[itemindex].videolink} width="100%" height="50%" controls></video>
-                    </div>
+                    <Row>
+                        <Col xs={12} md={12}>
+                            <div className='item-intro'>
+                                <h4>{products[itemindex].intro}</h4>
+                                <img src={products[itemindex].picturelink}></img>
+                                <video src={products[itemindex].videolink} width="100%" height="50%" controls></video>
+                            </div>
+                        </Col>
+                    </Row>
                 </Container>
             </main>
             <PayModal itemindex={itemindex} show={showPayModal} onClose={() => setShowPayModal(false)}  ></PayModal>
-            <SellModal show={showSellModal} onClose={()=>setShowSellModal(false)}></SellModal>
+            <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
             <footer>
+                <hr></hr>
                 <h2>5판3선</h2>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

@@ -1,6 +1,6 @@
 import { Container, Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import SellModal from './SellModal';
 
@@ -31,12 +31,12 @@ function LogIn() {
                                 </Nav.Link>
                                 <Form className="d-flex">
                                     <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
-                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                 <Nav.Link onClick={() => {
+                                <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
@@ -50,37 +50,42 @@ function LogIn() {
             </header>
             <main className='login-main'>
                 <div className='login_container'>
-                    <form className='login_form'>
-                        <h2>로그인</h2>
-                        <div className="form-group">
-                            <label htmlFor="userid">아이디</label>
-                            <input
-                                type="text"
-                                id="userid"
-                                name="userid"
-                                value={userid}
-                                onChange={(e) => setUserid(e.target.value)}
-                                required
-                            />
+                    <div>
+                        <div className='login-title'>
+                            <h1>Funders</h1>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password">비밀번호</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="buttons">
-                            <button type="button" onClick={()=>navigate("/sign")}>
-                                회원가입
-                            </button>
-                            <button type="submit" onClick={()=>{localStorage.setItem('id',userid); navigate("/")}}>로그인</button>
-                        </div>
-                    </form>
+                        <form className='login_form'>
+                            <h2>로그인</h2>
+                            <div className="form-group">
+                                <label htmlFor="userid">아이디</label>
+                                <input
+                                    type="text"
+                                    id="userid"
+                                    name="userid"
+                                    value={userid}
+                                    onChange={(e) => setUserid(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">비밀번호</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="buttons">
+                                <button type="button" onClick={() => navigate("/sign")}>
+                                    회원가입
+                                </button>
+                                <button type="submit" onClick={() => { localStorage.setItem('id', userid); navigate("/") }}>로그인</button>
+                            </div>
+                        </form>
+                    </div>
                     <p className="login-p" style={{ color: message === '로그인 성공' ? 'green' : 'red' }}>{message}</p>
                 </div>
             </main>

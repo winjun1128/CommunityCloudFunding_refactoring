@@ -13,7 +13,7 @@
 }
 
 /* 제품 이미지 영역 */
-.item-main .custom-row img {
+.item-main .item-custom-row img {
   width: 100%;
   height: 600px;
   object-fit: cover;
@@ -21,7 +21,7 @@
 }
 
 /* 제품 정보 영역 */
-.item-main .custom-row {
+.item-main .item-custom-row {
   margin-bottom: 60px;
 }
 
@@ -63,8 +63,19 @@
 .like-pay {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  justify-content: flex-end;
+}
+.like-pay-community{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items:  center;
+    flex-wrap:  nowrap;
+    gap: 10px;
+}
+.like-pay-community .go_community{
+    white-space:  nowrap;
+    flex-shrink: 0;
 }
 
 .like-pay button {
@@ -89,6 +100,7 @@
   margin-top: 60px;
   border-radius: 10px;
   text-align: center;
+  overflow: auto;
 }
 
 .item-intro h3 {
@@ -104,11 +116,13 @@
 .item-intro img,
 .item-intro video {
   width: 60%;
+  max-width: 100%;
   height: auto;
-  max-height: 400px;
+  /* max-height: 400px; */
   object-fit: cover;
   margin: 20px 0;
   border-radius: 8px;
+  image-rendering: auto;
 }
 
 /* 푸터 */
@@ -120,4 +134,9 @@ footer {
 footer a{
     text-decoration: none;
     color: #888;
+}
+
+.itemProductName{
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

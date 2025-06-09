@@ -25,7 +25,7 @@ function App() {
           <Route path="/login" element={<LogIn />}></Route>
           <Route path="/list" element={<List />}></Route>
           <Route path="/item/:itemno" element={<Item />}></Route>
-          <Route path="/community" element={<Community />}></Route>
+          <Route path="/community/:itemno" element={<Community />}></Route>
           
           <Route path="/mypage/*" element={<Mypage />}></Route>
 

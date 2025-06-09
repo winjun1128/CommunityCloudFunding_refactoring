@@ -1,18 +1,33 @@
-import { Container, Navbar, Nav, Form, Button } from "react-bootstrap";
+import { Container, Navbar, Nav, Form, Button, InputGroup } from "react-bootstrap";
 import './Community.css';
-import { Link,useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PostWriteModal from './PostWriteModal';
 import PostSettingModal from "./PostSettingModal";
 import PostModal from "./PostModal";
 import SellModal from "./SellModal";
+import { useProducts } from "../data/ProductContext";
 
 function Community() {
+     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
+    let { itemno } = useParams();
+    const itemindex = products.findIndex(product => product.no === Number(itemno));
+    const [filteredPostKeyword, setFilteredPostKeyword] = useState('');
+    const [searchPost, setSearchPost] = useState('');
+
     const navigate = useNavigate();
     const [searchKeyword, setSearchKeyword] = useState('');
 
     const [selectedPost, setSelectedPost] = useState(null);
-    const [updatePost,setUpdatePost] = useState(null);
+    const [updatePost, setUpdatePost] = useState(null);
+
+    useEffect(()=>{
+        if(itemindex===-1){
+            alert("잘못된 상품 번호입니다.");
+            navigate("/list");
+        }
+    },[itemindex]);
 
     const originCmtAr = [
         { id: '아이디1', date: new Date().toLocaleDateString(), comment: '댓글' },
@@ -66,36 +81,36 @@ function Community() {
 
 
     const [posts, setPosts] = useState([
-        { no: 30, type: 'Q&A', title: '포인트는 어떻게 사용하나요?', content: postContents[0], userId: 'user30', date: '2025-05-30 14:10' },
-        { no: 29, type: '공지', title: '서비스 개선 안내', content: postContents[1], userId: 'admin', date: '2025-05-30 12:45' },
-        { no: 28, type: 'Q&A', title: '이벤트 참여 방법은?', content: postContents[2], userId: 'user28', date: '2025-05-30 11:33' },
-        { no: 27, type: '공지', title: '시스템 점검 안내', content: postContents[3], userId: 'admin', date: '2025-05-29 18:50' },
-        { no: 26, type: 'Q&A', title: '주소 변경은 어디서 하나요?', content: postContents[4], userId: 'user26', date: '2025-05-29 17:20' },
-        { no: 25, type: 'Q&A', title: '계정 삭제는 어떻게 하나요?', content: postContents[5], userId: 'user25', date: '2025-05-29 16:05' },
-        { no: 24, type: '공지', title: '약관 변경 안내', userId: 'admin', content: postContents[6], date: '2025-05-29 09:00' },
-        { no: 23, type: 'Q&A', title: '결제 취소는 언제까지 되나요?', content: postContents[7], userId: 'user23', date: '2025-05-28 21:30' },
-        { no: 22, type: 'Q&A', title: '상품이 도착하지 않았어요', content: postContents[8], userId: 'user22', date: '2025-05-28 18:12' },
-        { no: 21, type: '공지', title: '서버 점검 완료 안내', content: postContents[9], userId: 'admin', date: '2025-05-28 15:45' },
-        { no: 20, type: 'Q&A', title: '비밀번호는 어떻게 바꾸나요?', content: postContents[10], userId: 'user20', date: '2025-05-27 22:10' },
-        { no: 19, type: '공지', title: '개인정보 보호 강화', content: postContents[11], userId: 'admin', date: '2025-05-27 17:25' },
-        { no: 18, type: 'Q&A', title: '이메일 수신 설정은?', content: postContents[12], userId: 'user18', date: '2025-05-27 15:05' },
-        { no: 17, type: '공지', title: '업데이트 내역 안내', content: postContents[13], userId: 'admin', date: '2025-05-27 10:00' },
-        { no: 16, type: 'Q&A', title: '이미지 업로드가 안돼요', content: postContents[14], userId: 'user16', date: '2025-05-26 19:30' },
-        { no: 15, type: '공지', title: '서비스 정책 변경', content: postContents[15], userId: 'admin', date: '2025-05-26 13:10' },
-        { no: 14, type: 'Q&A', title: '탈퇴 후 재가입은?', content: postContents[16], userId: 'user14', date: '2025-05-26 09:50' },
-        { no: 13, type: '공지', title: '공지사항 시스템 개편', content: postContents[17], userId: 'admin', date: '2025-05-25 18:00' },
-        { no: 12, type: 'Q&A', title: '후원 내역이 안 보여요', content: postContents[18], userId: 'user12', date: '2025-05-25 14:55' },
-        { no: 11, type: '공지', title: '긴급 공지', content: postContents[19], userId: 'admin', date: '2025-05-25 08:40' },
-        { no: 10, type: 'Q&A', title: '마이페이지 오류', content: postContents[20], userId: 'user10', date: '2025-05-24 20:10' },
-        { no: 9, type: 'Q&A', title: '결제 수단 추가는?', content: postContents[21], userId: 'user09', date: '2025-05-24 15:35' },
-        { no: 8, type: '공지', title: '모바일 UI 업데이트', content: postContents[22], userId: 'admin', date: '2025-05-24 13:00' },
-        { no: 7, type: 'Q&A', title: '다크모드는 없나요?', content: postContents[23], userId: 'user07', date: '2025-05-23 19:45' },
-        { no: 6, type: '공지', title: '카테고리 정비 안내', content: postContents[24], userId: 'admin', date: '2025-05-23 12:30' },
-        { no: 5, type: 'Q&A', title: '후원 취소 가능한가요?', content: postContents[25], userId: 'user05', date: '2025-05-22 21:10' },
-        { no: 4, type: '공지', title: '공지사항 테스트', content: postContents[26], userId: 'admin', date: '2025-05-22 17:25' },
-        { no: 3, type: 'Q&A', title: '프로필 편집 방법', content: postContents[27], userId: 'user03', date: '2025-05-21 13:15' },
-        { no: 2, type: '공지', title: '초기 셋업 안내', content: postContents[28], userId: 'admin', date: '2025-05-21 10:00' },
-        { no: 1, type: 'Q&A', title: '첫 글입니다', content: postContents[29], userId: 'user01', date: '2025-05-20 08:45' }
+        { no: 30, type: 'Q&A', title: '포인트는 어떻게 사용하나요?', content: postContents[0], userId: 'user30', date: '2025-05-30 14:10', view: 1 },
+        { no: 29, type: '공지', title: '서비스 개선 안내', content: postContents[1], userId: 'admin', date: '2025-05-30 12:45', view: 2 },
+        { no: 28, type: 'Q&A', title: '이벤트 참여 방법은?', content: postContents[2], userId: 'user28', date: '2025-05-30 11:33', view: 3 },
+        { no: 27, type: '공지', title: '시스템 점검 안내', content: postContents[3], userId: 'admin', date: '2025-05-29 18:50', view: 4 },
+        { no: 26, type: 'Q&A', title: '주소 변경은 어디서 하나요?', content: postContents[4], userId: 'user26', date: '2025-05-29 17:20', view: 5 },
+        { no: 25, type: 'Q&A', title: '계정 삭제는 어떻게 하나요?', content: postContents[5], userId: 'user25', date: '2025-05-29 16:05', view: 6 },
+        { no: 24, type: '공지', title: '약관 변경 안내', userId: 'admin', content: postContents[6], date: '2025-05-29 09:00', view: 7 },
+        { no: 23, type: 'Q&A', title: '결제 취소는 언제까지 되나요?', content: postContents[7], userId: 'user23', date: '2025-05-28 21:30', view: 8 },
+        { no: 22, type: 'Q&A', title: '상품이 도착하지 않았어요', content: postContents[8], userId: 'user22', date: '2025-05-28 18:12', view: 9 },
+        { no: 21, type: '공지', title: '서버 점검 완료 안내', content: postContents[9], userId: 'admin', date: '2025-05-28 15:45', view: 10 },
+        { no: 20, type: 'Q&A', title: '비밀번호는 어떻게 바꾸나요?', content: postContents[10], userId: 'user20', date: '2025-05-27 22:10', view: 11 },
+        { no: 19, type: '공지', title: '개인정보 보호 강화', content: postContents[11], userId: 'admin', date: '2025-05-27 17:25', view: 12 },
+        { no: 18, type: 'Q&A', title: '이메일 수신 설정은?', content: postContents[12], userId: 'user18', date: '2025-05-27 15:05', view: 13 },
+        { no: 17, type: '공지', title: '업데이트 내역 안내', content: postContents[13], userId: 'admin', date: '2025-05-27 10:00', view: 14 },
+        { no: 16, type: 'Q&A', title: '이미지 업로드가 안돼요', content: postContents[14], userId: 'user16', date: '2025-05-26 19:30', view: 15 },
+        { no: 15, type: '공지', title: '서비스 정책 변경', content: postContents[15], userId: 'admin', date: '2025-05-26 13:10', view: 16 },
+        { no: 14, type: 'Q&A', title: '탈퇴 후 재가입은?', content: postContents[16], userId: 'user14', date: '2025-05-26 09:50', view: 17 },
+        { no: 13, type: '공지', title: '공지사항 시스템 개편', content: postContents[17], userId: 'admin', date: '2025-05-25 18:00', view: 18 },
+        { no: 12, type: 'Q&A', title: '후원 내역이 안 보여요', content: postContents[18], userId: 'user12', date: '2025-05-25 14:55', view: 19 },
+        { no: 11, type: '공지', title: '긴급 공지', content: postContents[19], userId: 'admin', date: '2025-05-25 08:40', view: 20 },
+        { no: 10, type: 'Q&A', title: '마이페이지 오류', content: postContents[20], userId: 'user10', date: '2025-05-24 20:10', view: 21 },
+        { no: 9, type: 'Q&A', title: '결제 수단 추가는?', content: postContents[21], userId: 'user09', date: '2025-05-24 15:35', view: 22 },
+        { no: 8, type: '공지', title: '모바일 UI 업데이트', content: postContents[22], userId: 'admin', date: '2025-05-24 13:00', view: 23 },
+        { no: 7, type: 'Q&A', title: '다크모드는 없나요?', content: postContents[23], userId: 'user07', date: '2025-05-23 19:45', view: 24 },
+        { no: 6, type: '공지', title: '카테고리 정비 안내', content: postContents[24], userId: 'admin', date: '2025-05-23 12:30', view: 25 },
+        { no: 5, type: 'Q&A', title: '후원 취소 가능한가요?', content: postContents[25], userId: 'user05', date: '2025-05-22 21:10', view: 26 },
+        { no: 4, type: '공지', title: '공지사항 테스트', content: postContents[26], userId: 'admin', date: '2025-05-22 17:25', view: 27 },
+        { no: 3, type: 'Q&A', title: '프로필 편집 방법', content: postContents[27], userId: 'user03', date: '2025-05-21 13:15', view: 28 },
+        { no: 2, type: '공지', title: '초기 셋업 안내', content: postContents[28], userId: 'admin', date: '2025-05-21 10:00', view: 29 },
+        { no: 1, type: 'Q&A', title: '첫 글입니다', content: postContents[29], userId: 'user01', date: '2025-05-20 08:45', view: 30 }
     ]);
 
 
@@ -112,7 +127,7 @@ function Community() {
     //     setShowSetting(temp);
     // }, [count]); // count가 바뀔 때마다 재실행
 
-    const [showSellModal,setShowSellModal] = useState(false);
+    const [showSellModal, setShowSellModal] = useState(false);
     const [showPostModal, setShowPostModal] = useState(false);
     const [showSettingModal, setShowSettingModal] = useState(false);
 
@@ -125,12 +140,14 @@ function Community() {
         temp.unshift(newPost);
         setPosts(temp);
     }
+    const filteredPosts = filteredPostKeyword ? posts.filter(post => post.title.includes(filteredPostKeyword)) : posts;
+
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 6;
     const lastIndex = currentPage * postsPerPage;
     const firstIndex = lastIndex - postsPerPage;
-    const currentPosts = posts.slice(firstIndex, lastIndex);
-    const totalPages = Math.ceil(posts.length / postsPerPage);
+    const currentPosts = filteredPosts.slice(firstIndex, lastIndex);
+    const totalPages = filteredPostKeyword ? Math.ceil(filteredPosts.length / postsPerPage) : Math.ceil(posts.length / postsPerPage);
     const getContent = () => {
         return (
             <table className="table table-bordered">
@@ -141,6 +158,7 @@ function Community() {
                         <th>제목</th>
                         <th>아이디</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                         <th>설정</th>
                     </tr>
                 </thead>
@@ -155,17 +173,22 @@ function Community() {
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
-                                    setSelectedPost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
+                                    let selectIndex = posts.findIndex(item => item.no === row.no);
+                                    let temp = [...posts];
+                                    temp[selectIndex].view += 1;
+                                    setPosts(temp);
+                                    setSelectedPost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                     setShowPostModal(true);
                                 }}><Link to='#' style={{ textDecoration: 'none' }}>{row.title}</Link></td>
                                 <td>{row.userId}</td>
                                 <td>{row.date}</td>
+                                <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
                                     {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
                                         <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
+                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                         }}>설정</Button>
                                     )}
                                 </td>
@@ -176,14 +199,14 @@ function Community() {
             </table>
         )
     }
-
     const noticePosts = posts.filter(post => post.type === '공지');
+    const filteredNoticePosts = filteredPostKeyword ? noticePosts.filter(post => post.title.includes(filteredPostKeyword)) : noticePosts;
     const [currentNoticePage, setCurrentNoticePage] = useState(1);
     const noticePostsPerPage = 6;
     const noticeLastIndex = currentNoticePage * noticePostsPerPage;
     const noticeFirstIndex = noticeLastIndex - noticePostsPerPage;
-    const currentNoticePosts = noticePosts.slice(noticeFirstIndex, noticeLastIndex);
-    const noticeTotalPages = Math.ceil(noticePosts.length / noticePostsPerPage);
+    const currentNoticePosts = filteredNoticePosts.slice(noticeFirstIndex, noticeLastIndex);
+    const noticeTotalPages = filteredPostKeyword ? Math.ceil(filteredNoticePosts.length / noticePostsPerPage) : Math.ceil(noticePosts.length / noticePostsPerPage);
 
     const getContentNotice = () => {
         return (
@@ -195,6 +218,7 @@ function Community() {
                         <th>제목</th>
                         <th>아이디</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                         <th>설정</th>
                     </tr>
                 </thead>
@@ -210,17 +234,22 @@ function Community() {
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
-                                    setSelectedPost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content}); // 선택된 게시글 정보 저장
+                                    let selectIndex = posts.findIndex(item => item.no === row.no);
+                                    let temp = [...posts];
+                                    temp[selectIndex].view += 1;
+                                    setPosts(temp);
+                                    setSelectedPost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                     setShowPostModal(true);
                                 }}><Link to='#' className="text-decoration-none text-dark">{row.title}</Link></td>
                                 <td>{row.userId}</td>
                                 <td>{row.date}</td>
+                                <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
                                     {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
-                                       <Button variant="light" onClick={() => {
+                                        <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
+                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                         }}>설정</Button>
                                     )}
                                 </td>
@@ -233,12 +262,13 @@ function Community() {
     }
 
     const QnaPosts = posts.filter(post => post.type === 'Q&A');
+    const filteredQnaPosts = filteredPostKeyword ? QnaPosts.filter(post => post.title.includes(filteredPostKeyword)) : QnaPosts;
     const [currentQnaPage, setCurrentQnaPage] = useState(1);
     const QnaPostsPerPage = 6;
     const QnaLastIndex = currentQnaPage * QnaPostsPerPage;
     const QnaFirstIndex = QnaLastIndex - QnaPostsPerPage;
-    const currentQnaPosts = QnaPosts.slice(QnaFirstIndex, QnaLastIndex);
-    const QnaTotalPages = Math.ceil(QnaPosts.length / QnaPostsPerPage);
+    const currentQnaPosts = filteredQnaPosts.slice(QnaFirstIndex, QnaLastIndex);
+    const QnaTotalPages = filteredPostKeyword ? Math.ceil(filteredQnaPosts.length / QnaPostsPerPage) : Math.ceil(QnaPosts.length / QnaPostsPerPage);
 
     const getContentQna = () => {
         return (
@@ -250,6 +280,7 @@ function Community() {
                         <th>제목</th>
                         <th>아이디</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                         <th>설정</th>
                     </tr>
                 </thead>
@@ -265,17 +296,22 @@ function Community() {
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
-                                    setSelectedPost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
+                                    let selectIndex = posts.findIndex(item => item.no === row.no);
+                                    let temp = [...posts];
+                                    temp[selectIndex].view += 1;
+                                    setPosts(temp);
+                                    setSelectedPost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                     setShowPostModal(true);
                                 }}><Link to='#' className="text-decoration-none text-dark">{row.title}</Link></td>
                                 <td>{row.userId}</td>
                                 <td>{row.date}</td>
+                                <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
                                     {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
                                         <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no ,type:row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
+                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
                                         }}>설정</Button>
                                     )}
                                 </td>
@@ -293,7 +329,7 @@ function Community() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
                     <Container fluid>
-                        <Navbar.Brand as={Link} to="/">로고</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
@@ -302,12 +338,12 @@ function Community() {
                                 </Nav.Link>
                                 <Form className="d-flex">
                                     <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
-                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                 <Nav.Link onClick={() => {
+                                <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
@@ -321,15 +357,16 @@ function Community() {
             </header>
             <main className="community-main">
                 <Container>
+                    <h1>{products[itemindex].name+'의 게시판'}</h1>
                     <Nav fill variant="tabs">
                         <Nav.Item>
-                            <Nav.Link onClick={() => setShowTableTab('전체')}  active={showTableTab === '전체'}>전체</Nav.Link>
+                            <Nav.Link onClick={() => setShowTableTab('전체')} active={showTableTab === '전체'}>전체</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={() => setShowTableTab('공지')}  active={showTableTab === '공지'}>공지</Nav.Link>
+                            <Nav.Link onClick={() => setShowTableTab('공지')} active={showTableTab === '공지'}>공지</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={() => setShowTableTab('Q&A')}  active={showTableTab === 'Q&A'}>Q&A</Nav.Link>
+                            <Nav.Link onClick={() => setShowTableTab('Q&A')} active={showTableTab === 'Q&A'}>Q&A</Nav.Link>
                         </Nav.Item>
                         <Button variant="success" onClick={() => setShowModal(true)}>글쓰기</Button>
                     </Nav>
@@ -337,8 +374,27 @@ function Community() {
 
 
                     <div className="board">
+                        <div style={{display:'flex',justifyContent:'flex-end'}}>
+                            <InputGroup className="mb-3" style={{ width: '50%' }}>
+                                <Form.Control
+                                    placeholder="제목 입력"
+                                    value={searchPost} // ✅ 여기에 걸고
+                                    onChange={(e) => setSearchPost(e.target.value)} // ✅ 변화 감지
+                                />
+                                <Button variant="outline-secondary" onClick={() => {
+                                    setCurrentPage(1);
+                                    setCurrentNoticePage(1);
+                                    setCurrentQnaPage(1);
+                                    setFilteredPostKeyword(searchPost);
+                                    setSearchPost('')
+                                }}>
+                                    검색
+                                </Button>
+                            </InputGroup>
+                        </div>
+
                         {showTableTab == '전체' ? getContent() : showTableTab == '공지' ? getContentNotice() : getContentQna()}
-                        
+
                         {showTableTab === '공지' ? (
                             <div className="d-flex justify-content-center mt-3">
                                 <Button
@@ -383,9 +439,10 @@ function Community() {
             </main>
             <PostModal show={showPostModal} onClose={() => setShowPostModal(false)} commentAr={commentAr} setCommentAr={setCommentAr} id={localStorage.getItem('id')} date={new Date().toLocaleString()} title={selectedPost?.title || ''} content={selectedPost?.content || ''}></PostModal>
             <PostWriteModal show={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddPostIndex} type={showTableTab} no={posts.length} />
-            <PostSettingModal show={showSettingModal} onClose={() => setShowSettingModal(false)} post={updatePost} commentAr={commentAr} posts={posts} onUpdate={setPosts} onDelete={setPosts}/>
+            <PostSettingModal show={showSettingModal} onClose={() => setShowSettingModal(false)} post={updatePost} commentAr={commentAr} posts={posts} onUpdate={setPosts} onDelete={setPosts} />
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-             <footer>
+            <footer>
+                <hr></hr>
                 <h2>5판3선</h2>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

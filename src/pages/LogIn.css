@@ -1,4 +1,5 @@
 .login_container {
+    font-family: 'Arial', sans-serif;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -74,4 +75,9 @@
     text-align: center;
     margin-top: 15px;
     font-weight: bold;
+}
+
+.login-title{
+    display: flex;
+    justify-content: center;
 }

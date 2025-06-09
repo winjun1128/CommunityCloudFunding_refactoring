@@ -134,7 +134,7 @@ function SellModal({ show, onClose}) {
                 <Row>
                     <Col md={6}><Button onClick={() => {
                         const temps = [...products];
-                        const temp={no:products.length+1,imglink:sellImgLink,companyname:sellCompanyName, name:sellName,category:sellCategory,price:sellPrice,recruitmoney:sellRecruitMoney,startdate:sellStartDate,enddate:sellEndDate,carousellink:sellCarouselLink,intro:sellIntro,picturelink:sellPictureLink,videolink:sellVideoLink,percent:0,count:0,heart:[''],consumer:[''],seller:localStorage.getItem('id')};
+                        const temp={no:products.length+1,imglink:sellImgLink,companyname:sellCompanyName, name:sellName,category:sellCategory,price:sellPrice,gainmoney:0,recruitmoney:sellRecruitMoney,startdate:sellStartDate,enddate:sellEndDate,carousellink:sellCarouselLink,intro:sellIntro,picturelink:sellPictureLink,videolink:sellVideoLink,percent:0,count:0,heart:[''],consumer:[''],seller:localStorage.getItem('id')};
                         temps.push(temp);
                         setProducts(temps);
                         alert('등록완료!!');

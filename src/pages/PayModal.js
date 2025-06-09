@@ -35,12 +35,20 @@ function PayModal({show,onClose,itemindex}){
         onClick={(event) => event.stopPropagation()} // 내부 클릭 무시
       >
         <Row>
-          <Col md={6}><h1>제품명</h1></Col>
-          <Col md={6}><h1>{products[itemindex].name}</h1></Col>
+          <Col md={6}><h2>제품명</h2></Col>
+          <Col md={6}><h2>{products[itemindex].name}</h2></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={3}><h1>갯수</h1></Col>
+          <Col md={3}><h2>갯수</h2></Col>
+          <Col md={3}><Button onClick={()=>{
+            if(buyItemCount>1){
+               const newCount = buyItemCount - 1;
+               setBuyItemCount(newCount);
+               setBuyItemPrice(newCount*itemprice);
+            }
+          }} variant="dark">-</Button></Col>
+          <Col md={3}><span>{buyItemCount}</span></Col>
           <Col md={3}><Button onClick={()=>{
             // 비동기라 카운트 전에 가격계산됨
             // setBuyItemCount(buyItemCount + 1);
@@ -49,38 +57,30 @@ function PayModal({show,onClose,itemindex}){
             setBuyItemCount(newCount);
             setBuyItemPrice(newCount*itemprice);
           }} variant="dark">+</Button></Col>
-          <Col md={3}><span>{buyItemCount}</span></Col>
-          <Col md={3}><Button onClick={()=>{
-            if(buyItemCount>1){
-               const newCount = buyItemCount - 1;
-               setBuyItemCount(newCount);
-               setBuyItemPrice(newCount*itemprice);
-            }
-          }} variant="dark">-</Button></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={6}><h1>주소</h1></Col>
+          <Col md={6}><h2>주소</h2></Col>
           <Col md={6}><input type="text"/></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={6}><h1>금액</h1></Col>
+          <Col md={6}><h2>금액</h2></Col>
           <Col md={6}><span>{buyItemPrice}</span></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={6}><h1>모집시작일</h1></Col>
+          <Col md={6}><h2>모집시작일</h2></Col>
           <Col md={6}><span>{products[itemindex].startdate}</span></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={6}><h1>모집마감일</h1></Col>
+          <Col md={6}><h2>모집마감일</h2></Col>
           <Col md={6}><span>{products[itemindex].enddate}</span></Col>
         </Row>
         <hr />
         <Row>
-          <Col md={6}><h1>달성율</h1></Col>
+          <Col md={6}><h2>달성율</h2></Col>
           <Col md={6}><span>{products[itemindex].percent}</span></Col>
         </Row>
         <hr />

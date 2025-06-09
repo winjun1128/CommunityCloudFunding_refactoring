@@ -15,7 +15,8 @@ function PostWriteModal({ show, onClose, onSubmit, no, type }) {
     type: newType,
     content: content,
     userId: localStorage.getItem('id'),
-    date: new Date().toLocaleString()
+    date: new Date().toLocaleString(),
+    view: 0
   }
 
   //모달 열릴떄 바디 스크롤 막기
@@ -41,7 +42,7 @@ function PostWriteModal({ show, onClose, onSubmit, no, type }) {
         onClick={(event) => event.stopPropagation()} // 내부 클릭 무시
       >
         <Row>
-          <Col md={6}><h1>제목</h1></Col>
+          <Col md={6}><h2>제목</h2></Col>
           <Col md={6}><input type="text" onChange={(event) => setTitle(event.target.value)} /></Col>
         </Row>
         <hr />
