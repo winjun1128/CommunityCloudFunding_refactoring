@@ -12,6 +12,12 @@
   min-height: 100vh;
 }
 
+.item-navbar-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 /* 제품 이미지 영역 */
 .item-main .item-custom-row img {
   width: 100%;

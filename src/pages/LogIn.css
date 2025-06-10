@@ -3,6 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f5f7fa;
+    /* 배경색 추가 */
+}
+
+.login-list-navbar-inner {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 /* .login_container {
     font-family: 'Arial', sans-serif;
@@ -77,13 +85,13 @@
     background-color: #0056b3;
 }
 
-.login-p{
+.login-p {
     text-align: center;
     margin-top: 15px;
     font-weight: bold;
 }
 
-.login-title{
+.login-title {
     display: flex;
     justify-content: center;
 }

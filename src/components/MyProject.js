@@ -9,8 +9,10 @@ import './MyProject.css';
 function MyProject() {
     const { products, setProducts } = useProducts();
     const sellproducts = products.filter(item => item.seller === localStorage.getItem('id'));
+
     const [showEditModal, setShowEditModal] = useState(false);
     const [updateIndex, setUpdateIndex] = useState(0);
+    const [selectedCardIndex, setSelectedCardIndex] = useState(null); // ✅ 추가
 
     return (
         <div className="myproject-container">
@@ -45,7 +47,13 @@ function MyProject() {
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {sellproducts.map((item, index) => (
                         <Col key={index}>
-                            <ProjectCard item={item} setUpdateIndex={setUpdateIndex} index={index} />
+                            <ProjectCard
+                                item={item}
+                                setUpdateIndex={setUpdateIndex}
+                                index={index}
+                                isSelected={selectedCardIndex === index}
+                                onSelect={() => setSelectedCardIndex(index)}
+                            />
                         </Col>
                     ))}
                 </Row>
