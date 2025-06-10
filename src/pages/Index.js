@@ -185,7 +185,7 @@ function Index() {
                                     <div className="ad-text">
                                         <h1 className="slide-in">신제품 밤티라미수 등록!</h1>
                                         <h2>밤티라미수</h2>
-                                        <h3>티라미숙해</h3>
+                                        <h3>밤티라미수컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
                                         <h2 className='text-jump'>5000원</h2>
