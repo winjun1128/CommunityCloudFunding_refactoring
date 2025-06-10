@@ -10,7 +10,7 @@ import SellModal from "./SellModal";
 import { useProducts } from "../data/ProductContext";
 
 function Community() {
-     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
+    const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     let { itemno } = useParams();
     const itemindex = products.findIndex(product => product.no === Number(itemno));
     const [filteredPostKeyword, setFilteredPostKeyword] = useState('');
@@ -22,12 +22,12 @@ function Community() {
     const [selectedPost, setSelectedPost] = useState(null);
     const [updatePost, setUpdatePost] = useState(null);
 
-    useEffect(()=>{
-        if(itemindex===-1){
+    useEffect(() => {
+        if (itemindex === -1) {
             alert("잘못된 상품 번호입니다.");
             navigate("/list");
         }
-    },[itemindex]);
+    }, [itemindex]);
 
     const originCmtAr = [
         { id: '아이디1', date: new Date().toLocaleDateString(), comment: '댓글' },
@@ -42,9 +42,6 @@ function Community() {
 
 
     const [postNum, setPostNum] = useState([6, 6]);
-
-
-    const [hoveredUserId, setHoveredUserId] = useState(null);
 
     const postContents = [
         "포인트 사용에 대한 내용입니다.",
@@ -150,7 +147,7 @@ function Community() {
     const totalPages = filteredPostKeyword ? Math.ceil(filteredPosts.length / postsPerPage) : Math.ceil(posts.length / postsPerPage);
     const getContent = () => {
         return (
-            <table className="table table-bordered">
+            <table className="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>번호</th>
@@ -165,11 +162,7 @@ function Community() {
                 <tbody>
                     {currentPosts.map((row) => {
                         return (
-                            <tr
-                                key={row.no}
-                                onMouseEnter={() => setHoveredUserId(row.userId)}
-                                onMouseLeave={() => setHoveredUserId(null)}
-                            >
+                            <tr key={row.no}>
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
@@ -185,11 +178,20 @@ function Community() {
                                 <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
-                                    {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
+                                    {row.userId === localStorage.getItem('id') && (
                                         <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
-                                        }}>설정</Button>
+                                            setUpdatePost({
+                                                no: row.no,
+                                                type: row.type,
+                                                id: row.userId,
+                                                date: row.date,
+                                                title: row.title,
+                                                content: row.content
+                                            });
+                                        }}>
+                                            수정
+                                        </Button>
                                     )}
                                 </td>
                             </tr>
@@ -226,11 +228,7 @@ function Community() {
                     {currentNoticePosts.map((row) => {
                         const contentIndex = 30 - row.no;
                         return (
-                            <tr
-                                key={row.no}
-                                onMouseEnter={() => setHoveredUserId(row.userId)}
-                                onMouseLeave={() => setHoveredUserId(null)}
-                            >
+                            <tr key={row.no}>
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
@@ -246,11 +244,20 @@ function Community() {
                                 <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
-                                    {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
+                                    {row.userId === localStorage.getItem('id') && (
                                         <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
-                                        }}>설정</Button>
+                                            setUpdatePost({
+                                                no: row.no,
+                                                type: row.type,
+                                                id: row.userId,
+                                                date: row.date,
+                                                title: row.title,
+                                                content: row.content
+                                            });
+                                        }}>
+                                            수정
+                                        </Button>
                                     )}
                                 </td>
                             </tr>
@@ -288,11 +295,7 @@ function Community() {
                     {currentQnaPosts.map((row) => {
                         const contentIndex = 30 - row.no;
                         return (
-                            <tr
-                                key={row.no}
-                                onMouseEnter={() => setHoveredUserId(row.userId)}
-                                onMouseLeave={() => setHoveredUserId(null)}
-                            >
+                            <tr key={row.no}>
                                 <td>{row.no}</td>
                                 <td>{row.type}</td>
                                 <td onClick={() => {
@@ -308,11 +311,20 @@ function Community() {
                                 <td>{row.view}</td>
                                 <td>
                                     {/* 아이디가 "아이디1"이고, 현재 hover된 유저일 때만 버튼 보이기 */}
-                                    {row.userId === localStorage.getItem('id') && hoveredUserId === localStorage.getItem('id') && (
+                                    {row.userId === localStorage.getItem('id') && (
                                         <Button variant="light" onClick={() => {
                                             setShowSettingModal(true);
-                                            setUpdatePost({ no: row.no, type: row.type, id: row.userId, date: row.date, title: row.title, content: row.content }); // 선택된 게시글 정보 저장
-                                        }}>설정</Button>
+                                            setUpdatePost({
+                                                no: row.no,
+                                                type: row.type,
+                                                id: row.userId,
+                                                date: row.date,
+                                                title: row.title,
+                                                content: row.content
+                                            });
+                                        }}>
+                                            수정
+                                        </Button>
                                     )}
                                 </td>
                             </tr>
@@ -357,15 +369,17 @@ function Community() {
             </header>
             <main className="community-main">
                 <Container>
-                    <h1>{products[itemindex].name+'의 게시판'}</h1>
-                    <Nav fill variant="tabs">
-                        <Nav.Item>
+                    <div style={{ width: '100%', height: '100%', backgroundColor: 'white', textAlign: 'center', marginBottom: '5%', boxShadow: '2px 2px 5px', borderRadius: '10px' }}>
+                        <h2>{products[itemindex].name + '의 게시판'}</h2>
+                    </div>
+                    <Nav fill variant="tabs" className="bg-white">
+                        <Nav.Item style={{ border: '1px solid #ddd' }}>
                             <Nav.Link onClick={() => setShowTableTab('전체')} active={showTableTab === '전체'}>전체</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
+                        <Nav.Item style={{ border: '1px solid #ddd' }}>
                             <Nav.Link onClick={() => setShowTableTab('공지')} active={showTableTab === '공지'}>공지</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
+                        <Nav.Item style={{ border: '1px solid #ddd' }}>
                             <Nav.Link onClick={() => setShowTableTab('Q&A')} active={showTableTab === 'Q&A'}>Q&A</Nav.Link>
                         </Nav.Item>
                         <Button variant="success" onClick={() => setShowModal(true)}>글쓰기</Button>
@@ -374,12 +388,12 @@ function Community() {
 
 
                     <div className="board">
-                        <div style={{display:'flex',justifyContent:'flex-end'}}>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <InputGroup className="mb-3" style={{ width: '50%' }}>
                                 <Form.Control
                                     placeholder="제목 입력"
-                                    value={searchPost} // ✅ 여기에 걸고
-                                    onChange={(e) => setSearchPost(e.target.value)} // ✅ 변화 감지
+                                    value={searchPost}
+                                    onChange={(e) => setSearchPost(e.target.value)}
                                 />
                                 <Button variant="outline-secondary" onClick={() => {
                                     setCurrentPage(1);
@@ -441,8 +455,8 @@ function Community() {
             <PostWriteModal show={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddPostIndex} type={showTableTab} no={posts.length} />
             <PostSettingModal show={showSettingModal} onClose={() => setShowSettingModal(false)} post={updatePost} commentAr={commentAr} posts={posts} onUpdate={setPosts} onDelete={setPosts} />
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-            <footer>
-                <hr></hr>
+            <hr></hr>
+            <footer style={{ paddingLeft: '6%' }}>
                 <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

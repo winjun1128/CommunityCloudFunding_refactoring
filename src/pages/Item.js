@@ -92,28 +92,28 @@ function Item() {
                         <Col xs={12} md={6} style={{height: '500px' }}>
                             <div style={{ height: '90%' }}>
                                 <h3 className='itemProductName'>{products[itemindex].name}</h3>
-                                <h4>{products[itemindex].companyname}</h4>
-                                <h4>{products[itemindex].price + '원'}</h4>
-                                <p>모인금액</p>
+                                <h4 style={{marginTop:'15px'}}>{products[itemindex].companyname}</h4>
+                                <h4 style={{marginTop:'15px'}}>{products[itemindex].price.toLocaleString() + '원'}</h4>
+                                <p style={{marginTop:'30px'}}><strong>모인금액</strong></p>
                                 <div className='gain-money'>
-                                    <span>{products[itemindex].gainmoney + '원'}</span>
+                                    <span>{products[itemindex].gainmoney.toLocaleString() + '원'}</span>
                                     <span style={{ color: 'red' }}>{products[itemindex].percent + '%'}</span>
                                 </div>
                                 <table>
                                     <tr>
-                                        <td>목표금액</td>
-                                        <td>{products[itemindex].recruitmoney}</td>
+                                        <td><strong>목표금액</strong></td>
+                                        <td>{products[itemindex].recruitmoney.toLocaleString()}</td>
                                     </tr>
                                     <tr>
-                                        <td>모집시작일</td>
+                                        <td><strong>모집시작일</strong></td>
                                         <td>{products[itemindex].startdate}</td>
                                     </tr>
                                     <tr>
-                                        <td>모집마감일</td>
+                                        <td><strong>모집마감일</strong></td>
                                         <td>{products[itemindex].enddate}</td>
                                     </tr>
                                     <tr>
-                                        <td>상태여부</td>
+                                        <td><strong>상태여부</strong></td>
                                         <td>진행</td>
                                     </tr>
                                 </table>
@@ -171,8 +171,8 @@ function Item() {
             </main>
             <PayModal itemindex={itemindex} show={showPayModal} onClose={() => setShowPayModal(false)}  ></PayModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
-            <footer>
-                <hr></hr>
+           <hr></hr>
+            <footer style={{paddingLeft:'6%'}}>
                 <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

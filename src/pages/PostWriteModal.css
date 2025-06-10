@@ -1,29 +1,28 @@
-
 .postwritemodal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.2);
-  /* background-color: black; */
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1050;
 }
 
 .postwritemodal-content {
   background: white;
   padding: 2rem;
-  border-radius: 8px;
-  width: 500px;
-  height: 500px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.postwritemodal-backdrop .postwritemodal-content .typeradioarea{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.typeradioarea {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
 }

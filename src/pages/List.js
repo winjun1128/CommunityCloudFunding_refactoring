@@ -537,8 +537,8 @@ function List() {
                 </Container>
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
-            <footer>
-                <hr></hr>
+            <hr></hr>
+            <footer style={{paddingLeft:'6%'}}>
                 <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

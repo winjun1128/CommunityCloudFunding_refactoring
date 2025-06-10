@@ -1,18 +1,13 @@
 import './PostSettingModal.css';
 import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import PostUpdateModal from './PostUpdateModal';
-function PostSettingModal({ show, onClose, post, commentAr, posts, onUpdate,onDelete }) {
+
+function PostSettingModal({ show, onClose, post, commentAr, posts, onUpdate, onDelete }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
 
-  //모달 열릴떄 바디 스크롤 막기
   useEffect(() => {
-    if (show) {
-      document.body.style.overflow = 'hidden';
-    }
-    else {
-      document.body.style.overflow = 'auto';
-    }
-    //컴포넌트가 언마운트될떄 원래대로
+    document.body.style.overflow = show ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -20,46 +15,45 @@ function PostSettingModal({ show, onClose, post, commentAr, posts, onUpdate,onDe
 
   if (!show) return null;
 
+  const handleDelete = () => {
+    const updatedPosts = posts.filter(item => item.no !== post.no);
+    onDelete(updatedPosts);
+    onClose();
+  };
+
   return (
     <div className="postsettingmodal-backdrop" onClick={onClose}>
       <div
         className="postsettingmodal-content"
-        onClick={(event) => event.stopPropagation()} // 내부 클릭 무시
+        onClick={(event) => event.stopPropagation()}
       >
-        <div className="gofixpostarea">
-          <button onClick={() => setShowUpdateModal(true)}><h1>수정</h1></button>
-        </div>
-        <div className="deletepostarea">
-          <button onClick={() => {
-           const delpost = posts.filter(item=>item.no!==post.no);
-            onDelete(delpost);
-          }}><h1>삭제</h1></button>
-        </div>
-        <div className="cancelpostarea">
-          <button onClick={onClose}><h1>취소</h1></button>
+        <h4 className="text-center mb-4">게시글 설정</h4>
+
+        <div className="setting-btn-area">
+          <Button variant="primary" onClick={() => setShowUpdateModal(true)} className="w-100 mb-3">
+            수정하기
+          </Button>
+
+          <Button variant="danger" onClick={handleDelete} className="w-100 mb-3">
+            삭제하기
+          </Button>
+
+          <Button variant="secondary" onClick={onClose} className="w-100">
+            취소
+          </Button>
         </div>
 
-        {/* <Row>
-          <Col md={6}><h1>제목</h1></Col>
-          <Col md={6}><input type="text" onChange={(event)=>setTitle(event.target.value)} /></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>본문</h2></Col>
-          <Col md={6}><input type="text" onChange={(event)=>setContent(event.target.value)}/></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><button onClick={()=>{
-            onSubmit(newPost);    //객체담기
-            onClose();
-          }}>올리기</button></Col>
-          <Col md={6}><button onClick={onClose}>취소</button></Col>
-        </Row> */}
-
-        <PostUpdateModal show={showUpdateModal} onClose={() => setShowUpdateModal(false)} post={post} commentAr={commentAr} posts={posts} onUpdate={onUpdate}></PostUpdateModal>
+        <PostUpdateModal
+          show={showUpdateModal}
+          onClose={() => setShowUpdateModal(false)}
+          post={post}
+          commentAr={commentAr}
+          posts={posts}
+          onUpdate={onUpdate}
+        />
       </div>
     </div>
   );
 }
+
 export default PostSettingModal;

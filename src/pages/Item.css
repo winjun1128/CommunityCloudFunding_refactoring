@@ -30,7 +30,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 15px 0;
 }
 
 .gain-money span {
@@ -95,7 +94,7 @@
 /* 제품 소개 영역 */
 .item-intro {
   width: 100%;
-  background-color: #fffa80;
+  background-color: #f8f9fa;
   padding: 40px;
   margin-top: 60px;
   border-radius: 10px;

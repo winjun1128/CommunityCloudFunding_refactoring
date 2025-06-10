@@ -1,12 +1,18 @@
-.login_container {
-    font-family: 'Arial', sans-serif;
-    width: 100vw;
-    height: 100vh;
+.login-main{
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f7fa; /* 배경색 추가 */
 }
+/* .login_container {
+    font-family: 'Arial', sans-serif;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f7fa; 
+    overflow: hidden;
+} */
 
 .login_form {
     width: 400px;

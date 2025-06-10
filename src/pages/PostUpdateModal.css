@@ -4,8 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.2);
-  /* background-color: black; */
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,31 +14,15 @@
 .postupdatemodal-content {
   background: white;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 600px;
-  height: 600px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-}
-.updateareapostmodal{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.updateareapostmodal button{
-  width: 100%;
-}
-.cancelareapostmodal{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.cancelareapostmodal button{
-  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-.postupdatemodal-backdrop .postupdatemodal-content .typeradioarea{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.typeradioarea {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.5rem;
 }
- 

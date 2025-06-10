@@ -187,8 +187,8 @@ function Index() {
                                         <h2>밤티라미수</h2>
                                         <h3>밤티라미수컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
-                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
-                                        <h2 className='text-jump'>5000원</h2>
+                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
+                                        <h2 className='text-jump'>5,000원</h2>
                                         <br></br>
                                         <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
@@ -212,8 +212,8 @@ function Index() {
                                         <h2>이어폰</h2>
                                         <h3>이어폰컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
-                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
-                                        <h2 className='text-jump'>5000원</h2>
+                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
+                                        <h2 className='text-jump'>5,000원</h2>
                                         <br></br>
                                         <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
@@ -237,8 +237,8 @@ function Index() {
                                         <h2>케이크</h2>
                                         <h3>케이크컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
-                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10000원</span>
-                                        <h2 className='text-jump'>5000원</h2>
+                                        <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
+                                        <h2 className='text-jump'>5,000원</h2>
                                         <br></br>
                                         <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
@@ -249,8 +249,8 @@ function Index() {
                 </Container>
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-            <footer>
-                <hr></hr>
+            <hr></hr>
+            <footer style={{paddingLeft:'6%'}}>
                 <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
                 <h6>연락처: 041-561-1126</h6>

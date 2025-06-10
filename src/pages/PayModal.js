@@ -1,104 +1,102 @@
-import { useState,useEffect } from "react";
-import { Button,Row,Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import './PayModal.css';
 import { useProducts } from '../data/ProductContext';
-function PayModal({show,onClose,itemindex}){
-  const {products,setProducts} = useProducts(); //이제 products 배열 사용 가능
-  const itemprice = products[itemindex].price;
-  const [buyItemPrice,setBuyItemPrice] = useState(itemprice);
-  const [buyItemCount,setBuyItemCount] = useState(1);
-  const [title,setTitle] = useState('');
-  const [content,setContent] = useState('');
 
- 
+function PayModal({ show, onClose, itemindex }) {
+  const { products, setProducts } = useProducts();
+  const item = products[itemindex];
+  const [buyItemCount, setBuyItemCount] = useState(1);
+  const [buyItemPrice, setBuyItemPrice] = useState(item.price);
+  const [address, setAddress] = useState('');
 
-  //모달 열릴떄 바디 스크롤 막기
-  useEffect(()=>{
-      if(show){
-        document.body.style.overflow = 'hidden';
-      }
-      else{
-        document.body.style.overflow = 'auto';
-      }
-      //컴포넌트가 언마운트될떄 원래대로
-      return()=>{
-        document.body.style.overflow='auto';
-      };
-    },[show]);
+  useEffect(() => {
+    document.body.style.overflow = show ? 'hidden' : 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [show]);
 
-    if (!show) return null;
+  if (!show) return null;
 
-  return(
+  const updateBuyItemCount = (newCount) => {
+    setBuyItemCount(newCount);
+    setBuyItemPrice(newCount * item.price);
+  };
+
+  const handlePayment = () => {
+    let temp = [...products];
+    temp[itemindex].count += buyItemCount;
+    temp[itemindex].gainmoney += buyItemCount * item.price;
+    temp[itemindex].consumer.push(localStorage.getItem('id'));
+    temp[itemindex].percent = ((temp[itemindex].gainmoney / temp[itemindex].recruitmoney) * 100).toFixed(1);
+    setProducts(temp);
+    alert('결제 완료!');
+    onClose();
+  };
+
+  return (
     <div className="paymodal-backdrop" onClick={onClose}>
-      <div
-        className="paymodal-content"
-        onClick={(event) => event.stopPropagation()} // 내부 클릭 무시
-      >
-        <Row>
-          <Col md={6}><h2>제품명</h2></Col>
-          <Col md={6}><h2>{products[itemindex].name}</h2></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={3}><h2>갯수</h2></Col>
-          <Col md={3}><Button onClick={()=>{
-            if(buyItemCount>1){
-               const newCount = buyItemCount - 1;
-               setBuyItemCount(newCount);
-               setBuyItemPrice(newCount*itemprice);
-            }
-          }} variant="dark">-</Button></Col>
-          <Col md={3}><span>{buyItemCount}</span></Col>
-          <Col md={3}><Button onClick={()=>{
-            // 비동기라 카운트 전에 가격계산됨
-            // setBuyItemCount(buyItemCount + 1);
-            // setBuyItemPrice(buyItemCount * itemprice);
-            const newCount = buyItemCount + 1;
-            setBuyItemCount(newCount);
-            setBuyItemPrice(newCount*itemprice);
-          }} variant="dark">+</Button></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>주소</h2></Col>
-          <Col md={6}><input type="text"/></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>금액</h2></Col>
-          <Col md={6}><span>{buyItemPrice}</span></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>모집시작일</h2></Col>
-          <Col md={6}><span>{products[itemindex].startdate}</span></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>모집마감일</h2></Col>
-          <Col md={6}><span>{products[itemindex].enddate}</span></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><h2>달성율</h2></Col>
-          <Col md={6}><span>{products[itemindex].percent}</span></Col>
-        </Row>
-        <hr />
-        <Row>
-          <Col md={6}><Button onClick={()=>{
-            let temp = [...products];
-            temp[itemindex].count+=buyItemCount;
-            temp[itemindex].gainmoney+=buyItemCount*temp[itemindex].price;
-            temp[itemindex].consumer.push(localStorage.getItem('id'));
-            temp[itemindex].percent = (temp[itemindex].gainmoney/temp[itemindex].recruitmoney)*100;
-            setProducts(temp);     
-            alert('결제완료!!');
-            onClose();
-          }}>결제하기</Button></Col>
-          <Col md={6}><Button variant="secondary" onClick={onClose}>취소</Button></Col>
-        </Row>
+      <div className="paymodal-content" onClick={(e) => e.stopPropagation()}>
+        <h4 className="text-center mb-4">결제 확인</h4>
+
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>제품명</Form.Label>
+            <Form.Control value={item.name} readOnly />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>수량</Form.Label>
+            <InputGroup>
+              <Button
+                variant="outline-secondary"
+                onClick={() => buyItemCount > 1 && updateBuyItemCount(buyItemCount - 1)}
+              >-</Button>
+              <Form.Control value={buyItemCount} readOnly className="text-center" />
+              <Button
+                variant="outline-secondary"
+                onClick={() => updateBuyItemCount(buyItemCount + 1)}
+              >+</Button>
+            </InputGroup>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>주소</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="배송 받을 주소를 입력하세요"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>총 결제 금액</Form.Label>
+            <Form.Control value={`${buyItemPrice.toLocaleString()} 원`} readOnly />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>모집 기간</Form.Label>
+            <Form.Control
+              value={`${item.startdate} ~ ${item.enddate}`}
+              readOnly
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-4">
+            <Form.Label>현재 달성률</Form.Label>
+            <Form.Control value={`${item.percent}%`} readOnly />
+          </Form.Group>
+
+          <div className="d-flex justify-content-end gap-2">
+            <Button variant="primary" onClick={handlePayment}>결제하기</Button>
+            <Button variant="secondary" onClick={onClose}>취소</Button>
+          </div>
+        </Form>
       </div>
     </div>
   );
 }
+
 export default PayModal;
