@@ -249,7 +249,6 @@ function Index() {
                 </Container>
             </main>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-            <hr></hr>
             <footer style={{paddingLeft:'6%'}}>
                 <h5>5판3선</h5>
                 <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
