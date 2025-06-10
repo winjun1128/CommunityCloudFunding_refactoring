@@ -5,6 +5,7 @@ import InfomationModal from "./InfomationModal";
 import BirthDayModal from "./BirthDayModal";
 import DeliveryModal from "./DeliveryModal";
 import PrivacyModal from "./PrivacyModal";
+import ExitModal from "./ExitModal";
 
 function Profile({ showInfo, setShowInfo }) {
     const [showPhoneModal, setShowPhoneModal] = useState(false);
@@ -13,6 +14,7 @@ function Profile({ showInfo, setShowInfo }) {
 
     const [showAddressModal, setShowAddressModal] = useState(false);
     const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+    const [showExitModal, setShowExitModal] = useState(false);
 
     return (
         <div>
@@ -74,9 +76,17 @@ function Profile({ showInfo, setShowInfo }) {
                 </div>
             </div>
             <br />
-            <Button className='exit-member' variant="danger" onClick={() => {
-                prompt("정말 회원탈퇴 하시겠습니까? (원하시면 '회원탈퇴'를 입력해주세요)");
-            }}>회원탈퇴</Button>
+            <Button className='exit-member' variant="danger" onClick={() => setShowExitModal(true)}>
+                회원탈퇴
+            </Button>
+            <ExitModal
+                show={showExitModal}
+                onClose={() => setShowExitModal(false)}
+                onConfirm={() => {
+                    alert("탈퇴 처리되었습니다.");
+                    setShowExitModal(false);
+                }}
+            />
         </div>
     );
 }

@@ -21,7 +21,7 @@ function LogIn() {
         <div>
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
-                    <Container fluid>
+                    <Container fluid className="login-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">

@@ -35,7 +35,7 @@ function Index() {
         <div className='index-all-container'>
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
-                    <Container fluid>
+                    <Container fluid className="index-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
