@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import './EditModal.css';
 import { useProducts } from '../data/ProductContext';
+import AlertModal from './AlertModal';
 
 function EditModal({ show, onClose, product }) {
+  const [showAlertModal,setShowAlertModal] = useState(false);
   const { products, setProducts } = useProducts();
 
   const [getName, setGetName] = useState('');
@@ -18,6 +20,12 @@ function EditModal({ show, onClose, product }) {
   const [getIntro, setGetIntro] = useState('');
   const [getPictureLink, setGetPictureLink] = useState('');
   const [getVideoLink, setGetVideoLink] = useState('');
+
+  const today = new Date();
+
+  const endDate = new Date(getEndDate);
+  const diffTime = endDate.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   useEffect(() => {
     if (product) {
@@ -68,12 +76,12 @@ function EditModal({ show, onClose, product }) {
             intro: getIntro,
             picturelink: getPictureLink,
             videolink: getVideoLink,
+            state: diffDays <= 0 ? '마감' : '진행중'
           }
         : item
     );
     setProducts(updatedProduct);
-    alert('수정 완료!');
-    onClose();
+    setShowAlertModal(true);
   };
 
   return (
@@ -156,6 +164,7 @@ function EditModal({ show, onClose, product }) {
           </div>
         </Form>
       </div>
+      <AlertModal show={showAlertModal} handleClose={()=>setShowAlertModal(false)} content="수정 완료" opt={2}></AlertModal>
     </div>
   );
 }

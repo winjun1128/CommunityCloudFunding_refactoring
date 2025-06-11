@@ -130,18 +130,34 @@
   image-rendering: auto;
 }
 
-/* 푸터 */
-footer {
-  background-color: #ffffff;
-  text-align: left;
-  color: #888;
-}
-footer a{
-    text-decoration: none;
-    color: #888;
-}
+
 
 .itemProductName{
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.notice-box {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 8px;
+  color: #856404;
+  text-align: left;
+}
+
+.notice-box h5 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.notice-box ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.notice-box li {
+  margin-bottom: 8px;
+  font-size: 14px;
 }

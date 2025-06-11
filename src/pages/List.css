@@ -94,16 +94,6 @@
   border-color: #dee2e6 #dee2e6 #fff;
 }
 
-/* 푸터 */
-footer {
-  background-color: #ffffff;
-  text-align: left;
-  color: #888;
-}
-footer a{
-    text-decoration: none;
-    color: #888;
-}
 
 
 
@@ -124,5 +114,22 @@ footer a{
   -webkit-box-orient: vertical; /* 세로 방향 박스 */
   overflow: hidden;
   text-overflow: ellipsis;      /* (선택적으로 추가, 일부 브라우저에서 안정성 ↑) */
+}
+
+.list-card-text{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.list-card-text .card-text{
+  display: inline-block;
+  margin: 0;
+}
+
+.company-text, .state-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 

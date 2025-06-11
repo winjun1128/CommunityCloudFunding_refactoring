@@ -1,18 +1,37 @@
 import { Button } from 'react-bootstrap';
 import { useProducts } from '../data/ProductContext';
 import EditModal from '../pages/EditModal';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import ProjectCard from './ProjectCard';
 import './MyProject.css';
+import CheckDeleteAlertModal from '../pages/CheckDeleteAlertModal';
+import AlertModal from '../pages/AlertModal';
 
 function MyProject() {
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [goDelproduct, setGoDelProduct] = useState([]);
+    const [showCheckDeleteAlertModal, setShowCheckDeleteAlertModal] = useState(false);
+
     const { products, setProducts } = useProducts();
     const sellproducts = products.filter(item => item.seller === localStorage.getItem('id'));
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [updateIndex, setUpdateIndex] = useState(0);
     const [selectedCardIndex, setSelectedCardIndex] = useState(null); // ✅ 추가
+
+    const handleDelete = () => {
+        setProducts(goDelproduct);
+        setShowAlertModal(true);  // ✅ 알림 띄움
+    };
+
+    useEffect(() => {
+        if (selectedCardIndex !== null) {
+            setUpdateIndex(selectedCardIndex);
+        }
+    }, [selectedCardIndex]);
+
+
 
     return (
         <div className="myproject-container">
@@ -23,7 +42,9 @@ function MyProject() {
                         <Button variant="primary" style={{ marginRight: '10px' }} onClick={() => setShowEditModal(true)}>수정</Button>
                         <Button variant="danger" onClick={() => {
                             const delproduct = products.filter(item => item.no !== sellproducts[updateIndex].no);
-                            setProducts(delproduct);
+                            setGoDelProduct(delproduct);
+                            setShowCheckDeleteAlertModal(true);
+                            //setProducts(delproduct);
                         }}>삭제</Button>
                     </div>
                 )}
@@ -58,6 +79,8 @@ function MyProject() {
                     ))}
                 </Row>
             )}
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content="삭제 완료" opt={2}></AlertModal>
+            <CheckDeleteAlertModal show={showCheckDeleteAlertModal} handleClose={() => setShowCheckDeleteAlertModal(false)} content="삭제 하시겠습니까?" opt={1} onDeleteProduct={handleDelete} onDeletePost={null} ></CheckDeleteAlertModal>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useProducts } from '../data/ProductContext';
+import AlertModal from './AlertModal';
 
 //import './Index.css';
 import './List.css';
@@ -15,6 +16,21 @@ import EditModal from './EditModal';
 import { Routes, Route, useNavigate } from 'react-router';
 // 추가했을때 전체 탭에서만 뜸
 function List() {
+     const tabMap = {
+        all: "전체",
+        food: '푸드',
+        living: '리빙',
+        area: '지역',
+        book: '서적',
+        learning: '교육',
+        environment: '환경',
+        pet:'펫',
+        travel:'여행',
+        beauty:'뷰티'
+    };
+
+    const [showAlertModal, setShowAlertModal] = useState(false);
+
     const navigate = useNavigate();
     const [in_SearchKeyword, in_SetSearchKeyword] = useState('');
 
@@ -49,13 +65,16 @@ function List() {
                                             <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                 <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                             </Link>
-                                            <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                            <div className='list-card-text'>
+                                                <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                                <Card.Text style={{ color: 'red' }}>{item.state}</Card.Text>
+                                            </div>
                                         </Card.Body>
                                         <Card.Footer>
-                                            <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                            <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                         </Card.Footer>
                                         <Card.Footer>
-                                            <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                            <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                         </Card.Footer>
                                         <Card.Footer>
                                             <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -97,13 +116,19 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
+                                    </Card.Footer>
+                                    <Card.Footer>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -137,13 +162,16 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -177,13 +205,16 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -212,13 +243,16 @@ function List() {
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                     </Link>
-                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                    <div className='list-card-text'>
+                                        <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                        <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                    </div>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                 </Card.Footer>
                                 <Card.Footer>
-                                    <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                 </Card.Footer>
                                 <Card.Footer>
                                     <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -253,13 +287,16 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -292,13 +329,16 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -331,13 +371,16 @@ function List() {
                                         <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                         </Link>
-                                        <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                        <div className='list-card-text'>
+                                            <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                            <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                        </div>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                        <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
-                                        <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                        <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                     </Card.Footer>
                                     <Card.Footer>
                                         <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -365,13 +408,16 @@ function List() {
                                     <Link to={`/item/${item.no}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Card.Title className='ellipsis-multiline'>{item.name}</Card.Title>
                                     </Link>
-                                    <Card.Text style={{ textAlign: 'left' }}>{item.companyname}</Card.Text>
+                                    <div className='list-card-text'>
+                                        <span className='company-text' style={{ textAlign: 'left' }}>{item.companyname}</span>
+                                        <span className='state-text' style={{ color: 'red' }}>{item.state}</span>
+                                    </div>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <small className="text-muted"><strong>시작일자:</strong>{item.startdate}</small>
+                                    <small className="text-muted"><strong>시작일자:&nbsp;&nbsp;</strong>{item.startdate}</small>
                                 </Card.Footer>
                                 <Card.Footer>
-                                    <small className="text-muted"><strong>마감일자:</strong>{item.enddate}</small>
+                                    <small className="text-muted"><strong>마감일자:&nbsp;&nbsp;</strong>{item.enddate}</small>
                                 </Card.Footer>
                                 <Card.Footer>
                                     <ProgressBar now={item.percent} label={`${item.percent}%`} />
@@ -389,18 +435,18 @@ function List() {
     return (
         <div className='list-all-container'>
             <header>
-                <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
+                <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
                     <Container fluid className="list-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                            <Nav className="ms-auto align-items-center" navbarScroll>
+                                <Nav.Link as={Link} to="/list" className='me-3'>
                                     후원하기
                                 </Nav.Link>
-                                <Form className="d-flex">
-                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={in_SearchKeyword} onChange={(e) => in_SetSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(in_SearchKeyword)}`)}>
+                                <Form className="d-flex me-3">
+                                    <Form.Control type="search" placeholder="Search" className="me-2" value={in_SearchKeyword} onChange={(e) => in_SetSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" onClick={() => navigate(`/list?keyword=${encodeURIComponent(in_SearchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
@@ -409,9 +455,9 @@ function List() {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
-                                        alert('로그인 하세요');
+                                        setShowAlertModal(true);
 
-                                }} href="#action3">펀딩신청</Nav.Link>
+                                }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -427,11 +473,11 @@ function List() {
                     }
                     {!(in_SearchKeyword || searchKeyword) &&
                         <>
-                            <Row className='justify-content-center' style={{marginTop:'50px'}}>
+                            <Row className='justify-content-center' style={{ marginTop: '50px', cursor: 'pointer' }}>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('all')} active={activeTab === 'all'} className={`category-image ${activeTab === 'all' ? 'active' : ''}`}>
                                         <div>
-                                            <img src='/images/all.jpg' style={{ width: '36px',height: '36px' }} ></img>
+                                            <img src='/images/all.jpg' style={{ width: '36px', height: '36px' }} ></img>
                                             <p>전체</p>
                                         </div>
                                     </div>
@@ -521,7 +567,7 @@ function List() {
                             {/* 셀렉트에서 선택한 값을 알기 위해 이벤트 객체를 받아야 함 */}
 
                             <div className='categorySelectArea'>
-                                <h2>{activeTab}</h2>
+                                <h2>{tabMap[activeTab]}</h2>
                                 <select id="categorySelect" onChange={(e) => setCategory(e.target.value)}>
                                     <option value="all">전체</option>
                                     <option value="open-order">등록순</option>
@@ -536,13 +582,42 @@ function List() {
                     }
                 </Container>
             </main>
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content="로그인 먼저 하세요." opt={1}></AlertModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
-            <hr></hr>
-            <footer style={{paddingLeft:'6%'}}>
-                <h5>5판3선</h5>
-                <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
-                <h6>연락처: 041-561-1126</h6>
-                <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
+            <footer className="footer">
+                <Container>
+                    <Row>
+                        <Col md={4}>
+                            <h5 className="footer-title">5판3선</h5>
+                            <p className="footer-text">천안시 동남구 대흥로 215<br />백자빌딩 7층</p>
+                            <p className="footer-text">전화: 041-561-1126</p>
+                        </Col>
+                        <Col md={4}>
+                            <h6 className="footer-title">고객지원</h6>
+                            <ul className="footer-list">
+                                <li><a href="#">자주 묻는 질문</a></li>
+                                <li><a href="#">문의하기</a></li>
+                                <li><a href="#">이용약관</a></li>
+                                <li><a href="#">개인정보처리방침</a></li>
+                            </ul>
+                        </Col>
+                        <Col md={4}>
+                            <h6 className="footer-title">서비스</h6>
+                            <ul className="footer-list">
+                                <li><a href="#" onClick={() => {
+                                    if (localStorage.getItem('id') != null)
+                                        setShowSellModal(true);
+                                    else
+                                        setShowAlertModal(true);
+                                }}>펀딩 신청</a></li>
+                                <li><a href={localStorage.getItem('id') != null ? '/mypage' : '/login'}>마이페이지</a></li>
+                                <li><a href="https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link" target="_blank" rel="noopener noreferrer">이용 가이드</a></li>
+                            </ul>
+                        </Col>
+                    </Row>
+                    <hr />
+                    <p className="text-center small text-muted">© 2025 Funders. All rights reserved.</p>
+                </Container>
             </footer>
         </div>
     );

@@ -1,8 +1,11 @@
 import { Button, Form } from "react-bootstrap";
 import './PostWriteModal.css';
 import { useEffect, useState } from "react";
+import AlertModal from "./AlertModal";
 
 function PostWriteModal({ show, onClose, onSubmit, no }) {
+  const[showAlertModal,setShowAlertModal] = useState(false);
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [newType, setNewType] = useState('공지');
@@ -73,7 +76,7 @@ function PostWriteModal({ show, onClose, onSubmit, no }) {
           <div className="d-flex justify-content-end gap-2">
             <Button variant="primary" onClick={() => {
               onSubmit(newPost);
-              onClose();
+              setShowAlertModal(true);
             }}>
               올리기
             </Button>
@@ -81,6 +84,7 @@ function PostWriteModal({ show, onClose, onSubmit, no }) {
           </div>
         </Form>
       </div>
+      <AlertModal show={showAlertModal} handleClose={()=>setShowAlertModal(false)} content="작성 완료" opt={2}></AlertModal>
     </div>
   );
 }

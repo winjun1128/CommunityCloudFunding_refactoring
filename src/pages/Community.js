@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav, Form, Button, InputGroup } from "react-bootstrap";
+import { Container, Navbar, Nav, Form, Button, InputGroup,Row,Col } from "react-bootstrap";
 import './Community.css';
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,8 +8,10 @@ import PostSettingModal from "./PostSettingModal";
 import PostModal from "./PostModal";
 import SellModal from "./SellModal";
 import { useProducts } from "../data/ProductContext";
+import AlertModal from "./AlertModal";
 
 function Community() {
+    const [showAlertModal,setShowAlertModal] = useState(false);
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     let { itemno } = useParams();
     const itemindex = products.findIndex(product => product.no === Number(itemno));
@@ -147,7 +149,7 @@ function Community() {
     const totalPages = filteredPostKeyword ? Math.ceil(filteredPosts.length / postsPerPage) : Math.ceil(posts.length / postsPerPage);
     const getContent = () => {
         return (
-            <table className="table table-bordered text-center">
+            <table className="table table-bordered text-center centered-cell hover-table">
                 <thead>
                     <tr>
                         <th>번호</th>
@@ -212,7 +214,7 @@ function Community() {
 
     const getContentNotice = () => {
         return (
-            <table className="table table-bordered text-center">
+            <table className="table table-bordered text-center centered-cell hover-table">
                 <thead className="table-light">
                     <tr>
                         <th>번호</th>
@@ -279,7 +281,7 @@ function Community() {
 
     const getContentQna = () => {
         return (
-            <table className="table table-bordered text-center">
+            <table className="table table-bordered text-center centered-cell hover-table">
                 <thead className="table-light">
                     <tr>
                         <th>번호</th>
@@ -339,18 +341,18 @@ function Community() {
     return (
         <div className="community-all-container">
             <header>
-                <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
+                <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
                     <Container fluid className="community-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                            <Nav className="ms-auto align-items-center" navbarScroll>
+                                <Nav.Link as={Link} to="/list" className='me-3'>
                                     후원하기
                                 </Nav.Link>
-                                <Form className="d-flex">
-                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                <Form className="d-flex me-3">
+                                    <Form.Control type="search" placeholder="Search" className="me-2" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
@@ -359,9 +361,9 @@ function Community() {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
-                                        alert('로그인 하세요');
+                                        setShowAlertModal(true);
 
-                                }} href="#action3">펀딩신청</Nav.Link>
+                                }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -369,7 +371,7 @@ function Community() {
             </header>
             <main className="community-main">
                 <Container>
-                    <div style={{ width: '100%', height: '100%', backgroundColor: 'white', textAlign: 'center', marginBottom: '5%', boxShadow: '2px 2px 5px', borderRadius: '10px' }}>
+                    <div className="community-title-area">
                         <h2>{products[itemindex].name + '의 게시판'}</h2>
                     </div>
                     <Nav fill variant="tabs" className="bg-white">
@@ -411,36 +413,36 @@ function Community() {
 
                         {showTableTab === '공지' ? (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button
+                                <Button style={{marginRight:'5%'}}
                                     disabled={currentNoticePage === 1}
                                     onClick={() => setCurrentNoticePage(currentNoticePage - 1)}
                                 >이전</Button>
                                 <span>{currentNoticePage} / {noticeTotalPages}</span>
-                                <Button
+                                <Button style={{marginLeft:'5%'}}
                                     disabled={currentNoticePage === noticeTotalPages}
                                     onClick={() => setCurrentNoticePage(currentNoticePage + 1)}
                                 >다음</Button>
                             </div>
                         ) : showTableTab === 'Q&A' ? (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button
+                                <Button style={{marginRight:'5%'}}
                                     disabled={currentQnaPage === 1}
                                     onClick={() => setCurrentQnaPage(currentQnaPage - 1)}
                                 >이전</Button>
                                 <span>{currentQnaPage} / {QnaTotalPages}</span>
-                                <Button
+                                <Button style={{marginLeft:'5%'}}
                                     disabled={currentQnaPage === QnaTotalPages}
                                     onClick={() => setCurrentQnaPage(currentQnaPage + 1)}
                                 >다음</Button>
                             </div>
                         ) : (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button
+                                <Button style={{marginRight:'5%'}}
                                     disabled={currentPage === 1}
                                     onClick={() => setCurrentPage(currentPage - 1)}
                                 >이전</Button>
                                 <span>{currentPage} / {totalPages}</span>
-                                <Button
+                                <Button style={{marginLeft:'5%'}}
                                     disabled={currentPage === totalPages}
                                     onClick={() => setCurrentPage(currentPage + 1)}
                                 >다음</Button>
@@ -451,16 +453,45 @@ function Community() {
                 </Container>
 
             </main>
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content="로그인 먼저 하세요." opt={1}></AlertModal>
             <PostModal show={showPostModal} onClose={() => setShowPostModal(false)} commentAr={commentAr} setCommentAr={setCommentAr} id={localStorage.getItem('id')} date={new Date().toLocaleString()} title={selectedPost?.title || ''} content={selectedPost?.content || ''}></PostModal>
             <PostWriteModal show={showModal} onClose={() => setShowModal(false)} onSubmit={handleAddPostIndex} type={showTableTab} no={posts.length} />
             <PostSettingModal show={showSettingModal} onClose={() => setShowSettingModal(false)} post={updatePost} commentAr={commentAr} posts={posts} onUpdate={setPosts} onDelete={setPosts} />
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
-            <hr></hr>
-            <footer style={{ paddingLeft: '6%' }}>
-                <h5>5판3선</h5>
-                <h6>주소: 천안시 동남구 대흥로 215 백자빌딩 7층</h6>
-                <h6>연락처: 041-561-1126</h6>
-                <h6><a href='https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link'>이용가이드</a></h6>
+            <footer className="footer">
+                <Container>
+                    <Row>
+                        <Col md={4}>
+                            <h5 className="footer-title">5판3선</h5>
+                            <p className="footer-text">천안시 동남구 대흥로 215<br />백자빌딩 7층</p>
+                            <p className="footer-text">전화: 041-561-1126</p>
+                        </Col>
+                        <Col md={4}>
+                            <h6 className="footer-title">고객지원</h6>
+                            <ul className="footer-list">
+                                <li><a href="#">자주 묻는 질문</a></li>
+                                <li><a href="#">문의하기</a></li>
+                                <li><a href="#">이용약관</a></li>
+                                <li><a href="#">개인정보처리방침</a></li>
+                            </ul>
+                        </Col>
+                        <Col md={4}>
+                            <h6 className="footer-title">서비스</h6>
+                            <ul className="footer-list">
+                                <li><a href="#" onClick={()=>{
+                                    if (localStorage.getItem('id') != null)
+                                        setShowSellModal(true);
+                                    else
+                                        setShowAlertModal(true);
+                                }}>펀딩 신청</a></li>
+                                <li><a href={localStorage.getItem('id') != null?'/mypage':'/login'}>마이페이지</a></li>
+                                <li><a href="https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link" target="_blank" rel="noopener noreferrer">이용 가이드</a></li>
+                            </ul>
+                        </Col>
+                    </Row>
+                    <hr />
+                    <p className="text-center small text-muted">© 2025 Funders. All rights reserved.</p>
+                </Container>
             </footer>
 
         </div>

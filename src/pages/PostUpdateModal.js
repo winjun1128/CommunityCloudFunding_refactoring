@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './PostUpdateModal.css';
+import AlertModal from './AlertModal';
 
-function PostUpdateModal({ show, onClose, post, commentAr, posts, onUpdate }) {
+function PostUpdateModal({ show, onClose, post, commentAr, posts, onUpdate,onAllClose }) {
+    const [showAlertModal,setShowAlertModal] = useState(false);
+
     const [getTitle, setGetTitle] = useState('');
     const [getContent, setGetContent] = useState('');
     const [getType, setGetType] = useState(post.type);
@@ -101,7 +104,7 @@ function PostUpdateModal({ show, onClose, post, commentAr, posts, onUpdate }) {
                                         : item
                                 );
                                 onUpdate(updatedPosts);
-                                onClose();
+                                setShowAlertModal(true);
                             }}
                         >
                             수정하기
@@ -112,6 +115,10 @@ function PostUpdateModal({ show, onClose, post, commentAr, posts, onUpdate }) {
                     </div>
                 </Form>
             </div>
+            <AlertModal show={showAlertModal} handleClose={()=>{
+                setShowAlertModal(false);
+                if(onAllClose)onAllClose();
+            }} content="수정 완료" opt={2}></AlertModal>
         </div>
     );
 }

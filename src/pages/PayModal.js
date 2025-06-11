@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import './PayModal.css';
 import { useProducts } from '../data/ProductContext';
+import AlertModal from "./AlertModal";
 
 function PayModal({ show, onClose, itemindex }) {
+  const[showAlertModal,setShowAlertModal] = useState(false);
+
   const { products, setProducts } = useProducts();
   const item = products[itemindex];
   const [buyItemCount, setBuyItemCount] = useState(1);
@@ -31,8 +34,7 @@ function PayModal({ show, onClose, itemindex }) {
     temp[itemindex].consumer.push(localStorage.getItem('id'));
     temp[itemindex].percent = ((temp[itemindex].gainmoney / temp[itemindex].recruitmoney) * 100).toFixed(1);
     setProducts(temp);
-    alert('결제 완료!');
-    onClose();
+    setShowAlertModal(true);
   };
 
   return (
@@ -95,6 +97,7 @@ function PayModal({ show, onClose, itemindex }) {
           </div>
         </Form>
       </div>
+      <AlertModal show={showAlertModal} handleClose={()=>setShowAlertModal(false)} content="결제 완료" opt={2}></AlertModal>
     </div>
   );
 }

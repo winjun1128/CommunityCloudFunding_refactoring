@@ -3,7 +3,11 @@ import './Sign.css'
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SellModal from './SellModal';
+import AlertModal from './AlertModal';
 function Sign() {
+    const [alertContent,setAlertContent] = useState('로그인 먼저 하세요.');
+
+    const[showAlertModal,setShowAlertModal] = useState(false);
     const [phone,setPhone] = useState('');
     const [agree,setAgree] = useState(false);
     const [agree2,setAgree2] = useState(false);
@@ -18,29 +22,31 @@ function Sign() {
     return (
         <div>
             <div className='sign-header-container'>
-                <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
-                    <Container fluid>
+                <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
+                    <Container fluid className="sign-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                            <Nav className="ms-auto align-items-center" navbarScroll>
+                                <Nav.Link as={Link} to="/list" className='me-3'>
                                     후원하기
                                 </Nav.Link>
-                                <Form className="d-flex">
-                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={()=>navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                <Form className="d-flex me-3">
+                                    <Form.Control type="search" placeholder="Search" className="me-2" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
-                                <Nav.Link as={Link} to={localStorage.getItem('id')==null?'/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
-                                 <Nav.Link onClick={() => {
+                                <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
-                                    else
-                                        alert('로그인 하세요');
+                                    else{
+                                        setAlertContent('로그인 먼저 하세요.');
+                                        setShowAlertModal(true);
+                                    }
 
-                                }} href="#action3">펀딩신청</Nav.Link>
+                                }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -124,15 +130,18 @@ function Sign() {
                             <button onClick={(e)=>{
                                 e.preventDefault();
                                 if(userId.trim()===''||userPass.trim()===''){
-                                    alert('아이디와 비밀번호를 입력해주세요!');
+                                    setAlertContent('아이디와 비밀번호를 입력해주세요!');
+                                    setShowAlertModal(true);
                                     return;
                                 }
                                 if(userPass.trim()!==userPassChk.trim()){
-                                    alert('비밀번호가 다릅니다.!');
+                                    setAlertContent('비밀번호가 다릅니다.!');
+                                    setShowAlertModal(true);
                                     return;
                                 }
                                 if(!agree||!agree2){
-                                    alert('필수약관 동의해주세요.!');
+                                    setAlertContent('필수약관 동의해주세요.!');
+                                    setShowAlertModal(true);
                                     return;
                                 }
                                 navigate("/login");
@@ -141,6 +150,7 @@ function Sign() {
                     </div>
                 </div>
             </div>
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content={alertContent} opt={1}></AlertModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
         </div>
     );

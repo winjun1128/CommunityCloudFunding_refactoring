@@ -1,11 +1,15 @@
 import { Container, Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AlertModal from './AlertModal';
 
 import SellModal from './SellModal';
 
 import './LogIn.css';
 function LogIn() {
+    const [alertContent,setAlertContent] = useState('로그인 먼저 하세요.');
+
+    const [showAlertModal,setShowAlertModal] = useState(false);
     const navigate = useNavigate();
     const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -20,18 +24,18 @@ function LogIn() {
     return (
         <div>
             <header>
-                <Navbar expand="lg" className="bg-body-tertiary w-100 h-100">
+                <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
                     <Container fluid className="login-navbar-inner">
                         <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <Nav className="ms-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                                <Nav.Link as={Link} to="/list" style={{ marginRight: '10px' }}>
+                            <Nav className="ms-auto align-items-center" navbarScroll>
+                                <Nav.Link as={Link} to="/list" className='me-3'>
                                     후원하기
                                 </Nav.Link>
-                                <Form className="d-flex">
-                                    <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
-                                    <Button variant="outline-success" style={{ marginRight: '10px' }} onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
+                                <Form className="d-flex me-3">
+                                    <Form.Control type="search" placeholder="Search" className="me-2" value={searchKeyword} onChange={(e) => setSearchKeyword(e.target.value)} />
+                                    <Button variant="outline-success" onClick={() => navigate(`/list?keyword=${encodeURIComponent(searchKeyword)}`)}>
                                         Search
                                     </Button>
                                 </Form>
@@ -39,10 +43,11 @@ function LogIn() {
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
-                                    else
-                                        alert('로그인 하세요');
-
-                                }} href="#action3">펀딩신청</Nav.Link>
+                                    else{
+                                        setAlertContent('로그인 먼저 하세요.');
+                                        setShowAlertModal(true);
+                                    }
+                                }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -85,7 +90,8 @@ function LogIn() {
                                <button type="submit" onClick={(e) => {
                                     e.preventDefault();
                                     if(userid.trim()===''||password.trim()===''){
-                                        alert('아이디와 비밀번호를 입력해주세요!');
+                                        setAlertContent('아이디와 비밀번호를 입력하세요!');
+                                        setShowAlertModal(true);
                                         return;
                                     }
                                     localStorage.setItem('id', userid);
@@ -98,6 +104,7 @@ function LogIn() {
                     <p className="login-p" style={{ color: message === '로그인 성공' ? 'green' : 'red' }}>{message}</p>
                 </div>
             </main>
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content={alertContent} opt={1}></AlertModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
         </div>
     )

@@ -11,6 +11,7 @@ import {Route,Routes} from 'react-router';
 import LogIn from './pages/LogIn';
 import Mypage from './components/Mypage';
 import Sign from './pages/Sign';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (

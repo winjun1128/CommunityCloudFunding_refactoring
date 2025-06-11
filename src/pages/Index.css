@@ -109,17 +109,6 @@ li {
     border-radius: 8px;
 }
 
-/* 푸터 */
-footer {
-    background-color: #ffffff;
-    text-align: left;
-    color: #888;
-}
-
-footer a {
-    text-decoration: none;
-    color: #888;
-}
 
 
 
@@ -168,19 +157,19 @@ footer a {
 .ad-slide1 {
     background-color: #ffe2d6;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .ad-slide2 {
     background-color: #e9f2f1;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .ad-slide3 {
     background-color: beige;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
 }
 
 .ad-image-container {
@@ -189,9 +178,10 @@ footer a {
 
 .ad-text-area {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: left;
+    padding-left: 50px;
 }
 
 .ad-text h1 {
@@ -227,7 +217,7 @@ footer a {
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-10px);
     }
 }
 
@@ -238,3 +228,43 @@ footer a {
     color: red;
     animation: jump 1s ease-in-out infinite;
 }
+
+/* 푸터 */
+.footer {
+  background-color: #343a40;
+  color: #f8f9fa;
+  padding: 40px 0;
+  margin-top: 60px;
+}
+
+.footer-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #dddddd;
+  margin-bottom: 5px;
+}
+
+.footer-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-list li {
+  margin-bottom: 8px;
+}
+
+.footer-list a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.footer-list a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+

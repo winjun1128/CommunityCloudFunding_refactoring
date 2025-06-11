@@ -1,5 +1,6 @@
 .all-container {
   /* navbar 높이만큼 */
+  font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh; /*  전체 화면 높이 */
@@ -27,6 +28,7 @@
   max-width: 1165px;
   margin: 0 auto;
   padding: 0 20px;
+  padding-right: 35px;
 }
 
 .sidebar {

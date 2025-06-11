@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 import { Row, Col, Button, Form } from "react-bootstrap";
 import './SellModal.css';
 import { useProducts } from '../data/ProductContext';
+import AlertModal from './AlertModal';
 
 function SellModal({ show, onClose }) {
+    
+
+    const[showAlertModal,setShowAlertModal] = useState(false);
+
     const { products, setProducts } = useProducts();
     const [sellImgLink, setSellImgLink] = useState('');
     const [sellCompanyName, setSellCompanyName] = useState('');
@@ -17,6 +22,12 @@ function SellModal({ show, onClose }) {
     const [sellIntro, setSellIntro] = useState('');
     const [sellPictureLink, setSellPictureLink] = useState('');
     const [sellVideoLink, setSellVideoLink] = useState('');
+
+    const today = new Date();
+
+    const endDate = new Date(sellEndDate);
+    const diffTime = endDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     useEffect(() => {
         document.body.style.overflow = show ? 'hidden' : 'auto';
@@ -54,10 +65,10 @@ function SellModal({ show, onClose }) {
             heart: [''],
             consumer: [''],
             seller: localStorage.getItem('id'),
+            state: diffDays <= 0 ? '마감' : '진행중'
         };
         setProducts([...products, temp]);
-        alert('등록 완료!');
-        onClose();
+        setShowAlertModal(true);
     };
 
     return (
@@ -141,6 +152,7 @@ function SellModal({ show, onClose }) {
                     </div>
                 </Form>
             </div>
+            <AlertModal show={showAlertModal} handleClose={()=>setShowAlertModal(false)} content="등록 완료" opt={2}></AlertModal>
         </div>
     );
 }
