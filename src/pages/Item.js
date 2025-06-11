@@ -12,6 +12,7 @@ import { useProducts } from '../data/ProductContext';
 import SellModal from './SellModal';
 import AlertModal from './AlertModal';
 function Item() {
+    const [alertContent,setAlertContent] = useState('로그인 먼저 하세요.');
     const tabMap = {
         all: "전체",
         food: '푸드',
@@ -66,9 +67,10 @@ function Item() {
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
-                                    else
+                                    else{
+                                        setAlertContent('로그인 먼저 하세요.')
                                         setShowAlertModal(true);
-
+                                    }
                                 }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
@@ -145,12 +147,19 @@ function Item() {
                                         navigate('/community/' + itemno);
                                     }
                                     else {
+                                        setAlertContent('로그인 먼저 하세요.');
                                         setShowAlertModal(true);
                                     }
                                 }}>게시판가기</Button>
                                 <div className='like-pay'>
                                     <button onClick={() => {
+                                        if(products[itemindex].state==='마감'){
+                                            setAlertContent('마감입니다.');
+                                            setShowAlertModal(true);
+                                            return;
+                                        }
                                         if (localStorage.getItem('id') == null) {
+                                            setAlertContent('로그인 먼저 하세요.');
                                             setShowAlertModal(true);
                                             return;
                                         }
@@ -168,11 +177,18 @@ function Item() {
                                         }
                                     }} >{(products[itemindex].heart.includes(localStorage.getItem('id')) ? '💘' : '🤍')}</button>
                                     <Button size='sm' onClick={() => {
+                                        if(products[itemindex].state==='마감'){
+                                            setAlertContent('마감입니다.');
+                                            setShowAlertModal(true);
+                                            return;
+                                        }
+                                        if (localStorage.getItem('id') === null) {
+                                            setAlertContent('로그인 먼저 하세요.');
+                                            setShowAlertModal(true);
+                                            return;
+                                        }
                                         if (localStorage.getItem('id') != null) {
                                             setShowPayModal(true);
-                                        }
-                                        else {
-                                            setShowAlertModal(true);
                                         }
                                     }}>결제가기</Button>
                                 </div>
@@ -199,7 +215,7 @@ function Item() {
                     </Row>
                 </Container>
             </main>
-            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content="로그인 먼저 하세요." opt={1}></AlertModal>
+            <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content={alertContent} opt={1}></AlertModal>
             <PayModal itemindex={itemindex} show={showPayModal} onClose={() => setShowPayModal(false)}  ></PayModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)}></SellModal>
             <footer className="footer">

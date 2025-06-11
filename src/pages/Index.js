@@ -197,7 +197,7 @@ function Index() {
                                         <h3>밤티라미수컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
-                                        <h2 className='text-jump'>5,000원</h2>
+                                        <h2 className='text-jump'>3,800원</h2>
                                         <br></br>
                                         <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
