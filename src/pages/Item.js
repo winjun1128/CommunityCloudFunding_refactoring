@@ -185,12 +185,7 @@ function Item() {
                                     }
                                 }}>게시판가기</Button>
                                 <div className='like-pay'>
-                                    <button onClick={() => {
-                                        if(products[itemindex].state==='마감'){
-                                            setAlertContent('마감입니다.');
-                                            setShowAlertModal(true);
-                                            return;
-                                        }
+                                    <button disabled={products[itemindex].state==='마감'} onClick={() => {
                                         if (localStorage.getItem('id') == null) {
                                             setAlertContent('로그인 먼저 하세요.');
                                             setShowAlertModal(true);
@@ -209,12 +204,7 @@ function Item() {
                                             setHeartToggle(false);
                                         }
                                     }} >{(products[itemindex].heart.includes(localStorage.getItem('id')) ? '💘' : '🤍')}</button>
-                                    <Button size='sm' onClick={() => {
-                                        if(products[itemindex].state==='마감'){
-                                            setAlertContent('마감입니다.');
-                                            setShowAlertModal(true);
-                                            return;
-                                        }
+                                    <Button size='sm' disabled={products[itemindex].state==='마감'} onClick={() => {
                                         if (localStorage.getItem('id') === null) {
                                             setAlertContent('로그인 먼저 하세요.');
                                             setShowAlertModal(true);

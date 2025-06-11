@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav, Form, Button, InputGroup,Row,Col } from "react-bootstrap";
+import { Container, Navbar, Nav, Form, Button, InputGroup, Row, Col } from "react-bootstrap";
 import './Community.css';
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import AlarmModal from './AlarmModal';
 
 function Community() {
-    const [showAlertModal,setShowAlertModal] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
     let { itemno } = useParams();
     const itemindex = products.findIndex(product => product.no === Number(itemno));
@@ -157,13 +157,13 @@ function Community() {
             <table className="table table-bordered text-center centered-cell hover-table">
                 <thead>
                     <tr>
-                        <th>번호</th>
-                        <th>유형</th>
-                        <th>제목</th>
-                        <th>아이디</th>
-                        <th>작성일</th>
-                        <th>조회수</th>
-                        <th>설정</th>
+                        <th style={{ width: '5%' }}>번호</th>
+                        <th style={{ width: '8%' }}>유형</th>
+                        <th style={{ width: '35%' }}>제목</th>
+                        <th style={{ width: '15%' }}>아이디</th>
+                        <th style={{ width: '17%' }}>작성일</th>
+                        <th style={{ width: '10%' }}>조회수</th>
+                        <th style={{ width: '10%' }}>설정</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,13 +222,13 @@ function Community() {
             <table className="table table-bordered text-center centered-cell hover-table">
                 <thead className="table-light">
                     <tr>
-                        <th>번호</th>
-                        <th>유형</th>
-                        <th>제목</th>
-                        <th>아이디</th>
-                        <th>작성일</th>
-                        <th>조회수</th>
-                        <th>설정</th>
+                        <th style={{ width: '5%' }}>번호</th>
+                        <th style={{ width: '8%' }}>유형</th>
+                        <th style={{ width: '35%' }}>제목</th>
+                        <th style={{ width: '15%' }}>아이디</th>
+                        <th style={{ width: '17%' }}>작성일</th>
+                        <th style={{ width: '10%' }}>조회수</th>
+                        <th style={{ width: '10%' }}>설정</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -285,18 +285,18 @@ function Community() {
     const QnaTotalPages = filteredPostKeyword ? Math.ceil(filteredQnaPosts.length / QnaPostsPerPage) : Math.ceil(QnaPosts.length / QnaPostsPerPage);
 
     const getContentQna = () => {
-        
+
         return (
             <table className="table table-bordered text-center centered-cell hover-table">
                 <thead className="table-light">
                     <tr>
-                        <th>번호</th>
-                        <th>유형</th>
-                        <th>제목</th>
-                        <th>아이디</th>
-                        <th>작성일</th>
-                        <th>조회수</th>
-                        <th>설정</th>
+                        <th style={{ width: '5%' }}>번호</th>
+                        <th style={{ width: '8%' }}>유형</th>
+                        <th style={{ width: '35%' }}>제목</th>
+                        <th style={{ width: '15%' }}>아이디</th>
+                        <th style={{ width: '17%' }}>작성일</th>
+                        <th style={{ width: '10%' }}>조회수</th>
+                        <th style={{ width: '10%' }}>설정</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -445,36 +445,36 @@ function Community() {
 
                         {showTableTab === '공지' ? (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button style={{marginRight:'5%'}}
+                                <Button style={{ marginRight: '5%' }}
                                     disabled={currentNoticePage === 1}
                                     onClick={() => setCurrentNoticePage(currentNoticePage - 1)}
                                 >이전</Button>
                                 <span>{currentNoticePage} / {noticeTotalPages}</span>
-                                <Button style={{marginLeft:'5%'}}
+                                <Button style={{ marginLeft: '5%' }}
                                     disabled={currentNoticePage === noticeTotalPages}
                                     onClick={() => setCurrentNoticePage(currentNoticePage + 1)}
                                 >다음</Button>
                             </div>
                         ) : showTableTab === 'Q&A' ? (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button style={{marginRight:'5%'}}
+                                <Button style={{ marginRight: '5%' }}
                                     disabled={currentQnaPage === 1}
                                     onClick={() => setCurrentQnaPage(currentQnaPage - 1)}
                                 >이전</Button>
                                 <span>{currentQnaPage} / {QnaTotalPages}</span>
-                                <Button style={{marginLeft:'5%'}}
+                                <Button style={{ marginLeft: '5%' }}
                                     disabled={currentQnaPage === QnaTotalPages}
                                     onClick={() => setCurrentQnaPage(currentQnaPage + 1)}
                                 >다음</Button>
                             </div>
                         ) : (
                             <div className="d-flex justify-content-center mt-3">
-                                <Button style={{marginRight:'5%'}}
+                                <Button style={{ marginRight: '5%' }}
                                     disabled={currentPage === 1}
                                     onClick={() => setCurrentPage(currentPage - 1)}
                                 >이전</Button>
                                 <span>{currentPage} / {totalPages}</span>
-                                <Button style={{marginLeft:'5%'}}
+                                <Button style={{ marginLeft: '5%' }}
                                     disabled={currentPage === totalPages}
                                     onClick={() => setCurrentPage(currentPage + 1)}
                                 >다음</Button>
@@ -510,13 +510,13 @@ function Community() {
                         <Col md={4}>
                             <h6 className="footer-title">서비스</h6>
                             <ul className="footer-list">
-                                <li><a href="#" onClick={()=>{
+                                <li><a href="#" onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
                                         setShowAlertModal(true);
                                 }}>펀딩 신청</a></li>
-                                <li><a href={localStorage.getItem('id') != null?'/mypage':'/login'}>마이페이지</a></li>
+                                <li><a href={localStorage.getItem('id') != null ? '/mypage' : '/login'}>마이페이지</a></li>
                                 <li><a href="https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link" target="_blank" rel="noopener noreferrer">이용 가이드</a></li>
                             </ul>
                         </Col>

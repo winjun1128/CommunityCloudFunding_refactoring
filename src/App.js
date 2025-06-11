@@ -12,6 +12,7 @@ import LogIn from './pages/LogIn';
 import Mypage from './components/Mypage';
 import Sign from './pages/Sign';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import ErrPage from './pages/ErrPage';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/community/:itemno" element={<Community />}></Route>
           
           <Route path="/mypage/*" element={<Mypage />}></Route>
+
+          <Route path="*" element={<ErrPage />} /> {/* ✅ 404 처리 */}
 
         </Routes>
       </ProductProvider>

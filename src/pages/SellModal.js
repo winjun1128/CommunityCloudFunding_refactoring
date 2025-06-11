@@ -124,6 +124,11 @@ function SellModal({ show, onClose }) {
                         </Col>
                     </Row>
 
+                    <Form.Group className="mb-3">
+                        <Form.Label>파일</Form.Label>
+                        <Form.Control type="file" />
+                    </Form.Group>
+
                     {[0, 1, 2].map((i) => (
                         <Form.Group className="mb-3" key={i}>
                             <Form.Label>캐러셀 이미지 링크 {i + 1}</Form.Label>

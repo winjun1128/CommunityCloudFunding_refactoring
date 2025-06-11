@@ -1,0 +1,27 @@
+.err-all-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.err-main{
+    /* 헤더와 푸터 제외한 남는 높이 차지 */
+    flex: 1;    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f7fa;
+    /* 배경색 추가 */
+}
+
+.err-navbar-inner {
+  max-width: 1165px;
+  margin: 0 auto;
+  padding: 0 20px;
+  padding-right: 35px;
+}
+
+.err-div{
+    text-align: center;
+}
