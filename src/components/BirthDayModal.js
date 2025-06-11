@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { Modal, Button, Form, Row, Col, InputGroup } from 'react-bootstrap';
 import './BirthDayModal.css';
+import AlertModal from "../pages/AlertModal";
 
 function BirthDayModal({ show, closeModal }) {
+    const [chkCount,setChkCount] = useState(0);
+    const [alertOpt,setAlertOpt] = useState(1);
+    const [showAlertModal,setShowAlertModal] = useState(false);
+    const [alertContent,setAlertContent] = useState(''); 
+
     const [isBirthdayPublic, setIsBirthdayPublic] = useState(true);
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
@@ -18,12 +24,21 @@ function BirthDayModal({ show, closeModal }) {
 
     const saveBirthdaySetting = () => {
         if (month === '' || day === '') {
-            alert("생일을 입력해주세요.");
+            // alert("생일을 입력해주세요.");
+            setAlertContent("생일을 입력해주세요.");
+            setAlertOpt(1);
+            setChkCount(1);
+            setShowAlertModal(true);
             return;
         }
         console.log("생일:", `${month}월 ${day}일`);
         console.log("공개여부:", isBirthdayPublic);
-        closeModal();
+        // closeModal();
+
+        setAlertContent("저장 되었습니다.");
+        setAlertOpt(2);
+        setChkCount(2);
+        setShowAlertModal(true);
     };
 
     return (
@@ -80,6 +95,15 @@ function BirthDayModal({ show, closeModal }) {
                 <Button variant="secondary" onClick={closeModal}>취소</Button>
                 <Button variant="primary" onClick={saveBirthdaySetting}>저장</Button>
             </Modal.Footer>
+            <AlertModal show={showAlertModal} handleClose={() => {
+                 if(chkCount<2){
+                       setShowAlertModal(false);
+                    }
+                    else{
+                        setShowAlertModal(false);
+                        closeModal();
+                    } 
+            }} content={alertContent} opt={alertOpt}></AlertModal>
         </Modal>
     );
 }

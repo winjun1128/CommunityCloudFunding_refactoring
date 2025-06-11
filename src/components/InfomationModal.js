@@ -1,8 +1,13 @@
 import { Button, Form, Modal, InputGroup } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import './InfomationModal.css';
+import AlertModal from '../pages/AlertModal';
 
 function InfomationModal({ show, onClose, infomation, setInfomation, asd }) {
+    const [chkCount,setChkCount] = useState(0);
+    const [alertOpt,setAlertOpt] = useState(1);
+    const [showAlertModal,setShowAlertModal] = useState(false);
+    const [alertContent,setAlertContent] = useState('전화번호를 입력하세요.');
     const [content, setContent] = useState('');
     const [authCode, setAuthCode] = useState('');
     const [isAuthSent, setIsAuthSent] = useState(false);
@@ -25,23 +30,40 @@ function InfomationModal({ show, onClose, infomation, setInfomation, asd }) {
 
     const handleSendAuth = () => {
         if (content.trim() === '') {
-            alert(`${asd}를 입력해주세요.`);
+            //alert(`${asd}를 입력해주세요.`);
+            setAlertContent(`${asd}를 입력해주세요.`);
+            setAlertOpt(1);
+             setChkCount(1);
+            setShowAlertModal(true);
             return;
         }
         setIsAuthSent(true);
-        alert('인증번호가 전송되었습니다.');
+        //alert('인증번호가 전송되었습니다.');
+        setAlertContent('인증번호가 전송되었습니다.');
+        setAlertOpt(2);
+    
+        setShowAlertModal(true);
     };
 
     const handleChange = () => {
         if (authCode.trim() === '') {
-            alert('인증번호를 입력해주세요.');
+            //alert('인증번호를 입력해주세요.');
+            setAlertContent('인증번호를 입력하세요.');
+            setAlertOpt(1);
+            setChkCount(3);
+            setShowAlertModal(true);
             return;
         }
         const index = asd === '전화번호' ? 0 : 1;
         const updated = [...infomation];
         updated[index] = content.trim();
         setInfomation(updated);
-        onClose();
+        
+        setAlertContent('수정 되었습니다.');
+        setAlertOpt(2);
+        setChkCount(4);
+        setShowAlertModal(true);
+    
     };
 
     return (
@@ -83,9 +105,18 @@ function InfomationModal({ show, onClose, infomation, setInfomation, asd }) {
                 <Button variant="secondary" onClick={onClose}>취소</Button>
                 <Button variant="primary" onClick={handleChange}>변경</Button>
             </Modal.Footer>
+            <AlertModal show={showAlertModal} handleClose={()=>{
+                    if(chkCount<4){
+                       setShowAlertModal(false);
+                    }
+                    else{
+                        setShowAlertModal(false);
+                        setChkCount(0);
+                        onClose();
+                    } 
+            }} content={alertContent} opt={alertOpt}></AlertModal>
         </Modal>
     );
 }
 
 export default InfomationModal;
-

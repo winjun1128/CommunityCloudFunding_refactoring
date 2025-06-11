@@ -14,7 +14,7 @@ function ProjectCard({ item, setUpdateIndex, index, isSelected = false, onSelect
                 <Card.Img variant="top" src={item.imglink} />
             </Link>
             <Card.Body>
-                <Card.Title
+                <Card.Title className='ellipsis-multiline'
                     onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();

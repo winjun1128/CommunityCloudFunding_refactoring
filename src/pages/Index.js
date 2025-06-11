@@ -242,21 +242,21 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/ex_item_1.jpg"
+                                        src="/images/item2_1.jpg"
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
                                 </Col>
                                 <Col md={6} className="ad-text-area">
                                     <div className="ad-text">
-                                        <h1 className="slide-in">신제품 감자튀김 등록!</h1>
-                                        <h2>감자튀김</h2>
-                                        <h3>감자튀김컴퍼니</h3>
+                                        <h1 className="slide-in">신제품 믹싱볼 등록!</h1>
+                                        <h2>믹싱볼</h2>
+                                        <h3>믹싱볼컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
-                                        <h2 className='text-jump'>5,000원</h2>
+                                        <h2 className='text-jump'>15,000원</h2>
                                         <br></br>
-                                        <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
+                                        <Button onClick={() => navigate('item/2')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
                                 </Col>
                             </Row>
@@ -267,21 +267,21 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/food1.jpg"
+                                        src="/images/item3_1.jpg"
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
                                 </Col>
                                 <Col md={6} className="ad-text-area">
                                     <div className="ad-text">
-                                        <h1 className="slide-in">신제품 케이크 등록!</h1>
-                                        <h2>케이크</h2>
-                                        <h3>케이크컴퍼니</h3>
+                                        <h1 className="slide-in">신제품 사과주스 등록!</h1>
+                                        <h2>사과주스</h2>
+                                        <h3>사과주스컴퍼니</h3>
                                         <p>지금 등록 할인가로 만나보세요!</p>
                                         <span style={{ textDecoration: 'line-through', textDecorationColor: 'red' }}>10,000원</span>
-                                        <h2 className='text-jump'>5,000원</h2>
+                                        <h2 className='text-jump'>18,900원</h2>
                                         <br></br>
-                                        <Button onClick={() => navigate('item/1')} className="blink-button1" variant="danger">지금 보러가기</Button>
+                                        <Button onClick={() => navigate('item/3')} className="blink-button1" variant="danger">지금 보러가기</Button>
                                     </div>
                                 </Col>
                             </Row>
