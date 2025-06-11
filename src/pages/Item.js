@@ -49,7 +49,7 @@ function Item() {
             <header>
                 <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
                     <Container fluid className="item-navbar-inner">
-                        <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/" className='header-font'>Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="ms-auto align-items-center" navbarScroll>

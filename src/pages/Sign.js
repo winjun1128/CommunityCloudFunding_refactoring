@@ -1,20 +1,20 @@
-import { Navigate, useNavigate,Link } from 'react-router-dom';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
 import './Sign.css'
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SellModal from './SellModal';
 import AlertModal from './AlertModal';
 function Sign() {
-    const [alertContent,setAlertContent] = useState('로그인 먼저 하세요.');
+    const [alertContent, setAlertContent] = useState('로그인 먼저 하세요.');
 
-    const[showAlertModal,setShowAlertModal] = useState(false);
-    const [phone,setPhone] = useState('');
-    const [agree,setAgree] = useState(false);
-    const [agree2,setAgree2] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [phone, setPhone] = useState('');
+    const [agree, setAgree] = useState(false);
+    const [agree2, setAgree2] = useState(false);
 
-    const [userId,setUserId] = useState('');
-    const [userPass,setUserPass] = useState('');
-    const [userPassChk,setUserPassChk] = useState('');
+    const [userId, setUserId] = useState('');
+    const [userPass, setUserPass] = useState('');
+    const [userPassChk, setUserPassChk] = useState('');
 
     const [searchKeyword, setSearchKeyword] = useState('');
     const [showSellModal, setShowSellModal] = useState(false);
@@ -24,7 +24,7 @@ function Sign() {
             <div className='sign-header-container'>
                 <Navbar expand="lg" className="bg-body-tertiary shadow-sm">
                     <Container fluid className="sign-navbar-inner">
-                        <Navbar.Brand as={Link} to="/">Funders</Navbar.Brand>
+                        <Navbar.Brand as={Link} to="/" className='header-font'>Funders</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="ms-auto align-items-center" navbarScroll>
@@ -41,7 +41,7 @@ function Sign() {
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
-                                    else{
+                                    else {
                                         setAlertContent('로그인 먼저 하세요.');
                                         setShowAlertModal(true);
                                     }
@@ -54,7 +54,7 @@ function Sign() {
             </div>
 
             <div class="sign-container">
-              <h1>Funders</h1>
+            <h1 className='header-font'>Funders</h1>
                 <div class="form-wrapper">
                     <div class="sign-header-container">
                         <h2>회원가입</h2>
@@ -80,7 +80,7 @@ function Sign() {
                                 type="password"
                                 placeholder="비밀번호"
                                 value={userPass}
-                                onChange={(e)=> setUserPass(e.target.value)}
+                                onChange={(e) => setUserPass(e.target.value)}
                                 required
                             />
                         </div>
@@ -92,19 +92,19 @@ function Sign() {
                                 type="password"
                                 placeholder="비밀번호 확인"
                                 value={userPassChk}
-                                onChange={(e)=>setUserPassChk(e.target.value)}
+                                onChange={(e) => setUserPassChk(e.target.value)}
                                 required
                             />
                         </div>
 
                         <div class="SignInputBox">
                             <label for='userName'>이름</label>
-                            <input id='userName' type="text" placeholder="이름"/>
+                            <input id='userName' type="text" placeholder="이름" />
                         </div>
 
                         <div class="SignInputBox">
                             <label for='userPn'>전화번호</label>
-                            <input  id='userPn' type="tel" value={phone} onChange={(e)=>{
+                            <input id='userPn' type="tel" value={phone} onChange={(e) => {
                                 const onlyNumber = e.target.value.replace(/[^0-9\-]/g, '');
                                 setPhone(onlyNumber);
                             }} placeholder='010-1234-5678' />
@@ -112,13 +112,13 @@ function Sign() {
 
                         <div class="SignInputBox">
                             <label for='userAddr'>주소</label>
-                            <input id='userAddr' type="text" placeholder="주소"/>
+                            <input id='userAddr' type="text" placeholder="주소" />
                         </div>
 
                         <div class="agree-section">
-                            <label><input type="checkbox" checked={agree} onChange={(e)=>setAgree(e.target.checked)}/> 개인정보 수집 및 이용 (필수)</label>
-                            <label><input type="checkbox" checked={agree2} onChange={(e)=>setAgree2(e.target.checked)}/> 사이트 이용 약관 (필수)</label>
-                            <label><input type="checkbox"/> 위치기반 서비스 이용 (선택)</label>
+                            <label><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} /> 개인정보 수집 및 이용 (필수)</label>
+                            <label><input type="checkbox" checked={agree2} onChange={(e) => setAgree2(e.target.checked)} /> 사이트 이용 약관 (필수)</label>
+                            <label><input type="checkbox" /> 위치기반 서비스 이용 (선택)</label>
                         </div>
 
                         <div class="warning">
@@ -127,19 +127,19 @@ function Sign() {
 
                         <div class="button-group">
                             <button class="cancel">취소</button>
-                            <button onClick={(e)=>{
+                            <button onClick={(e) => {
                                 e.preventDefault();
-                                if(userId.trim()===''||userPass.trim()===''){
+                                if (userId.trim() === '' || userPass.trim() === '') {
                                     setAlertContent('아이디와 비밀번호를 입력해주세요!');
                                     setShowAlertModal(true);
                                     return;
                                 }
-                                if(userPass.trim()!==userPassChk.trim()){
+                                if (userPass.trim() !== userPassChk.trim()) {
                                     setAlertContent('비밀번호가 다릅니다.!');
                                     setShowAlertModal(true);
                                     return;
                                 }
-                                if(!agree||!agree2){
+                                if (!agree || !agree2) {
                                     setAlertContent('필수약관 동의해주세요.!');
                                     setShowAlertModal(true);
                                     return;

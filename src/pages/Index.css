@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Rampart+One&family=Rock+Salt&display=swap');
 /* 초기화 */
 * {
     margin: 0;
@@ -7,6 +9,17 @@
 
 li {
     list-style: none;
+}
+
+/* 헤더 로고 폰트 */
+.header-font {
+    font-family: "Rampart One", sans-serif; 
+    /* font-family: "Cherry Bomb One", system-ui;  */
+    /* font-family: "Rock Salt", cursive; 5qjs */
+    font-weight: 400;
+    /* font-size: 25px; */
+    font-style: normal;
+
 }
 
 /* 전체 페이지 배경 */
@@ -231,40 +244,39 @@ li {
 
 /* 푸터 */
 .footer {
-  background-color: #343a40;
-  color: #f8f9fa;
-  padding: 40px 0;
-  margin-top: 60px;
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 40px 0;
+    margin-top: 60px;
 }
 
 .footer-title {
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
 }
 
 .footer-text {
-  font-size: 14px;
-  color: #dddddd;
-  margin-bottom: 5px;
+    font-size: 14px;
+    color: #dddddd;
+    margin-bottom: 5px;
 }
 
 .footer-list {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 .footer-list li {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .footer-list a {
-  color: #cccccc;
-  text-decoration: none;
+    color: #cccccc;
+    text-decoration: none;
 }
 
 .footer-list a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+    color: #ffffff;
+    text-decoration: underline;
 }
-

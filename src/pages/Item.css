@@ -161,3 +161,18 @@
   margin-bottom: 8px;
   font-size: 14px;
 }
+
+/* 캐러셀 화살표 선명하게 */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+  background-size: 100% 100%;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  opacity: 1 !important; /* 항상 보이게 */
+}
