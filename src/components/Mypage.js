@@ -8,6 +8,10 @@ import Spon from './Spon';
 import Wishlist from './Wishlist';
 import { useState } from 'react';
 import SellModal from '../pages/SellModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons'
+import AlarmModal from '../pages/AlarmModal';
+import AlertModal from '../pages/AlertModal';
 
 function Mypage() {
     const navigate = useNavigate();
@@ -18,6 +22,11 @@ function Mypage() {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [showSellModal, setShowSellModal] = useState(false);
     const [showId, setShowId] = useState(false);
+
+    const [showAlertModal, setShowAlertModal] = useState(false);
+
+    const [showAlarmModal, setShowAlarmModal] = useState(false);
+    let [alarmCount, setAlarmCount] = useState(0);
 
     return (
         <div className='all-container'>
@@ -43,11 +52,38 @@ function Mypage() {
                             <Nav.Link as={Link} to={localStorage.getItem('id') ? '/mypage' : '/login'}>
                                 {localStorage.getItem('id') || '로그인'}
                             </Nav.Link>
+                            <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
+                                <FontAwesomeIcon icon={faBell} style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                }} onClick={() => {
+                                    if (localStorage.getItem('id') != null) {
+                                        alarmCount = alarmCount + 1;
+                                        setAlarmCount(alarmCount);
+                                        if (alarmCount % 2 == 1) {
+                                            setShowAlarmModal(true);
+                                        } else {
+                                            setShowAlarmModal(false);
+                                        }
+                                    }
+                                    else
+                                        setShowAlertModal(true);
+                                }} />
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
                             <Nav.Link onClick={() => {
                                 if (localStorage.getItem('id')) setShowSellModal(true);
                                 else alert('로그인 하세요');
                             }}>펀딩신청</Nav.Link>
                         </Nav>
+                        <AlarmModal show={showAlarmModal} onClose={() => setShowAlarmModal(false)} handleClose={() => setShowAlarmModal(false)} content="로그인 먼저 하세요." opt={1}></AlarmModal>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useProducts } from '../data/ProductContext';
 import AlertModal from './AlertModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 //import './Index.css';
 import './List.css';
@@ -14,6 +16,7 @@ import SellModal from './SellModal';
 import EditModal from './EditModal';
 // import TpsItem  from './TpsItem';
 import { Routes, Route, useNavigate } from 'react-router';
+import AlarmModal from './AlarmModal';
 // 추가했을때 전체 탭에서만 뜸
 function List() {
      const tabMap = {
@@ -38,6 +41,9 @@ function List() {
 
     const params = new URLSearchParams(location.search);
     const keyword = params.get('keyword');
+
+    const [showAlarmModal, setShowAlarmModal] = useState(false);
+    let [alarmCount, setAlarmCount] = useState(0);
 
     const [showSellModal, setShowSellModal] = useState(false);
     const { products, setProducts } = useProducts(); //이제 products 배열 사용 가능
@@ -451,6 +457,32 @@ function List() {
                                     </Button>
                                 </Form>
                                 <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
+                                <FontAwesomeIcon icon={faBell} style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                }} onClick={() => {
+                                    if (localStorage.getItem('id') != null) {
+                                        alarmCount = alarmCount + 1;
+                                        setAlarmCount(alarmCount);
+                                        if (alarmCount % 2 == 1) {
+                                            setShowAlarmModal(true);
+                                        } else {
+                                            setShowAlarmModal(false);
+                                        }
+                                    }
+                                    else
+                                        setShowAlertModal(true);
+                                }} />
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
@@ -459,6 +491,7 @@ function List() {
 
                                 }}>펀딩신청</Nav.Link>
                             </Nav>
+                            <AlarmModal show={showAlarmModal} onClose={() => setShowAlarmModal(false)} handleClose={() => setShowAlarmModal(false)} content="로그인 먼저 하세요." opt={1}></AlarmModal>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

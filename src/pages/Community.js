@@ -9,6 +9,9 @@ import PostModal from "./PostModal";
 import SellModal from "./SellModal";
 import { useProducts } from "../data/ProductContext";
 import AlertModal from "./AlertModal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import AlarmModal from './AlarmModal';
 
 function Community() {
     const [showAlertModal,setShowAlertModal] = useState(false);
@@ -23,6 +26,7 @@ function Community() {
 
     const [selectedPost, setSelectedPost] = useState(null);
     const [updatePost, setUpdatePost] = useState(null);
+    const [showAlarmModal, setShowAlarmModal] = useState(false);
 
     useEffect(() => {
         if (itemindex === -1) {
@@ -129,6 +133,7 @@ function Community() {
     const [showSellModal, setShowSellModal] = useState(false);
     const [showPostModal, setShowPostModal] = useState(false);
     const [showSettingModal, setShowSettingModal] = useState(false);
+    let [alarmCount, setAlarmCount] = useState(0);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -280,6 +285,7 @@ function Community() {
     const QnaTotalPages = filteredPostKeyword ? Math.ceil(filteredQnaPosts.length / QnaPostsPerPage) : Math.ceil(QnaPosts.length / QnaPostsPerPage);
 
     const getContentQna = () => {
+        
         return (
             <table className="table table-bordered text-center centered-cell hover-table">
                 <thead className="table-light">
@@ -337,7 +343,6 @@ function Community() {
         )
     }
 
-
     return (
         <div className="community-all-container">
             <header>
@@ -357,6 +362,32 @@ function Community() {
                                     </Button>
                                 </Form>
                                 <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
+                                <FontAwesomeIcon icon={faBell} style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                }} onClick={() => {
+                                    if (localStorage.getItem('id') != null) {
+                                        alarmCount = alarmCount + 1;
+                                        setAlarmCount(alarmCount);
+                                        if (alarmCount % 2 == 1) {
+                                            setShowAlarmModal(true);
+                                        } else {
+                                            setShowAlarmModal(false);
+                                        }
+                                    }
+                                    else
+                                        setShowAlertModal(true);
+                                }} />
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
@@ -365,6 +396,7 @@ function Community() {
 
                                 }}>펀딩신청</Nav.Link>
                             </Nav>
+                            <AlarmModal show={showAlarmModal} onClose={() => setShowAlarmModal(false)} handleClose={() => setShowAlarmModal(false)} content="로그인 먼저 하세요." opt={1}></AlarmModal>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

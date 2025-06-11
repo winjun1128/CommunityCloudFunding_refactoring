@@ -8,6 +8,9 @@ import { useState } from 'react';
 import SellModal from './SellModal';
 import { useProducts } from '../data/ProductContext';
 import AlertModal from './AlertModal';
+import AlarmModal from './AlarmModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 // import TpsItem from './TpsItem';
 import { Route, Routes } from 'react-router';
 function Index() {
@@ -15,6 +18,10 @@ function Index() {
 
     const [isHoveredHot, setIsHoveredHot] = useState(false);
     const [isHoveredHeart, setIsHoveredHeart] = useState(false);
+
+    const [showAlarmModal, setShowAlarmModal] = useState(false);
+    let [alarmCount, setAlarmCount] = useState(0);
+
 
 
     const navigate = useNavigate();
@@ -53,12 +60,37 @@ function Index() {
                                     </Button>
                                 </Form>
                                 <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
+                                <FontAwesomeIcon icon={faBell} style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                }} onClick={() => {
+                                    if (localStorage.getItem('id') != null) {
+                                        alarmCount = alarmCount + 1;
+                                        setAlarmCount(alarmCount);
+                                        if (alarmCount % 2 == 1) {
+                                            setShowAlarmModal(true);
+                                        } else {
+                                            setShowAlarmModal(false);
+                                        }
+                                    }
+                                    else
+                                        setShowAlertModal(true);
+                                }} />
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
                                     else
                                         setShowAlertModal(true);
-
                                 }}>펀딩신청</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
@@ -257,6 +289,7 @@ function Index() {
                     </Carousel>
                 </Container>
             </main>
+            <AlarmModal show={showAlarmModal} onClose={() => setShowAlarmModal(false)} handleClose={() => setShowAlarmModal(false)} content="로그인 먼저 하세요." opt={1}></AlarmModal>
             <AlertModal show={showAlertModal} handleClose={() => setShowAlertModal(false)} content="로그인 먼저 하세요." opt={1}></AlertModal>
             <SellModal show={showSellModal} onClose={() => setShowSellModal(false)} ></SellModal>
             <footer className="footer">

@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import AlertModal from './AlertModal';
 
 import SellModal from './SellModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import AlarmModal from './AlarmModal';
 
 import './LogIn.css';
 function LogIn() {
@@ -19,6 +22,9 @@ function LogIn() {
     const [userid, setUserid] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+
+    const [showAlarmModal, setShowAlarmModal] = useState(false);
+    let [alarmCount, setAlarmCount] = useState(0);
 
 
     return (
@@ -40,6 +46,32 @@ function LogIn() {
                                     </Button>
                                 </Form>
                                 <Nav.Link as={Link} to={localStorage.getItem('id') == null ? '/login' : '/mypage'}>{localStorage.getItem('id') == null ? '로그인' : localStorage.getItem('id')}</Nav.Link>
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
+                                <FontAwesomeIcon icon={faBell} style={{
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                }} onClick={() => {
+                                    if (localStorage.getItem('id') != null) {
+                                        alarmCount = alarmCount + 1;
+                                        setAlarmCount(alarmCount);
+                                        if (alarmCount % 2 == 1) {
+                                            setShowAlarmModal(true);
+                                        } else {
+                                            setShowAlarmModal(false);
+                                        }
+                                    }
+                                    else
+                                        setShowAlertModal(true);
+                                }} />
+                                <div style={{
+                                    height: '20px',
+                                    borderLeft: '1px solid #ccc',
+                                    margin: '0 10px'
+                                }} />
                                 <Nav.Link onClick={() => {
                                     if (localStorage.getItem('id') != null)
                                         setShowSellModal(true);
@@ -49,6 +81,7 @@ function LogIn() {
                                     }
                                 }}>펀딩신청</Nav.Link>
                             </Nav>
+                            <AlarmModal show={showAlarmModal} onClose={() => setShowAlarmModal(false)} handleClose={() => setShowAlarmModal(false)} content="로그인 먼저 하세요." opt={1}></AlarmModal>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
