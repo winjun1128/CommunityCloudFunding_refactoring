@@ -77,6 +77,9 @@ function PostWriteModal({ show, onClose, onSubmit, no }) {
             <Button variant="primary" onClick={() => {
               onSubmit(newPost);
               setShowAlertModal(true);
+              setTitle('');
+              setNewType('');
+              setContent('');
             }}>
               올리기
             </Button>
