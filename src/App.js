@@ -16,7 +16,7 @@ import ErrPage from './pages/ErrPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ProductProvider>
         {/* <Index /> */}
         {/* <List /> */}
