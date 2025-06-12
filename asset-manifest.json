@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/CommunityCloudFunding/static/css/main.e981002c.css",
+    "main.js": "/CommunityCloudFunding/static/js/main.ea76a57e.js",
+    "static/js/453.fa318e9b.chunk.js": "/CommunityCloudFunding/static/js/453.fa318e9b.chunk.js",
+    "static/media/fa-solid-900.ttf": "/CommunityCloudFunding/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
+    "static/media/fa-brands-400.ttf": "/CommunityCloudFunding/static/media/fa-brands-400.1815e00441357e01619e.ttf",
+    "static/media/fa-solid-900.woff2": "/CommunityCloudFunding/static/media/fa-solid-900.2463b90d9a316e4e5294.woff2",
+    "static/media/fa-brands-400.woff2": "/CommunityCloudFunding/static/media/fa-brands-400.c210719e60948b211a12.woff2",
+    "static/media/earPhone.jpg": "/CommunityCloudFunding/static/media/earPhone.b6ac2fa3af7cbc41b055.jpg",
+    "static/media/tumbler.jpg": "/CommunityCloudFunding/static/media/tumbler.36e3b9bfbd5b1b6ef66b.jpg",
+    "static/media/fa-regular-400.ttf": "/CommunityCloudFunding/static/media/fa-regular-400.914997e1bdfc990d0897.ttf",
+    "static/media/standingDesk.jpg": "/CommunityCloudFunding/static/media/standingDesk.d324a63be9c68a4985f9.jpg",
+    "static/media/fa-regular-400.woff2": "/CommunityCloudFunding/static/media/fa-regular-400.89999bdf5d835c012025.woff2",
+    "static/media/basic.JPG": "/CommunityCloudFunding/static/media/basic.37c838b57747392890e5.JPG",
+    "static/media/fa-v4compatibility.ttf": "/CommunityCloudFunding/static/media/fa-v4compatibility.da94ef451f4969af06e6.ttf",
+    "static/media/fa-v4compatibility.woff2": "/CommunityCloudFunding/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
+    "static/media/logo.svg": "/CommunityCloudFunding/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/CommunityCloudFunding/index.html",
+    "main.e981002c.css.map": "/CommunityCloudFunding/static/css/main.e981002c.css.map",
+    "main.ea76a57e.js.map": "/CommunityCloudFunding/static/js/main.ea76a57e.js.map",
+    "453.fa318e9b.chunk.js.map": "/CommunityCloudFunding/static/js/453.fa318e9b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e981002c.css",
+    "static/js/main.ea76a57e.js"
+  ]
+}

@@ -1,0 +1,8 @@
+이미지링크
+/images/ex_list.jpg
+캐러셀
+/images/ex_item_1.jpg
+/images/ex_item_2.jpg
+/images/ex_item_3.jpg
+/images/ex_item_4.jpg
+/videos/ex_item_video.mp4
