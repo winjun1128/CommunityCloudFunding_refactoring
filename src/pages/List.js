@@ -510,62 +510,62 @@ function List() {
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('all')} active={activeTab === 'all'} className={`category-image ${activeTab === 'all' ? 'active' : ''}`}>
                                         <div>
-                                            <img src='/images/all.jpg' style={{ width: '36px', height: '36px' }} ></img>
+                                            <img src={process.env.PUBLIC_URL+'/images/all.jpg'} style={{ width: '36px', height: '36px' }} ></img>
                                             <p>전체</p>
                                         </div>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('food')} active={activeTab === 'food'} className={`category-image ${activeTab === 'food' ? 'active' : ''}`}>
-                                        <img src='/images/food.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/food.jpg'} style={{ width: '36px' }} ></img>
                                         <p>푸드</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('living')} active={activeTab === 'living'} className={`category-image ${activeTab === 'living' ? 'active' : ''}`}>
-                                        <img src='/images/living.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/living.jpg'} style={{ width: '36px' }} ></img>
                                         <p>리빙</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('area')} active={activeTab === 'area'} className={`category-image ${activeTab === 'area' ? 'active' : ''}`}>
-                                        <img src='/images/area.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/area.jpg'} style={{ width: '36px' }} ></img>
                                         <p>지역</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('book')} active={activeTab === 'book'} className={`category-image ${activeTab === 'book' ? 'active' : ''}`}>
-                                        <img src='/images/book.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/book.jpg'} style={{ width: '36px' }} ></img>
                                         <p>서적</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('learning')} active={activeTab === 'learning'} className={`category-image ${activeTab === 'learning' ? 'active' : ''}`}>
-                                        <img src='/images/learning.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/learning.jpg'} style={{ width: '36px' }} ></img>
                                         <p>교육</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('environment')} active={activeTab === 'environment'} className={`category-image ${activeTab === 'environment' ? 'active' : ''}`}>
-                                        <img src='/images/environment.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/environment.jpg'} style={{ width: '36px' }} ></img>
                                         <p>환경</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('pet')} active={activeTab === 'pet'} className={`category-image ${activeTab === 'pet' ? 'active' : ''}`}>
-                                        <img src='/images/pet.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/pet.jpg'} style={{ width: '36px' }} ></img>
                                         <p>펫</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('travel')} active={activeTab === 'travel'} className={`category-image ${activeTab === 'travel' ? 'active' : ''}`}>
-                                        <img src='/images/travel.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/travel.jpg'} style={{ width: '36px' }} ></img>
                                         <p>여행</p>
                                     </div>
                                 </Col>
                                 <Col xs="auto">
                                     <div onClick={() => setActiveTab('beauty')} active={activeTab === 'beauty'} className={`category-image ${activeTab === 'beauty' ? 'active' : ''}`}>
-                                        <img src='/images/beauty.jpg' style={{ width: '36px' }} ></img>
+                                        <img src={process.env.PUBLIC_URL+'/images/beauty.jpg'} style={{ width: '36px' }} ></img>
                                         <p>뷰티</p>
                                     </div>
                                 </Col>

@@ -103,7 +103,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/event1.jpg"
+                                src={process.env.PUBLIC_URL+"/images/event1.jpg"}
                                 alt="First slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
@@ -112,7 +112,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/event2.jpg"
+                                src={process.env.PUBLIC_URL+"/images/event2.jpg"}
                                 alt="Second slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
@@ -121,7 +121,7 @@ function Index() {
                         <Carousel.Item style={{ width: '100%', height: '400px' }}>
                             <img
                                 className="d-block"
-                                src="/images/event3.jpg"
+                                src={process.env.PUBLIC_URL+"/images/event3.jpg"}
                                 alt="Third slide"
                                 style={{ width: '100%', height: '400px' }}
                             />
@@ -205,7 +205,7 @@ function Index() {
                     }
                     <div style={{ width: '100%', height: '600px', overflow: 'hidden', marginBottom: '40px' }}>
                         <video controls loop muted style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} >
-                            <source src="/videos/Funders_intro.mp4" type='video/mp4' />
+                            <source src={process.env.PUBLIC_URL+"/videos/Funders_intro.mp4"} type='video/mp4' />
                         </video>
                     </div>
 
@@ -217,7 +217,7 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/bam1.jpg"
+                                        src={process.env.PUBLIC_URL+"/images/bam1.jpg"}
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
@@ -242,7 +242,7 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/item2_1.jpg"
+                                        src={process.env.PUBLIC_URL+"/images/item2_1.jpg"}
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
@@ -267,7 +267,7 @@ function Index() {
                                 <Col md={6} className="ad-image-container">
                                     <img
                                         className="d-block w-100 zoom-in"
-                                        src="/images/item3_1.jpg"
+                                        src={process.env.PUBLIC_URL+"/images/item3_1.jpg"}
                                         alt="광고 이미지"
                                         style={{ height: '100%', objectFit: 'cover', borderRadius: '10px' }}
                                     />
