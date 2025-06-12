@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Col, Image, Button } from "react-bootstrap";
 import basic from '../images/basic.JPG';
@@ -8,6 +9,7 @@ import PrivacyModal from "./PrivacyModal";
 import ExitModal from "./ExitModal";
 
 function Profile({ showInfo, setShowInfo }) {
+    const navigate = useNavigate();
     const [showPhoneModal, setShowPhoneModal] = useState(false);
     const [infomation, setInfomation] = useState(['010-1234-5678', 'asdf1234@naver.com']);
     const [asd, setAsd] = useState('');
@@ -85,6 +87,7 @@ function Profile({ showInfo, setShowInfo }) {
                 onConfirm={() => {
                     alert("탈퇴 처리되었습니다.");
                     setShowExitModal(false);
+                    navigate("/");
                 }}
             />
         </div>
