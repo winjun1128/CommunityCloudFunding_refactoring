@@ -1,8 +1,37 @@
+제품명
+휴먼양식
+
+회사명
+휴먼푸드
+
 이미지링크
 /images/ex_list.jpg
+
+가격
+10000
+
+모집금액
+100000
+
+시작일
+오늘
+
+마감일
+내일
+
+파일형식은 깃허브페이지에서 배포로 파일타입으로 해도되지만 링크를 이용
+
+
 캐러셀
 /images/ex_item_1.jpg
 /images/ex_item_2.jpg
 /images/ex_item_3.jpg
+
+상품소개
+최고의 양식입니다.
+
+상세이미지 링크
 /images/ex_item_4.jpg
+
+영상링크
 /videos/ex_item_video.mp4
