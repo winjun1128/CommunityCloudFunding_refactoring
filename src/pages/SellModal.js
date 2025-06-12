@@ -47,7 +47,7 @@ function SellModal({ show, onClose }) {
     const handleRegister = () => {
         const temp = {
             no: products.length + 1,
-            imglink: sellImgLink,
+            imglink: process.env.PUBLIC_URL+sellImgLink,
             companyname: sellCompanyName,
             name: sellName,
             category: sellCategory,
@@ -56,10 +56,10 @@ function SellModal({ show, onClose }) {
             recruitmoney: Number(sellRecruitMoney),
             startdate: sellStartDate,
             enddate: sellEndDate,
-            carousellink: sellCarouselLink,
+            carousellink: process.env.PUBLIC_URL+sellCarouselLink,
             intro: sellIntro,
-            picturelink: sellPictureLink,
-            videolink: sellVideoLink,
+            picturelink: process.env.PUBLIC_URL+sellPictureLink,
+            videolink: process.env.PUBLIC_URL+sellVideoLink,
             percent: 0,
             count: 0,
             heart: [''],

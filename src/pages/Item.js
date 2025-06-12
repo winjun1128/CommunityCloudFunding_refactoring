@@ -267,7 +267,7 @@ function Item() {
                                     else
                                         setShowAlertModal(true);
                                 }}>펀딩 신청</a></li>
-                                <li><a href={localStorage.getItem('id') != null ? '/mypage' : '/login'}>마이페이지</a></li>
+                                <li><a href={localStorage.getItem('id') != null ? process.env.PUBLIC_URL+'/mypage' : process.env.PUBLIC_URL+'/login'}>마이페이지</a></li>
                                 <li><a href="https://www.notion.so/20322dc2b142800f9264d7662c846fa5?source=copy_link" target="_blank" rel="noopener noreferrer">이용 가이드</a></li>
                             </ul>
                         </Col>

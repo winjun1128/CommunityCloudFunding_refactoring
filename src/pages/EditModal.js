@@ -66,16 +66,16 @@ function EditModal({ show, onClose, product }) {
             ...item,
             name: getName,
             companyname: getCompanyName,
-            imglink: getImgLink,
+            imglink: process.env.PUBLIC_URL+getImgLink,
             category: getCategory,
             price: getPrice,
             recruitmoney: getRecruitMoney,
             startdate: getStartDate,
             enddate: getEndDate,
-            carousellink: getCarouselLink,
+            carousellink: process.env.PUBLIC_URL+getCarouselLink,
             intro: getIntro,
-            picturelink: getPictureLink,
-            videolink: getVideoLink,
+            picturelink: process.env.PUBLIC_URL+getPictureLink,
+            videolink: process.env.PUBLIC_URL+getVideoLink,
             state: diffDays <= 0 ? '마감' : '진행중'
           }
         : item
