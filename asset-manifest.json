@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CommunityCloudFunding/static/css/main.e981002c.css",
-    "main.js": "/CommunityCloudFunding/static/js/main.fae4e30a.js",
+    "main.js": "/CommunityCloudFunding/static/js/main.90218db3.js",
     "static/js/453.fa318e9b.chunk.js": "/CommunityCloudFunding/static/js/453.fa318e9b.chunk.js",
     "static/media/fa-solid-900.ttf": "/CommunityCloudFunding/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/fa-brands-400.ttf": "/CommunityCloudFunding/static/media/fa-brands-400.1815e00441357e01619e.ttf",
@@ -18,11 +18,11 @@
     "static/media/logo.svg": "/CommunityCloudFunding/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/CommunityCloudFunding/index.html",
     "main.e981002c.css.map": "/CommunityCloudFunding/static/css/main.e981002c.css.map",
-    "main.fae4e30a.js.map": "/CommunityCloudFunding/static/js/main.fae4e30a.js.map",
+    "main.90218db3.js.map": "/CommunityCloudFunding/static/js/main.90218db3.js.map",
     "453.fa318e9b.chunk.js.map": "/CommunityCloudFunding/static/js/453.fa318e9b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e981002c.css",
-    "static/js/main.fae4e30a.js"
+    "static/js/main.90218db3.js"
   ]
 }
